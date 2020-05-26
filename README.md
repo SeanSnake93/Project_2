@@ -45,14 +45,46 @@ QA Indevisual Project 2
 
 ## Planning Documentation
 ### Trello
+
+Using MoSCoW to break up the elements of the site into tasks that I...
+
+- Must Have (100-199)
+- Should Have (200-299)
+- Could Have (300-399)
+- Would Have (400-499)
+
+...during the development of the project.
+
+To indercate what level of MoSCoW I will be focusing on, I will number each tast as a clear indercator.<br />
+This can be seen above in brackets, anything bellow 100 (1-99) will be planning documentation.
+
 ### Enitiy Relationship Diagram
+
+As the project is to involve the use of....
+
+I have created a total of # Tables, They are as follows...
+
+**Table 1**
+- id (*Primary Key*)
+- attribute
+- attribute (*Foreign Key*)
+
 ### Risk Assesment
+
+| Column 1       | Column 2     | Column 3     |
+| :------------- | :----------: | -----------: |
+|  Cell Contents | More Stuff   | And Again    |
+| You Can Also   | Put Pipes In | Like this \| |
 
 ## Set-Up Process
 ### Creating Virtual Machine
 #### Opening ports
 #### Importing Git Reopository
 #### Remote Access
+
+git config --global user.email "git@email.com"
+git config --global user.name "User_Name"
+
 #### Create .gitignore
 #### Installations
 ### Creating SQL DATABASE
