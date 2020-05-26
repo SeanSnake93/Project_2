@@ -71,10 +71,11 @@ I have created a total of # Tables, They are as follows...
 
 ### Risk Assesment
 
-| Risk             | Risk Statment    | Response Stratogy       | Objectives              | Baseline  |        |            |
-|                  |                  |                         |                         | liklyhood | Impact | Risk Level |
-| :--------------- | :--------------: | :---------------------: | :---------------------: | :-------: | :----: |----------: |
-| Risk 1           | Accepting        | How should I tackle it? | What I expect to happen | Unlikly   | low    | 1          |
+| Risk             | Risk Statment    | Response Stratogy       | Objectives              | Liklyhood  | Impact | Risk Level |
+| :--------------- | :--------------: | :---------------------: | :---------------------: | :--------: | :----: |----------: |
+| Risk 1           | Accepting        | How should I tackle it? | What I expect to happen | impossible | Low    | 1          |
+| Risk 2           | Reducing         | How should I tackle it? | What I expect to happen | Unlikly    | Low    | 1          |
+| Risk 3           | Undefined        | How should I tackle it? | What I expect to happen | likly      | High   | 10         |
 
 ## Set-Up Process
 ### Creating Virtual Machine
