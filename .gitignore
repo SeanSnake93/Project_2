@@ -1,0 +1,5 @@
+/pycache/ 
+*.pyc 
+/project2-venv/ 
+/venv/ 
+/.vscode/
