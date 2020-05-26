@@ -1,4 +1,13 @@
-# Project_2
+<!-- [links]: link -->
+[site]: 35.246.12.58:5000
+[git]: www.github.com
+[git-project]: www.github.com/SeanSnake93/Project_2
+[gcp-vm]: https://console.cloud.google.com/compute/instances
+[gcp-firewall-rules]: https://console.cloud.google.com/networking/firewalls/list
+[docker]: https://www.docker.com/
+
+
+# [Project_2][site]
 QA Indevisual Project 2
 
 ## Contests
@@ -41,7 +50,9 @@ QA Indevisual Project 2
 
 ## Introduction
 ### Project Outlines
+
 ### My Project Plan
+
 
 ## Planning Documentation
 ### Trello
@@ -71,6 +82,8 @@ I have created a total of # Tables, They are as follows...
 
 ### Risk Assesment
 
+To be added later
+
 | Risk             | Risk Statment    | Response Stratogy       | Objectives              | Liklyhood  | Impact | Risk Level |
 | :--------------- | :--------------: | :---------------------: | :---------------------: | :--------: | :----: |----------: |
 | Risk 1           | Accepting        | How should I tackle it? | What I expect to happen | impossible | Low    | 1          |
@@ -79,8 +92,40 @@ I have created a total of # Tables, They are as follows...
 
 ## Set-Up Process
 ### Creating Virtual Machine
+
+To create my Virtual Machine I used the [Google Cloud Platform][gcp-vm] and created an instance. <br />
+The settings changed from the default where the Region (eroupe-west2) and Boot disk (Ubuntu, Ubuntu 18.04 LTS).
+
+Once done I clicked 'Create' to produce my instance.
+
 #### Opening ports
+
+To enable ports on my VM I needed to edit the ports my machine has access to. This is done by using GCP's [Firewall Rules][gcp-firewall-rules] found in the 'VCP Network' tab. In here I created Ports with the following settings.
+
+* open-flask
+    - Targets
+        - All instances in the network
+    - Source filters
+        - IP Ranges : 0.0.0.0/0
+    - Protocols and ports
+        - tcp : 5000
+
+* open-jenkins
+    - Targets
+        - All instances in the network
+    - Source filters
+        - IP Ranges : 0.0.0.0/0
+    - Protocols and ports
+        - tcp : 8080
+
+Returning to the [Virtual Machine Instance's][gcp-vm] and entering my Virtual Machine to edit its setting. <br />
+Scrolling down to Network Tags I enter the Port name's (i.e. open-flask) I wished to open and press space to add the port.<br />
+When ports are added click save to enable the changes.
+
 #### Importing Git Reopository
+
+Creating a [Git Repository][git]
+
 #### Remote Access
 
 git config --global user.email "git@email.com"
