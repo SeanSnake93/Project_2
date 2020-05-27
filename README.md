@@ -135,7 +135,7 @@ I am able to clone/copy my git repo over to the VM, as can be seen by using...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `ls`                                                          | Project_2                                                  |
+| `ls`                                                          | "Project_2"                                                |
 
 I can then enter this file by using... 
 
@@ -147,7 +147,7 @@ And to confirm it is my new repo, i should have a "read me" file inside my folde
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `ls`                                                          | README.md                                                  |
+| `ls`                                                          | "README.md"                                                |
 
 #### Remote Access
 
@@ -155,12 +155,12 @@ In order to use my SHH remotly on **Visual Studio** I need to create a keygen. T
 
 Heading (on Windowns) to the `C:/Users/*LocalName*/.ssh` or `~/.shh` directory and right clicking inside and selecting the option to `Git Bash Here`. Within the terminal **I uses**/use the following commands...
 
-| Code Input *- Bash*                                              | Output                                                            |
-| :--------------------------------------------------------------- | :---------------------------------------------------------------- |
-| `ssh-keygen -t rsa -b 4096 -C "my@gitemail.com"`                 | Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa): |
-| {Enter Directory} *or* {**Press Enter to use default location**} | Enter passphrase (empty for no passphrase):                       |
-| {Enter passphrase} *or* {**Press Enter**}                        | Enter same passphrase again:                                      |
-| {Re-enter passphrase} *or* {**Press Enter if left blank**}       | {Print out keys (id_rsa.pub; id_rsa)}                             |
+| Code Input *- Bash*                                               | Output                                                              |
+| :---------------------------------------------------------------- | :------------------------------------------------------------------ |
+| `ssh-keygen -t rsa -b 4096 -C "my@gitemail.com"`                  | "Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):" |
+| {Enter Directory} *or* {**Press Enter to use default directory**} | "Enter passphrase (empty for no passphrase):"                       |
+| {Enter passphrase} *or* {**Press Enter**}                         | "Enter same passphrase again:"                                      |
+| {Re-enter passphrase} *or* {**Press Enter if left blank**}        | {Print out keys (id_rsa.pub; id_rsa)}                               |
 
 Now I have 2 files in my `.shh` directory called `id_rsa` and `id_rsa.pub`.
 
@@ -168,7 +168,7 @@ I can open the `id_rsa` using notepad to view the code needed or in the SHH Bash
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `cat id_rsa.pub`                                              | {Code output ~ = my@gitemail.com}                          |
+| `cat id_rsa.pub`                                              | "Code output + = my@gitemail.com"                          |
 
 With the code now visable, by returning to my [Virtual Machine][gcp-vm] and entering the `edit` setting of my VM, by scrolling down I can add my Public Key to the `SHH Key`. Clicking the link to drop down the menu and paist my code into the `SHH Keys` and saving it to allow me remote access to the server via my Private Key. It is now where if you wish to change the name of you e key you can. It can be changed later however, you will need to do this next step agin to change the new file location.
 
@@ -228,7 +228,7 @@ By using the command...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `ls -l`                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />-rw-rw-r-- 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
+| `ls -l`                                                      | "-rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md"<br />"-rw-rw-r-- 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh" |
 
 I will recive a list of the files in my current directory with its Permissions (Read, Write, Exicute), Group and User.<br />
 For referance the tabel bellow should help with the breakdown of Permissions...
@@ -250,7 +250,7 @@ Now I can check to see if the file Permissions have changed...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `ls -l`                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />-rw**x**rw**x**r-**x** 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
+| `ls -l`                                                      | "-rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md"<br />"-rw**x**rw**x**r-**x** 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh" |
 
 I can see the Execute (`x`) Permissions is now present on the file. If I run this file in the SHH terminal in its directory location...
 
@@ -267,7 +267,7 @@ To copy the file into the bin and change the files Permissions to enable the Exe
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `sudo su`                                                     | {Change to "root" User}                                    |
-| `cp /gitpush.sh /bin/gitpush.sh`     | {Copy file into "/bin" location}                           |
+| `cp /gitpush.sh /bin/gitpush.sh`                              | {Copy file into "/bin" location}                           |
 | `chmod +x /bin/gitpush`                                       | {Adds Execute Permissions to all Users}                    |
 | `sudo su seansnake93`                                         | {Return to SeanSnake93 User}                               |
 
