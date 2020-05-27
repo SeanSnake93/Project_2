@@ -164,10 +164,19 @@ And to confirm it is my new repo, i should have a "read me" file inside my folde
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
 | *git config --global user.name "SeanSnake93"*                 | {uploaded}                                                 |
 
-
-
-
 #### Create .gitignore
+
+#### Creating a Shebang git push
+
+In the SHH terminal on Visual Studio or the [Virtual Machine][gcp-vm] i created a .sh (shell file) called gitpush.sh.
+
+I created this by using the following commands
+
+| Code Input                                                    | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *git config --global user.email "my@gitemail.com"*            | {configured}                                                 |
+| *git config --global user.name "SeanSnake93"*                 | {configured}                                                 |
+
 #### Installations
 ### Creating SQL DATABASE
 #### Defining Exports

@@ -22,40 +22,87 @@ echo ---------------------------------------------------------
 
 echo " "
 
-echo EXECUTING: git commit -m
 
-echo " "
+while true; do
+    read -p "Do you wish to commit? (Y/n) " yn
+    case $yn in
+        [Yy]* ) 
+        
+        echo " "
 
-git commit -m "Shebang git push"
+        read commit "Enter commit message: ";
 
-echo " "
+        echo " ";
 
-echo '... git commit {successful}'
+        echo "EXECUTING: git commit -m";
 
-echo " "
+        echo " ";
 
-echo ---------------------------------------------------------
+        git commit -m "${commit}";
 
-echo EXECUTING: git status
+        echo " ";
 
-echo ---------------------------------------------------------
+        echo '... git commit {successful}';
 
-git status
+        echo " ";
 
-echo ---------------------------------------------------------
+        echo "---------------------------------------------------------";
 
-echo " "
+        echo "EXECUTING: git status";
 
-echo EXECUTING: git push...
+        echo "---------------------------------------------------------";
 
-echo " "
+        git status;
 
-git push
+        echo "---------------------------------------------------------";
 
-echo " "
+        echo " ";
+        
+        while true; do
+            read -p "Do you wish to push this git? (Y/n) " yn
+            case $yn in
+                [Yy]* ) 
 
-echo 'repo upload {successful}'
+                echo " ";
 
-echo " "
+                echo "EXECUTING: git push...";
 
-# Sean-David-McCann@15:38-on-27-05-2020
+                echo " ";
+
+                git push;
+
+                echo " ";
+
+                echo 'repo upload {successful}';
+
+                echo " ";
+                
+                break;;
+
+                [Nn]* ) exit;;
+
+                * ) 
+                
+                echo "Please answer y/Y or n/N.";
+                
+                echo " ";;
+
+            esac
+
+        done
+
+        break;;
+
+        [Nn]* ) exit;;
+
+        * ) 
+             
+            echo "Please answer y/Y or n/N.";
+            
+            echo " ";;
+
+    esac
+
+done
+
+# Sean-David-McCann@16:32-on-27-05-2020
