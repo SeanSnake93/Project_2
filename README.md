@@ -185,12 +185,18 @@ Now to allow my Local System access to find my VM I need to create a "config" fi
 
 inside this file we will need to define the Host, HostName, User, IdentityFile and declare what format. inside this file enter the following...
 
-| Code Input *- vim*                                                                                            | Output               |
-| :------------------------------------------------------------------------------------------------------------ | -------------------: |
-| *i*                                                                                                           | {Enter Insert Mode}  |
-| *Host Project2<br />   HostName 35.246.12.58<br /> User seansnake93<br/>   IdentityFile ~/.ssh/keygen_access*<br /><br />Host shh<br />   HostName shh |                      |
-| *esc*                                                                                                         | {Enter Command Mode} |
-| *:wq*                                                                                                         | {Exit and Save}      |
+| Code Input *- vim*                                            | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *i*                                                           | {Enter Insert Mode}                                        |
+| *Host Project2*<br />
+----*HostName {server IP}*<br />
+----*User seansnake93*<br/>  
+----*IdentityFile ~/.ssh/keygen_name*<br />
+<br />
+*Host shh*<br />
+----*HostName shh*                                              |                                                            |
+| *esc*                                                         | {Enter Command Mode}                                       |
+| *:wq*                                                         | {Exit and Save}                                            |
 
 Host shh
 	HostName shh
