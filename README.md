@@ -7,6 +7,7 @@
 [gcp-firewall-rules]: https://console.cloud.google.com/networking/firewalls/list
 [docker]: https://www.docker.com/
 
+<div style="text-align:center">
 
 # [Project_2][site]
 QA Indevisual Project 2
@@ -354,3 +355,5 @@ Project2/Risk_Assesment.xlsx Project2/requirments.txt <br />
 Project2/app.py <br />
 Project2/create.py <br />
 Project2/chromedriver
+
+</div>
