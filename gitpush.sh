@@ -30,7 +30,7 @@ while true; do
         
         echo " "
 
-        read commit "Enter commit message: ";
+        read -p "Enter commit message: " commit;
 
         echo " ";
 
