@@ -12,26 +12,27 @@ QA Indevisual Project 2
 
 ## Contests
 
-* Introduction
-    * Project Outlines
-    * My Project Plan
-* Planning Documentation
-    * Trello
-    * Enitiy Relationship Diagram
-    * Risk Assesment
-* Set-Up Process
-    * Creating Virtual Machine
-        * Opening ports
-        * Importing Git Reopository
-        * Remote Access
-        * Create .gitignore
-        * Installations
-    * Creating SQL DATABASE
-        * Defining Exports
-    * Setting Up Jenkins
-        * Creating Item
-        * Creating Developers Branch
-* Creation Process
+* [Introduction](./#Introduction)
+    * [Project Outlines]
+    * [My Project Plan]
+* [Planning Documentation]
+    * [Trello]
+    * [Enitiy Relationship Diagram]
+    * [Risk Assesment]
+* [Set-Up Process]
+    * [Creating Virtual Machine]
+        * [Opening ports]
+        * [Importing Git Reopository]
+        * [Remote Access]
+        * [Create .gitignore]
+        * [Creating a Shebang git push]
+        * [Installations]
+    * [Creating SQL DATABASE]
+        * [Defining Exports]
+    * [Setting Up Jenkins]
+        * [Creating Item]
+        * [Creating Developers Branch]
+* [Creation Process]
     * app.py
     * models.py
     * Forms.py
@@ -84,15 +85,11 @@ I have created a total of # Tables, They are as follows...
 
 **To be added later!!!!!!!!!!!!!!!!!!**
 
-<div style="dispaly: block; align: center;">
-
 | Risk             | Risk Statment    | Response Stratogy       | Objectives              | Liklyhood  | Impact | Risk Level |
 | :--------------- | :--------------- | :---------------------- | :---------------------- | :--------: | :----: | :--------: |
 | Risk 1           | Accepting        | How should I tackle it? | What I expect to happen | impossible | Low    | 1          |
 | Risk 2           | Reducing         | How should I tackle it? | What I expect to happen | Unlikly    | Low    | 1          |
 | Risk 3           | Undefined        | How should I tackle it? | What I expect to happen | likly      | High   | 10         |
-
-</div>
 
 ## Set-Up Process
 ### Creating Virtual Machine
