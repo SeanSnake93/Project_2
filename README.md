@@ -184,7 +184,7 @@ Inside this file I will need to define the Host, HostName, User, IdentityFile an
 | Code Input *- Vim*                                            | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `i`                                                           | {Enter Insert Mode}                                        |
-| `Host Project2*<br />->  *HostName {server IP}*<br />->  *User seansnake93*<br/>->  *IdentityFile ~/.ssh/keygen_name*<br /><br />*Host shh*<br />->  *HostName shh` |                                                            |
+| `Host Project2`<br />->  `HostName {server IP}`<br />->  `User seansnake93`<br/>->  `IdentityFile ~/.ssh/keygen_name`<br /><br />`Host shh`<br />->  `HostName shh` |                                                            |
 | `esc`                                                         | {Enter Command Mode}                                       |
 | `:wq`                                                         | {Exit and Save}                                            |
 
@@ -200,8 +200,8 @@ By using this file I can tell git to not upload clutter files to the repo. This 
 
 | Code Input *- Visual Studio*                                  | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| */pycache/*<br />**.pyc*<br />*/project2-venv/*<br />*/venv/*<br />*/.vscode/*                                                           |                                                            |
-| ctrl + s                                                      | {Save Changes}                                             |
+| `/pycache/`<br />`*.pyc`<br />`/project2-venv/`<br />`/venv/`<br />`/.vscode/`                                                          |                                                            |
+| `ctrl` + `s`                                                      | {Save Changes}                                             |
 
 The `/project2-venv/` and `/venv/` files will relate to the Python3 install made later in the documentaion.
 
@@ -209,8 +209,8 @@ Now I have access via my external SHH on Visual Studio, I configured my git hib 
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *git config --global user.email "my@gitemail.com"*            | {configured Email}                                         |
-| *git config --global user.name "SeanSnake93"*                 | {configured User}                                          |
+| `git config --global user.email "my@gitemail.com"`            | {configured Email}                                         |
+| `git config --global user.name "SeanSnake93"`                 | {configured User}                                          |
 
 #### Creating a *Shebang* git push
 
@@ -218,8 +218,8 @@ In the SHH terminal on Visual Studio I created a `.sh` (shell file) called `gitp
 
 | Code Input *- Visual Studio*                                  | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *#!/usr/bun/env bash*<br /><br />*git add .*<br /><br />*git commit -m "Shebang Commit"*<br /><br />*git push* |                   |
-| ctrl + s                                                      | {Save Changes}                                             |
+| `#!/usr/bun/env bash`<br /><br />`git add .`<br /><br />`git commit -m "Shebang Commit"`<br /><br />`git push` |                   |
+| `ctrl` + `s`                                                      | {Save Changes}                                             |
 
 Now the file has been created with the following commands inside I want to run it. The file as it stands hold has **Read** and **Write** permissions but to use this as a Shebang I need to enable the **Exicute** permissions.
 
@@ -228,7 +228,7 @@ By using the command...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *ls -l*                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />-rw-rw-r-- 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
+| `ls -l`                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />-rw-rw-r-- 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
 
 I will recive a list of the files in my current directory with its Permissions (Read, Write, Exicute), Group and User.<br />
 For referance the tabel bellow should help with the breakdown of Permissions...
@@ -244,19 +244,19 @@ To allow the `gitpush.sh` to have **Execute** Permissions you can use the comman
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *chmod +x ./gitpush*                                          | {Adds Execute Permissions to all Users}                    |
+| `chmod +x ./gitpush`                                          | {Adds Execute Permissions to all Users}                    |
 
 Now I can check to see if the file Permissions have changed...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *ls -l*                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />-rw**x**rw**x**r-**x** 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
+| `ls -l`                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />-rw**x**rw**x**r-**x** 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
 
 I can see the Execute (`x`) Permissions is now present on the file. If I run this file in the SHH terminal in its directory location...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *./gitpush.sh*                                                | {All files pushed to git with "Shebang Commit" as comment} |
+| `./gitpush.sh`                                                | {All files pushed to git with "Shebang Commit" as comment} |
 
 Now with the file working, I want to make this accessable to me anywhere in the directory. I did this by copying the file to the `bin`. this enables the file to be accessed using a smaller command than having to provide the full directory.
 
@@ -266,16 +266,16 @@ To copy the file into the bin and change the files Permissions to enable the Exe
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *sudo su*                                                     | {Change to "root" User}                                    |
-| *cp /Project_2/script/shebang/gitpush.sh /bin/gitpush.sh*     | {Copy file into "/bin" location}                           |
-| *chmod +x /bin/gitpush*                                       | {Adds Execute Permissions to all Users}                    |
-| *sudo su seansnake93*                                         | {Return to SeanSnake93 User}                               |
+| `sudo su`                                                     | {Change to "root" User}                                    |
+| `cp /gitpush.sh /bin/gitpush.sh`     | {Copy file into "/bin" location}                           |
+| `chmod +x /bin/gitpush`                                       | {Adds Execute Permissions to all Users}                    |
+| `sudo su seansnake93`                                         | {Return to SeanSnake93 User}                               |
 
 Now that the file has been moved into `/bin` I am able to run a simple command anywhere in my directory to have the script run...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *gitpush*                                                     | {All files pushed to git with "Shebang Commit" as comment} |
+| `gitpush`                                                     | {All files pushed to git with "Shebang Commit" as comment} |
 
 *This file has since been modified to ask for custom comments for commit's to git with yes/no prompts before `git commit -m` and `git push`.* 
 
