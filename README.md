@@ -185,7 +185,7 @@ Now to allow my Local System access to find my VM I need to create a "config" fi
 
 Inside this file we will need to define the Host, HostName, User, IdentityFile and declare what format. inside this file enter the following...
 
-| Code Input *- vim*                                            | Output                                                     |
+| Code Input *- Vim*                                            | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
 | i                                                             | {Enter Insert Mode}                                        |
 | *Host Project2*<br />->  *HostName {server IP}*<br />->  *User seansnake93*<br/>->  *IdentityFile ~/.ssh/keygen_name*<br /><br />*Host shh*<br />->  *HostName shh*                                              |                                                            |
@@ -200,31 +200,95 @@ Now with a new window open, in the green box located in th ebottom left should s
 
 #### Create .gitignore
 
-By using this file we can tell git to not upload clutter files to the repo. this includes cashe files etc;
-so with remote access enabled I can click on the "New File" icon and enter the name ".gitignore".
+By using this file I can tell git to not upload clutter files to the repo. This includes cashe files etc; so with remote access enabled and in my home directory, I can click on the "New File" icon and enter the name ".gitignore" and start editing.
 
-| Code Input *- vim*                                            | Output                                                     |
+| Code Input *- Visual Studio*                                  | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
 | */pycache/*<br />**.pyc*<br />*/project2-venv/*<br />*/venv/*<br />*/.vscode/*                                                           |                                                            |
 | ctrl + s                                                      | {Save Changes}                                             |
 
-#### Creating a Shebang git push
+The "/project2-venv/" and "/venv/" files will relate to the Python3 install made later in the documentaion.
 
-In the SHH terminal on Visual Studio or the [Virtual Machine][gcp-vm] i created a .sh (shell file) called gitpush.sh.
+Now I have access via our external SHH on Visual Studio, I configured my git hib so make uploading easier and help with the Shebang next.
 
-I created this by using the following commands
-
-| Code Input                                                    | Output                                                     |
+| Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
-| *git config --global user.email "my@gitemail.com"*            | {configured}                                               |
-| *git config --global user.name "SeanSnake93"*                 | {configured}                                               |
+| *git config --global user.email "my@gitemail.com"*            | {configured Email}                                         |
+| *git config --global user.name "SeanSnake93"*                 | {configured User}                                          |
 
+#### Creating a *Shebang* git push
 
-sudo su
-cp git-script.sh /bin/git-script
-chmod +x /bin/git-script
+In the SHH terminal on Visual Studio I created a ".sh (shell file)" called "gitpush.sh". The idea is that I can use this file to automate a lot of the Git Push process for me. By clicking the "Add File" icon I can create the file called "gitpush.sh" and begin to edit.
+
+| Code Input *- Visual Studio*                                  | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *#!/usr/bun/env bash*<br /><br />*git add .*<br /><br />*git commit -m "Shebang Commit"*<br /><br />*git push* |                   |
+| ctrl + s                                                      | {Save Changes}                                             |
+
+Now the file has been created with the following commands inside I want to run it. The file as it stands hold has **Read** and **Write** permissions but to use this as a Shebang we need to enable the **Exicute** permissions.
+
+This can be doen a couple of ways.<br />
+By using the command...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *ls -l*                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />
+-rw-rw-r-- 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
+
+I will recive a list of the files in my current directory with its Permissions (Read, Write, Exicute), Group and User.<br />
+For referance the tabel bellow should help with the breakdown of Permissions...
+
+| Permissions                                                   | Description                                                |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| d---------                                                    | Decares it is a directory.                                 |
+| -rwx------                                                    | Read, Write and Exicute Privlages for Owner.               |
+| ----rwx---                                                    | Read, Write and Exicute Privlages for Group.               |
+| -------rwx                                                    | Read, Write and Exicute Privlages for all other users.     |
+
+To allow the "gitpush.sh" to have **Execute** Permissions you can use the command...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *chmod +x ./gitpush*                                          | {Adds Execute Permissions to all Users}                    |
+
+By doing this if we run the command to the file Permissions again...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *ls -l*                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />
+-rw**x**rw**x**r-**x** 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
+
+I can see the Execute (x) Permissions is now present on the file. If I run this file in the SHH terminal in its directory location...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *./gitpush.sh*                                                | {All files pushed to git with "Shebang Commit" as comment} |
+
+Now with the file working, I want to make this accessable to me anywhere in the directory. I did this by copying the file to the "bin". this enables the file to be accessed using a smaller command than having to provide the full directory.
+
+As the file is working I created a directory called "script" and in it another directory "shebang" and moved the file into this location. This is to store my commands in the same place as a libary of custom scripts easy to find and edit if need be.
+
+To copy the file into the bin and change the files Permissions to enable the Execute requires the following commands...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *sudo su*                                                     | {Change to 'root' User}                                    |
+| *cp /Project_2/script/shebang/gitpush.sh /bin/gitpush.sh*     | {Copy file into "/bin" location}                           |
+| *chmod +x /bin/gitpush*                                       | {Adds Execute Permissions to all Users}                    |
+| *sudo su seansnake93*                                         | {Return to SeanSnake93 User}                               |
+
+Now that the file has been moved into "/bin" I am able to run a simple command anywhere in my directory to have the script run...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *gitpush*                                                     | {All files pushed to git with "Shebang Commit" as comment} |
+
+*This file has since been modified to ask for custom comments for commit's to git with yes/no prompts before "git commit -m" and "git push".* 
 
 #### Installations
+
+
+
 ### Creating SQL DATABASE
 #### Defining Exports
 ### Setting Up Jenkins
