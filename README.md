@@ -277,7 +277,7 @@ Now that the file has been moved into `/bin` I am able to run a simple command a
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `gitpush`                                                     | {All files pushed to git with "Shebang Commit" as comment} |
 
-*This file has since been modified to ask for custom comments for commit's to git with yes/no prompts before `git commit -m` and `git push`.* 
+*This file has since been modified to ask for custom comments for commit's to git with yes/no prompts before* `git commit -m` *and* `git push`*.* 
 
 #### Installations
 
