@@ -188,13 +188,7 @@ inside this file we will need to define the Host, HostName, User, IdentityFile a
 | Code Input *- vim*                                            | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
 | *i*                                                           | {Enter Insert Mode}                                        |
-| *Host Project2*<br />
-----*HostName {server IP}*<br />
-----*User seansnake93*<br/>  
-----*IdentityFile ~/.ssh/keygen_name*<br />
-<br />
-*Host shh*<br />
-----*HostName shh*                                              |                                                            |
+| *Host Project2*<br />----*HostName {server IP}*<br />----*User seansnake93*<br/>----*IdentityFile ~/.ssh/keygen_name*<br /><br />*Host shh*<br />----*HostName shh*                                              |                                                            |
 | *esc*                                                         | {Enter Command Mode}                                       |
 | *:wq*                                                         | {Exit and Save}                                            |
 
