@@ -124,12 +124,48 @@ When ports are added click save to enable the changes.
 
 #### Importing Git Reopository
 
-Creating a [Git Repository][git]
+Creating a [Git Repository][git] to import over and hold my projects files. I reated mt repo with "Initialize this repository with a README" ticked (this was to not have an empty repo upon creation).
+
+Once a New repo is made, clicking on "Clone or download" and copying the code inside / or copying the url link. 
+
+Returning to the SHH terminal on my [Vitrual Machine][gcp-vm] I wish to copy my git repo over, so by using the following command...
+
+| Risk             | Risk Statment    | Response Stratogy       | Objectives              | Liklyhood  | Impact | Risk Level |
+
+| Code Input                                                    | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *git clone https://github.com/SeanSnake93/Project_2.git*      | {uploaded}                                                 |
+
+We are able to clone/copy our git repo over to the VM, as can be seen by using...
+
+| Code Input                                                    | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *ls*                                                          | Project_2                                                  |
+
+we are then able to enter this file by using... 
+
+| Code Input                                                    | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *cd Project_2*                                                | /Project 2:~                                               |
+
+And to confirm it is my new repo, i should have a "read me" file inside my folder.
+
+| Code Input                                                    | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *ls*                                                          | README.md                                                  |
 
 #### Remote Access
 
-git config --global user.email "git@email.com"
-git config --global user.name "User_Name"
+
+
+| Code Input                                                    | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *git config --global user.email "my@gitemail.com"*            | {uploaded}                                                 |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| *git config --global user.name "SeanSnake93"*                 | {uploaded}                                                 |
+
+
+
 
 #### Create .gitignore
 #### Installations
