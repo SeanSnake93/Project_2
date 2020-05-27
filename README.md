@@ -95,13 +95,13 @@ I have created a total of # Tables, They are as follows...
 ### Creating Virtual Machine
 
 To create my Virtual Machine I used the [Google Cloud Platform][gcp-vm] and created an instance. <br />
-The settings changed from the default where the Region (eroupe-west2) and Boot disk (Ubuntu, Ubuntu 18.04 LTS).
+The settings changed from the default where the Region (`eroupe-west2`) and Boot disk (`Ubuntu`, `Ubuntu 18.04 LTS`).
 
-Once done I clicked 'Create' to build my instance.
+Once done I clicked `Create` to build my instance.
 
 #### Opening ports
 
-To enable ports on my VM I needed to edit the ports my machine has access to. This is done by using GCP's [Firewall Rules][gcp-firewall-rules] found in the 'VCP Network' tab. In here I created Ports with the following settings.
+To enable ports on my VM I needed to edit the ports my machine has access to. This is done by using GCP's [Firewall Rules][gcp-firewall-rules] found in the `VCP Network` tab. In here I created Ports with the following settings.
 
 | open-flask                                                     |
 | :------------------------------------------------------------- |
@@ -121,91 +121,91 @@ When ports are added click save to enable the changes.
 
 #### Importing Git repository
 
-Creating a [Git repository][git] to import over and hold my projects files. I created my repo with "Initialize this repository with a README" ticked (this was to not have an empty repo upon creation).
+Creating a [**Git repository**][git] to import over and hold my projects files. I created my repo with `Initialize this repository with a README` ticked (this was to not have an empty repo upon creation).
 
-Once a New repo is made, clicking on "Clone or download" and copying the code inside / or copying the url link. 
+Once a New repo is made, clicking on `Clone or download` and copying the code inside / or copying the url link. 
 
 Returning to the SHH terminal on my [Vitrual Machine][gcp-vm] I wish to copy my git repo over, so by using the following command...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *git clone https://github.com/SeanSnake93/Project_2.git*      | {uploaded}                                                 |
+| `git clone https://github.com/SeanSnake93/Project_2.git`      | {uploaded}                                                 |
 
-We are able to clone/copy our git repo over to the VM, as can be seen by using...
-
-| Code Input *- Bash*                                           | Output                                                     |
-| :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *ls*                                                          | Project_2                                                  |
-
-we are then able to enter this file by using... 
+I am able to clone/copy my git repo over to the VM, as can be seen by using...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *cd Project_2/*                                               | :~/Project 2$                                              |
+| `ls`                                                          | Project_2                                                  |
+
+I can then enter this file by using... 
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `cd Project_2/`                                               | :~/Project 2$                                              |
 
 And to confirm it is my new repo, i should have a "read me" file inside my folder.
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| *ls*                                                          | README.md                                                  |
+| `ls`                                                          | README.md                                                  |
 
 #### Remote Access
 
-In order to use my SHH remotly I need to create a keygen. This can be created on the SHH terminal or by using [Git Bash][git-bash] on your local machine. By using the Git Bash terminal the file will land directly on your system in the directory location Git Bash is launched within.
+In order to use my SHH remotly on **Visual Studio** I need to create a keygen. This can be created on the SHH terminal or by using [**Git Bash**][git-bash] on your local machine. By using the Git Bash terminal, the file will land directly on your system in the directory location Git Bash was launched.
 
-Heading (on Windowns) to the directory "C:/Users/*LocalName*/.ssh" or "~/.shh" and right clicking will give you the option to "Git Bash Here". Within the terminal *I uses*/use the following commands...
+Heading (on Windowns) to the `C:/Users/*LocalName*/.ssh` or `~/.shh` directory and right clicking inside and selecting the option to `Git Bash Here`. Within the terminal **I uses**/use the following commands...
 
-| Code Input *- Bash*                                          | Output                                                            |
-| :----------------------------------------------------------- | :---------------------------------------------------------------- |
-| ssh-keygen -t rsa -b 4096 -C "my@gitemail.com"               | Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa): |
-| {Enter Directory} or {*Press Enter to use default location*} | Enter passphrase (empty for no passphrase):                       |
-| {Enter passphrase} or {*Press Enter*}                        | Enter same passphrase again:                                      |
-| {Re-enter passphrase} or {*Press Enter if left blank*}       | {Print out keys (id_rsa.pub; id_rsa)}                             |
+| Code Input *- Bash*                                              | Output                                                            |
+| :--------------------------------------------------------------- | :---------------------------------------------------------------- |
+| `ssh-keygen -t rsa -b 4096 -C "my@gitemail.com"`                 | Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa): |
+| {Enter Directory} *or* {**Press Enter to use default location**} | Enter passphrase (empty for no passphrase):                       |
+| {Enter passphrase} *or* {**Press Enter**}                        | Enter same passphrase again:                                      |
+| {Re-enter passphrase} *or* {**Press Enter if left blank**}       | {Print out keys (id_rsa.pub; id_rsa)}                             |
 
-Now we have the 2 files in our ".shh" directory called "id_rsa" and "id_rsa.pub".
+Now I have 2 files in my `.shh` directory called `id_rsa` and `id_rsa.pub`.
 
-We can open the "id_rsa" using notepad to view the code needed or in the Bash or SHH terminal use...
-
-| Code Input *- Bash*                                           | Output                                                     |
-| :------------------------------------------------------------ | :--------------------------------------------------------- |
-| cat id_rsa.pub                                                | {Code output ~ = my@gitemail.com}                          |
-
-With the code now visable, by returning to out [Virtual Machine][gcp-vm] and entering the "edit" setting of out VM, by scrolling down I can add my Public Key to the "SHH Key". Clicking the link to drop down the menu and paist my code into the SHH Keys and saving it to allow me remote access to the server via my Private Key. It is now where if you wish to change the name of you e key you can. It can be changed later however, you will need to do this next step agin to change the new file location.
-
-Now to allow my Local System access to find my VM I need to create a "config" file. while still in the ".shh" directory and using "Git Bash" enter the following command.
+I can open the `id_rsa` using notepad to view the code needed or in the SHH Bash terminal use...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| touch config                                                  | {Create file "config"}                                     |
-| vim config                                                    | {vim/enter file "config"}                                  |
+| `cat id_rsa.pub`                                              | {Code output ~ = my@gitemail.com}                          |
 
-Inside this file we will need to define the Host, HostName, User, IdentityFile and declare what format. inside this file enter the following...
+With the code now visable, by returning to my [Virtual Machine][gcp-vm] and entering the `edit` setting of my VM, by scrolling down I can add my Public Key to the `SHH Key`. Clicking the link to drop down the menu and paist my code into the `SHH Keys` and saving it to allow me remote access to the server via my Private Key. It is now where if you wish to change the name of you e key you can. It can be changed later however, you will need to do this next step agin to change the new file location.
+
+Now to allow my Local System access to find my VM I need to create a `config` file. while still in the `.shh` directory and using **Git Bash** enter the following command.
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `touch config`                                                | {Create file "config"}                                     |
+| `vim config`                                                  | {vim/enter file "config"}                                  |
+
+Inside this file I will need to define the Host, HostName, User, IdentityFile and declare what format. inside this file enter the following...
 
 | Code Input *- Vim*                                            | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| i                                                             | {Enter Insert Mode}                                        |
-| *Host Project2*<br />->  *HostName {server IP}*<br />->  *User seansnake93*<br/>->  *IdentityFile ~/.ssh/keygen_name*<br /><br />*Host shh*<br />->  *HostName shh*                                              |                                                            |
-| esc                                                           | {Enter Command Mode}                                       |
-| *:wq*                                                         | {Exit and Save}                                            |
+| `i`                                                           | {Enter Insert Mode}                                        |
+| `Host Project2*<br />->  *HostName {server IP}*<br />->  *User seansnake93*<br/>->  *IdentityFile ~/.ssh/keygen_name*<br /><br />*Host shh*<br />->  *HostName shh` |                                                            |
+| `esc`                                                         | {Enter Command Mode}                                       |
+| `:wq`                                                         | {Exit and Save}                                            |
 
-With this file created we can now head to "Visual Studio", (if "known_hosts" exists in the ".shh" directory , delte this first then) click on the green icon situated in the bottom left of the program and select "Remote-SHH: Connect to Host...".
+With this file created I can now head to Visual Studio, (if `known_hosts` exists in the `.shh` directory, delte this first then) click on the green icon situated in the bottom left of the program and select `Remote-SHH: Connect to Host...`.
 
-As I have called my Host "Project2" I should see this name in my list and by clicking on it ill be asked what language to use, in thei scase "**Linux**".
+As I have called my Host `Project2` I should see this name in my list and by clicking on it ill be asked what language to use, in this case `Linux`.
 
-Now with a new window open, in the green box located in th ebottom left should say "SHH: Project2". By clicking the Exploror tab and selecting "Open Drectory" i can have "Visual Studio" only show files within my project by clicking Project to in the drop down in my directory path and accepting.
+Now with a new window open, in the green box located in th ebottom left should say `SHH: Project2`. By clicking the Exploror tab and selecting `Open Drectory` I can have Visual Studio only show files within my project by clicking my project directory in the drop down path list and accepting.
 
 #### Create .gitignore
 
-By using this file I can tell git to not upload clutter files to the repo. This includes cashe files etc; so with remote access enabled and in my home directory, I can click on the "New File" icon and enter the name ".gitignore" and start editing.
+By using this file I can tell git to not upload clutter files to the repo. This includes cashe files etc; so with remote access enabled and in my home directory, I can click on the "New File" icon and enter the name `.gitignore` and start editing.
 
 | Code Input *- Visual Studio*                                  | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | */pycache/*<br />**.pyc*<br />*/project2-venv/*<br />*/venv/*<br />*/.vscode/*                                                           |                                                            |
 | ctrl + s                                                      | {Save Changes}                                             |
 
-The "/project2-venv/" and "/venv/" files will relate to the Python3 install made later in the documentaion.
+The `/project2-venv/` and `/venv/` files will relate to the Python3 install made later in the documentaion.
 
-Now I have access via our external SHH on Visual Studio, I configured my git hib so make uploading easier and help with the Shebang next.
+Now I have access via my external SHH on Visual Studio, I configured my git hib so make uploading easier and help with the Shebang next.
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -214,14 +214,14 @@ Now I have access via our external SHH on Visual Studio, I configured my git hib
 
 #### Creating a *Shebang* git push
 
-In the SHH terminal on Visual Studio I created a ".sh (shell file)" called "gitpush.sh". The idea is that I can use this file to automate a lot of the Git Push process for me. By clicking the "Add File" icon I can create the file called "gitpush.sh" and begin to edit.
+In the SHH terminal on Visual Studio I created a `.sh` (shell file) called `gitpush.sh`. The idea is that I can use this file to automate my `git push` process for me. By clicking the `Add File` icon I can create the file called `gitpush.sh` and begin to edit.
 
 | Code Input *- Visual Studio*                                  | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | *#!/usr/bun/env bash*<br /><br />*git add .*<br /><br />*git commit -m "Shebang Commit"*<br /><br />*git push* |                   |
 | ctrl + s                                                      | {Save Changes}                                             |
 
-Now the file has been created with the following commands inside I want to run it. The file as it stands hold has **Read** and **Write** permissions but to use this as a Shebang we need to enable the **Exicute** permissions.
+Now the file has been created with the following commands inside I want to run it. The file as it stands hold has **Read** and **Write** permissions but to use this as a Shebang I need to enable the **Exicute** permissions.
 
 This can be doen a couple of ways.<br />
 By using the command...
@@ -240,19 +240,19 @@ For referance the tabel bellow should help with the breakdown of Permissions...
 | ----rwx---                                                    | Read, Write and Exicute Privlages for Group.               |
 | -------rwx                                                    | Read, Write and Exicute Privlages for all other users.     |
 
-To allow the "gitpush.sh" to have **Execute** Permissions you can use the command...
+To allow the `gitpush.sh` to have **Execute** Permissions you can use the command...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | *chmod +x ./gitpush*                                          | {Adds Execute Permissions to all Users}                    |
 
-By doing this if we run the command to the file Permissions again...
+Now I can check to see if the file Permissions have changed...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | *ls -l*                                                      | -rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md<br />-rw**x**rw**x**r-**x** 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh |
 
-I can see the Execute (x) Permissions is now present on the file. If I run this file in the SHH terminal in its directory location...
+I can see the Execute (`x`) Permissions is now present on the file. If I run this file in the SHH terminal in its directory location...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -260,7 +260,7 @@ I can see the Execute (x) Permissions is now present on the file. If I run this 
 
 Now with the file working, I want to make this accessable to me anywhere in the directory. I did this by copying the file to the `bin`. this enables the file to be accessed using a smaller command than having to provide the full directory.
 
-As the file is working I created a directory called `script` and in it another directory `shebang` and moved the file into this location. This is to store my commands in the same place as a libary of custom scripts easy to find and edit if need be.
+As the file is working I clicked on `New Folder` and called it `script` and in it another called `shebang` and moved the file into this location. This is to store my commands in the same place as a libary of custom scripts easy to find and edit if need be.
 
 To copy the file into the bin and change the files Permissions to enable the Execute requires the following commands...
 
@@ -271,7 +271,7 @@ To copy the file into the bin and change the files Permissions to enable the Exe
 | *chmod +x /bin/gitpush*                                       | {Adds Execute Permissions to all Users}                    |
 | *sudo su seansnake93*                                         | {Return to SeanSnake93 User}                               |
 
-Now that the file has been moved into '/bin' I am able to run a simple command anywhere in my directory to have the script run...
+Now that the file has been moved into `/bin` I am able to run a simple command anywhere in my directory to have the script run...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
