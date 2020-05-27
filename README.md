@@ -2,6 +2,7 @@
 [site]: 35.246.12.58:5000
 [git]: www.github.com
 [git-project]: www.github.com/SeanSnake93/Project_2
+[git-bash]: https://git-scm.com/downloads
 [gcp-vm]: https://console.cloud.google.com/compute/instances
 [gcp-firewall-rules]: https://console.cloud.google.com/networking/firewalls/list
 [docker]: https://www.docker.com/
@@ -130,39 +131,76 @@ Once a New repo is made, clicking on "Clone or download" and copying the code in
 
 Returning to the SHH terminal on my [Vitrual Machine][gcp-vm] I wish to copy my git repo over, so by using the following command...
 
-| Risk             | Risk Statment    | Response Stratogy       | Objectives              | Liklyhood  | Impact | Risk Level |
-
-| Code Input                                                    | Output                                                     |
+| Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
 | *git clone https://github.com/SeanSnake93/Project_2.git*      | {uploaded}                                                 |
 
 We are able to clone/copy our git repo over to the VM, as can be seen by using...
 
-| Code Input                                                    | Output                                                     |
+| Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
 | *ls*                                                          | Project_2                                                  |
 
 we are then able to enter this file by using... 
 
-| Code Input                                                    | Output                                                     |
+| Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
-| *cd Project_2*                                                | /Project 2:~                                               |
+| *cd Project_2/*                                               | :~/Project 2$                                              |
 
 And to confirm it is my new repo, i should have a "read me" file inside my folder.
 
-| Code Input                                                    | Output                                                     |
+| Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
 | *ls*                                                          | README.md                                                  |
 
 #### Remote Access
 
+In order to use my SHH remotly I need to create a keygen. This can be created on the SHH terminal or by using [Git Bash][git-bash] on your local machine. By using the Git Bash terminal the file will land directly on your system in the directory location Git Bash is launched within.
+
+Heading (on Windowns) to the directory "C:/Users/*LocalName*/.ssh" or "~/.shh" and right clicking will give you the option to "Git Bash Here". Within the terminal *I uses*/use the following commands...
+
+| Code Input *- Bash*                                          | Output                                                            |
+| :----------------------------------------------------------- | ----------------------------------------------------------------: |
+| ssh-keygen -t rsa -b 4096 -C "my@gitemail.com"               | Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa): |
+| {Enter Directory} or {*Press Enter to use default location*} | Enter passphrase (empty for no passphrase):                       |
+| {Enter passphrase} or {*Press Enter*}                        | Enter same passphrase again:                                      |
+| {Re-enter passphrase} or {*Press Enter if left blank*}       | {Print out keys (id_rsa.pub; id_rsa)}                             |
+
+Now we have the 2 files in our ".shh" directory called "id_rsa" and "id_rsa.pub".
+
+We can open the "id_rsa" using notepad to view the code needed or in the Bash or SHH terminal use...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| cat id_rsa.pub                                                | {Code output ~ = my@gitemail.com}                          |
+
+With the code now visable, by returning to out [Virtual Machine][gcp-vm] and entering the "edit" setting of out VM, by scrolling down I can add my Public Key to the "SHH Key". Clicking the link to drop down the menu and paist my code into the SHH Keys and saving will allow me to remotly connect to the server.
+
+Now to allow my Local System access to find my VM I need to create a "config" file. while still in the ".shh" directory and using "Git Bash" enter the following command.
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| touch config                                                  | {Create file "config"}                                     |
+| vim config                                                    | {vim/enter file "config"}                                  |
+
+inside this file we will need to define the Host, HostName, User, IdentityFile and declare what format. inside this file enter the following...
+
+| Code Input *- vim*                                                                                            | Output               |
+| :------------------------------------------------------------------------------------------------------------ | -------------------: |
+| *i*                                                                                                           | {Enter Insert Mode}  |
+| *Host Project2<br />   HostName 35.246.12.58<br /> User seansnake93<br/>   IdentityFile ~/.ssh/keygen_access*<br /><br />Host shh<br />   HostName shh |                      |
+| *esc*                                                                                                         | {Enter Command Mode} |
+| *:wq*                                                                                                         | {Exit and Save}      |
+
+Host shh
+	HostName shh
+
 
 
 | Code Input                                                    | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
-| *git config --global user.email "my@gitemail.com"*            | {uploaded}                                                 |
-| :------------------------------------------------------------ | ---------------------------------------------------------: |
-| *git config --global user.name "SeanSnake93"*                 | {uploaded}                                                 |
+| *git config --global user.email "my@gitemail.com"*            | {configured}                                               |
+| *git config --global user.name "SeanSnake93"*                 | {configured}                                               |
 
 #### Create .gitignore
 
@@ -174,8 +212,13 @@ I created this by using the following commands
 
 | Code Input                                                    | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
-| *git config --global user.email "my@gitemail.com"*            | {configured}                                                 |
-| *git config --global user.name "SeanSnake93"*                 | {configured}                                                 |
+| *git config --global user.email "my@gitemail.com"*            | {configured}                                               |
+| *git config --global user.name "SeanSnake93"*                 | {configured}                                               |
+
+
+sudo su
+cp git-script.sh /bin/git-script
+chmod +x /bin/git-script
 
 #### Installations
 ### Creating SQL DATABASE
