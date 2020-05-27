@@ -12,7 +12,7 @@ QA Indevisual Project 2
 
 ## Contests
 
-* [Introduction](./#Introduction)
+* [Introduction](#Introduction)
     * [Project Outlines]
     * [My Project Plan]
 * [Planning Documentation]
