@@ -174,7 +174,7 @@ We can open the "id_rsa" using notepad to view the code needed or in the Bash or
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
 | cat id_rsa.pub                                                | {Code output ~ = my@gitemail.com}                          |
 
-With the code now visable, by returning to out [Virtual Machine][gcp-vm] and entering the "edit" setting of out VM, by scrolling down I can add my Public Key to the "SHH Key". Clicking the link to drop down the menu and paist my code into the SHH Keys and saving will allow me to remotly connect to the server.
+With the code now visable, by returning to out [Virtual Machine][gcp-vm] and entering the "edit" setting of out VM, by scrolling down I can add my Public Key to the "SHH Key". Clicking the link to drop down the menu and paist my code into the SHH Keys and saving it to allow me remote access to the server via my Private Key. It is now where if you wish to change the name of you e key you can. It can be changed later however, you will need to do this next step agin to change the new file location.
 
 Now to allow my Local System access to find my VM I need to create a "config" file. while still in the ".shh" directory and using "Git Bash" enter the following command.
 
@@ -183,26 +183,30 @@ Now to allow my Local System access to find my VM I need to create a "config" fi
 | touch config                                                  | {Create file "config"}                                     |
 | vim config                                                    | {vim/enter file "config"}                                  |
 
-inside this file we will need to define the Host, HostName, User, IdentityFile and declare what format. inside this file enter the following...
+Inside this file we will need to define the Host, HostName, User, IdentityFile and declare what format. inside this file enter the following...
 
 | Code Input *- vim*                                            | Output                                                     |
 | :------------------------------------------------------------ | ---------------------------------------------------------: |
-| *i*                                                           | {Enter Insert Mode}                                        |
-| *Host Project2*<br />    *HostName {server IP}*<br />    *User seansnake93*<br/>    *IdentityFile ~/.ssh/keygen_name*<br /><br />*Host shh*<br />    *HostName shh*                                              |                                                            |
-| *esc*                                                         | {Enter Command Mode}                                       |
+| i                                                             | {Enter Insert Mode}                                        |
+| *Host Project2*<br />->  *HostName {server IP}*<br />->  *User seansnake93*<br/>->  *IdentityFile ~/.ssh/keygen_name*<br /><br />*Host shh*<br />->  *HostName shh*                                              |                                                            |
+| esc                                                           | {Enter Command Mode}                                       |
 | *:wq*                                                         | {Exit and Save}                                            |
 
-Host shh
-	HostName shh
+With this file created we can now head to "Visual Studio", (if "known_hosts" exists in the ".shh" directory , delte this first then) click on the green icon situated in the bottom left of the program and select "Remote-SHH: Connect to Host...".
 
+As I have called my Host "Project2" I should see this name in my list and by clicking on it ill be asked what language to use, in thei scase "**Linux**".
 
-
-| Code Input                                                    | Output                                                     |
-| :------------------------------------------------------------ | ---------------------------------------------------------: |
-| *git config --global user.email "my@gitemail.com"*            | {configured}                                               |
-| *git config --global user.name "SeanSnake93"*                 | {configured}                                               |
+Now with a new window open, in the green box located in th ebottom left should say "SHH: Project2". By clicking the Exploror tab and selecting "Open Drectory" i can have "Visual Studio" only show files within my project by clicking Project to in the drop down in my directory path and accepting.
 
 #### Create .gitignore
+
+By using this file we can tell git to not upload clutter files to the repo. this includes cashe files etc;
+so with remote access enabled I can click on the "New File" icon and enter the name ".gitignore".
+
+| Code Input *- vim*                                            | Output                                                     |
+| :------------------------------------------------------------ | ---------------------------------------------------------: |
+| */pycache/*<br />**.pyc*<br />*/project2-venv/*<br />*/venv/*<br />*/.vscode/*                                                           |                                                            |
+| ctrl + s                                                      | {Save Changes}                                             |
 
 #### Creating a Shebang git push
 
