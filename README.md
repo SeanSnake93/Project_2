@@ -13,26 +13,26 @@ QA Indevisual Project 2
 ## Contests
 
 * [Introduction](#Introduction)
-    * [Project Outlines]
-    * [My Project Plan]
-* [Planning Documentation]
-    * [Trello]
-    * [Enitiy Relationship Diagram]
-    * [Risk Assesment]
-* [Set-Up Process]
-    * [Creating Virtual Machine]
-        * [Opening ports]
-        * [Importing Git Reopository]
-        * [Remote Access]
-        * [Create .gitignore]
-        * [Creating a Shebang git push]
-        * [Installations]
-    * [Creating SQL DATABASE]
-        * [Defining Exports]
-    * [Setting Up Jenkins]
-        * [Creating Item]
-        * [Creating Developers Branch]
-* [Creation Process]
+    * [Project Outlines](#project-outlines)
+    * [My Project Plan](#my-project-plan)
+* [Planning Documentation](#planning-documentation)
+    * [Trello](#trello)
+    * [Enitiy Relationship Diagram](#enitiy-relationship-diagram)
+    * [Risk Assesment](#risk-assesment)
+* [Set-Up Process](#set-up-process)
+    * [Creating Virtual Machine](#creating-virtual-machine)
+        * [Opening Ports](#opening-ports)
+        * [Importing Git repository](#importing-git-repository)
+        * [Remote Access](#remote-access)
+        * [Create .gitignore](#create-gitignore)
+        * [Creating a Shebang git push](#creating-a-shebang-git-push)
+        * [Installations](#installations)
+    * Creating SQL DATABASE
+        * Defining Exports
+    * Setting Up Jenkins
+        * Creating Item
+        * Creating Developers Branch
+* Creation Process
     * app.py
     * models.py
     * Forms.py
@@ -119,9 +119,9 @@ Returning to the [Virtual Machine Instance's][gcp-vm] and entering my Virtual Ma
 Scrolling down to Network Tags I enter the Port name's (i.e. open-flask) I wished to open and press space to add the port.<br />
 When ports are added click save to enable the changes.
 
-#### Importing Git Reopository
+#### Importing Git repository
 
-Creating a [Git Repository][git] to import over and hold my projects files. I reated mt repo with "Initialize this repository with a README" ticked (this was to not have an empty repo upon creation).
+Creating a [Git repository][git] to import over and hold my projects files. I created my repo with "Initialize this repository with a README" ticked (this was to not have an empty repo upon creation).
 
 Once a New repo is made, clicking on "Clone or download" and copying the code inside / or copying the url link. 
 
