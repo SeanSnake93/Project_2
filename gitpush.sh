@@ -4,6 +4,8 @@ echo executeing: git add .
 
 git add .
 
+echo '... {successful}'
+
 echo " "
 
 echo ---------------------------------------------------------
@@ -20,11 +22,9 @@ echo " "
 
 echo executeing: git commit -m
 
-git commit -m "Git shebang Push"
+git commit -m "Shebang git push"
 
-echo " "
-
-echo files commited to git!!
+echo 'git commit {successful}'
 
 echo " "
 
@@ -46,6 +46,6 @@ git push
 
 echo " "
 
-echo repo updated!!!
+echo 'repo upload {successful}'
 
 echo " "
