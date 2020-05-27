@@ -184,7 +184,7 @@ Inside this file I will need to define the Host, HostName, User, IdentityFile an
 | Code Input *- Vim*                                            | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `i`                                                           | {Enter Insert Mode}                                        |
-| `Host Project2`<br />->  `HostName {server IP}`<br />->  `User seansnake93`<br/>->  `IdentityFile ~/.ssh/keygen_name`<br /><br />`Host shh`<br />->  `HostName shh` |                                                            |
+| `Host Project2`<br />->  `HostName {server IP}`<br />->  `User SeanSnake93`<br/>->  `IdentityFile ~/.ssh/keygen_name`<br /><br />`Host shh`<br />->  `HostName shh` |                                                            |
 | `esc`                                                         | {Enter Command Mode}                                       |
 | `:wq`                                                         | {Exit and Save}                                            |
 
@@ -269,7 +269,7 @@ To copy the file into the bin and change the files Permissions to enable the Exe
 | `sudo su`                                                     | {Change to "root" User}                                    |
 | `cp /gitpush.sh /bin/gitpush.sh`                              | {Copy file into "/bin" location}                           |
 | `chmod +x /bin/gitpush`                                       | {Adds Execute Permissions to all Users}                    |
-| `sudo su seansnake93`                                         | {Return to SeanSnake93 User}                               |
+| `sudo su SeanSnake93`                                         | {Return to SeanSnake93 User}                               |
 
 Now that the file has been moved into `/bin` I am able to run a simple command anywhere in my directory to have the script run...
 
@@ -281,7 +281,48 @@ Now that the file has been moved into `/bin` I am able to run a simple command a
 
 #### Installations
 
-
+sudo apt update
+sudo apt-get
+sudo apt install python3
+sudo apt install python3-pip
+sudo apt install python3-venv
+python3 -m venv flask-book-venv
+pip3 freeze
+. flask-book-venv/bin/activate
+**venv** pip3 freeze
+**venv** pip install flask 
+- Flask==1.1.2
+- Jinja2==2.11.2
+sudo apt install tree
+**venv** pip3 install flask-sqlalchemy 
+- SQLAlchemy==1.3.16
+- PyMySQL==0.9.3
+- Flask-SQLAlchemy==2.4.1
+**venv** pip3 install flask-wtf 
+- WTForms==2.3.1
+- Flask-WTF==0.14.3
+**venv** pip3 install flask_bcrypt 
+- Flask-Bcrypt==0.7.1
+- bcrypt==3.1.7
+**venv** pip3 install flask-login 
+- email-validator==1.1.0
+- Flask-Login==0.5.0
+**venv** pip3 install pytest 
+- pytest==5.4.2
+**venv** pip3 install pytest-cov 
+- pytest-cov==2.8.1
+**venv** pip3 install flask-testing 
+- Flask-Testing==0.8.0
+- Werkzeug==1.0.1
+sudo apt-get install unzip 
+- zipp==3.1.0
+sudo apt-get install -y chromium-browser (Only if chrome is not installed) 
+wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+**venv** pip3 install selenium 
+- selenium==3.141.0
+**venv** pip install gunicorn 
+- gunicorn==20.0.4
 
 ### Creating SQL DATABASE
 #### Defining Exports
