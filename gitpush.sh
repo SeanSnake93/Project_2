@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-echo executeing: git add .
+echo EXECUTING: git add .
 
 git add .
+
+echo " "
 
 echo '... {successful}'
 
@@ -10,7 +12,7 @@ echo " "
 
 echo ---------------------------------------------------------
 
-echo git status
+echo EXECUTING: git status
 
 echo ---------------------------------------------------------
 
@@ -20,17 +22,21 @@ echo ---------------------------------------------------------
 
 echo " "
 
-echo executeing: git commit -m
+echo EXECUTING: git commit -m
+
+echo " "
 
 git commit -m "Shebang git push"
 
-echo 'git commit {successful}'
+echo " "
+
+echo '... git commit {successful}'
 
 echo " "
 
 echo ---------------------------------------------------------
 
-echo git status
+echo EXECUTING: git status
 
 echo ---------------------------------------------------------
 
@@ -40,7 +46,9 @@ echo ---------------------------------------------------------
 
 echo " "
 
-echo executeing push...
+echo EXECUTING: git push...
+
+echo " "
 
 git push
 
