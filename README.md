@@ -7,8 +7,6 @@
 [gcp-firewall-rules]: https://console.cloud.google.com/networking/firewalls/list
 [docker]: https://www.docker.com/
 
-<div style="text-align:center">
-
 # [Project_2][site]
 QA Indevisual Project 2
 
@@ -84,14 +82,14 @@ I have created a total of # Tables, They are as follows...
 
 ### Risk Assesment
 
-To be added later
-
+**To be added later!!!!!!!!!!!!!!!!!!**
+<div style="dispaly: block; align: center;">
 | Risk             | Risk Statment    | Response Stratogy       | Objectives              | Liklyhood  | Impact | Risk Level |
 | :--------------- | :--------------- | :---------------------- | :---------------------- | :--------: | :----: | :--------: |
 | Risk 1           | Accepting        | How should I tackle it? | What I expect to happen | impossible | Low    | 1          |
 | Risk 2           | Reducing         | How should I tackle it? | What I expect to happen | Unlikly    | Low    | 1          |
 | Risk 3           | Undefined        | How should I tackle it? | What I expect to happen | likly      | High   | 10         |
-
+</div>
 ## Set-Up Process
 ### Creating Virtual Machine
 
@@ -355,5 +353,3 @@ Project2/Risk_Assesment.xlsx Project2/requirments.txt <br />
 Project2/app.py <br />
 Project2/create.py <br />
 Project2/chromedriver
-
-</div>
