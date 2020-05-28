@@ -329,9 +329,6 @@ Now that the file has been moved into `/bin` I am able to run a simple command a
 ### Creating SQL DATABASE
 #### Defining Exports
 ### Setting Up Jenkins
-
-With port 8080 now open
-
 #### Creating Item
 #### Creating Developers Branch
 
