@@ -10,6 +10,8 @@
 # [Project_2][site]
 QA Indevisual Project 2
 
+submit date - 15th june
+
 ## Contests
 
 * [Introduction](#Introduction)
