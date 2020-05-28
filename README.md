@@ -1,11 +1,13 @@
 <!-- [links]: link -->
-[site]: 35.246.12.58:5000
-[git]: www.github.com
-[git-project]: www.github.com/SeanSnake93/Project_2
-[git-bash]: https://git-scm.com/downloads
-[gcp-vm]: https://console.cloud.google.com/compute/instances
-[gcp-firewall-rules]: https://console.cloud.google.com/networking/firewalls/list
+
 [docker]: https://www.docker.com/
+[gcp-firewall-rules]: https://console.cloud.google.com/networking/firewalls/list
+[gcp-vm]: https://console.cloud.google.com/compute/instances
+[git]: www.github.com
+[git-bash]: https://git-scm.com/downloads
+[git-project]: www.github.com/SeanSnake93/Project_2
+[site]: 35.246.12.58:5000
+[trello]: https://trello.com/b/d1QbbJeG
 
 # [Project_2][site]
 QA Indevisual Project 2
@@ -59,6 +61,8 @@ submit date - 15th june
 
 ## Planning Documentation
 ### Trello
+
+Link to visit my [Project_2 Trello Board][trello].
 
 Using **MoSCoW** to break up the elements of the site into tasks that I...
 
@@ -202,7 +206,7 @@ By using this file I can tell git to not upload clutter files to the repo. This 
 
 | Code Input *- Visual Studio*                                  | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `/pycache/`<br />`*.pyc`<br />`/project2-venv/`<br />`/venv/`<br />`/.vscode/`                                                          |                                                            |
+| `/pycache/`<br />`*.pyc`<br />`/project2-venv/`<br />`/venv/`<br />`/.vscode/`<br />`chromedriver`                                                          |                                                            |
 | `ctrl` + `s`                                                      | {Save Changes}                                             |
 
 The `/project2-venv/` and `/venv/` files will relate to the Python3 install made later in the documentaion.
@@ -211,12 +215,13 @@ Now I have access via my external SHH on Visual Studio, I configured my git hib 
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `git config --global credential.helper cache`                 | {Cache my credentials ~ removes the need of a password}    |
 | `git config --global user.email "my@gitemail.com"`            | {configured Email}                                         |
 | `git config --global user.name "SeanSnake93"`                 | {configured User}                                          |
 
 #### Creating a *Shebang* git push
 
-In the SHH terminal on Visual Studio I created a `.sh` (shell file) called `gitpush.sh`. The idea is that I can use this file to automate my `git push` process for me. By clicking the `Add File` icon I can create the file called `gitpush.sh` and begin to edit.
+In the SHH terminal on Visual Studio I created a `.sh` (shell file) called `gitpush.sh`. The idea is that I can use this file to automate my `git push` process for me. By clicking the `Add File` icon I can create a file called `gitpush.sh` and begin to edit.
 
 | Code Input *- Visual Studio*                                  | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -271,7 +276,7 @@ To copy the file into the bin and change the files Permissions to enable the Exe
 | `sudo su`                                                     | {Change to "root" User}                                    |
 | `cp /gitpush.sh /bin/gitpush.sh`                              | {Copy file into "/bin" location}                           |
 | `chmod +x /bin/gitpush`                                       | {Adds Execute Permissions to all Users}                    |
-| `sudo su SeanSnake93`                                         | {Return to SeanSnake93 User}                               |
+| `sudo su seansnake93`                                         | {Return to seansnake93 User}                               |
 
 Now that the file has been moved into `/bin` I am able to run a simple command anywhere in my directory to have the script run...
 
