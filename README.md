@@ -94,11 +94,11 @@ I have created a total of # Tables, They are as follows...
 
 **To be added later!!!!!!!!!!!!!!!!!!**
 
-| Risk             | Risk Statment    | Response Stratogy       | Objectives              | Liklyhood  | Impact | Risk Level |
-| :--------------- | :--------------- | :---------------------- | :---------------------- | :--------: | :----: | :--------: |
-| Risk 1           | Accepting        | How should I tackle it? | What I expect to happen | impossible | Low    | 1          |
-| Risk 2           | Reducing         | How should I tackle it? | What I expect to happen | Unlikly    | Low    | 1          |
-| Risk 3           | Undefined        | How should I tackle it? | What I expect to happen | likly      | High   | 10         |
+| Risk           | Risk Statment | Response Stratogy                                     | Objectives                       | Liklyhood   | Impact | Risk Level |
+| :------------- | :------------ | :---------------------------------------------------- | :------------------------------- | :---------: | :-------: | :-: |
+| Risk Name      | Accepting     | How should I tackle it?                               | What I expect to happen          | Very Likley | Very High | 1   |
+| Launch failure | Reducing      | Monitor the changes made in trello regarding hosting. | The *site* should be accessable. | Unlikly     | High      |     |
+| Risk 3         | Undefined     | How should I tackle it?                               | What I expect to happen          | likly       | High      | 10  |
 
 ## Set-Up Process
 ### Creating Virtual Machine
@@ -134,7 +134,7 @@ Creating a [**Git repository**][git] to import over and hold my projects files. 
 
 Once a New repo is made, clicking on `Clone or download` and copying the code inside / or copying the url link. 
 
-Returning to the SHH terminal on my [Vitrual Machine][gcp-vm] I wish to copy my git repo over, so by using the following command...
+Returning to the SSH terminal on my [Vitrual Machine][gcp-vm] I wish to copy my git repo over, so by using the following command...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -160,9 +160,9 @@ And to confirm it is my new repo, i should have a "read me" file inside my folde
 
 #### Remote Access
 
-In order to use my SHH remotly on **Visual Studio** I need to create a keygen. This can be created on the SHH terminal or by using [**Git Bash**][git-bash] on your local machine. By using the Git Bash terminal, the file will land directly on your system in the directory location Git Bash was launched.
+In order to use my SSH remotly on **Visual Studio** I need to create a keygen. This can be created on the SSH terminal or by using [**Git Bash**][git-bash] on your local machine. By using the Git Bash terminal, the file will land directly on your system in the directory location Git Bash was launched.
 
-Heading (on Windowns) to the `C:/Users/*LocalName*/.ssh` or `~/.shh` directory and right clicking inside and selecting the option to `Git Bash Here`. Within the terminal **I uses**/use the following commands...
+Heading (on Windowns) to the `C:/Users/*LocalName*/.ssh` or `~/.ssh` directory and right clicking inside and selecting the option to `Git Bash Here`. Within the terminal **I uses**/use the following commands...
 
 | Code Input *- Bash*                                               | Output                                                              |
 | :---------------------------------------------------------------- | :------------------------------------------------------------------ |
@@ -171,17 +171,17 @@ Heading (on Windowns) to the `C:/Users/*LocalName*/.ssh` or `~/.shh` directory a
 | {Enter passphrase} *or* {**Press Enter**}                         | "Enter same passphrase again:"                                      |
 | {Re-enter passphrase} *or* {**Press Enter if left blank**}        | {Print out keys (id_rsa.pub; id_rsa)}                               |
 
-Now I have 2 files in my `.shh` directory called `id_rsa` and `id_rsa.pub`.
+Now I have 2 files in my `.ssh` directory called `id_rsa` and `id_rsa.pub`.
 
-I can open the `id_rsa` using notepad to view the code needed or in the SHH Bash terminal use...
+I can open the `id_rsa` using notepad to view the code needed or in the SSH Bash terminal use...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `cat id_rsa.pub`                                              | "Code output + = my@gitemail.com"                          |
 
-With the code now visable, by returning to my [Virtual Machine][gcp-vm] and entering the `edit` setting of my VM, by scrolling down I can add my Public Key to the `SHH Key`. Clicking the link to drop down the menu and paist my code into the `SHH Keys` and saving it to allow me remote access to the server via my Private Key. It is now where if you wish to change the name of you e key you can. It can be changed later however, you will need to do this next step agin to change the new file location.
+With the code now visable, by returning to my [Virtual Machine][gcp-vm] and entering the `edit` setting of my VM, by scrolling down I can add my Public Key to the `SSH Key`. Clicking the link to drop down the menu and paist my code into the `SSH Keys` and saving it to allow me remote access to the server via my Private Key. It is now where if you wish to change the name of you e key you can. It can be changed later however, you will need to do this next step agin to change the new file location.
 
-Now to allow my Local System access to find my VM I need to create a `config` file. while still in the `.shh` directory and using **Git Bash** enter the following command.
+Now to allow my Local System access to find my VM I need to create a `config` file. while still in the `.ssh` directory and using **Git Bash** enter the following command.
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -193,15 +193,15 @@ Inside this file I will need to define the Host, HostName, User, IdentityFile an
 | Code Input *- Vim*                                            | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `i`                                                           | {Enter Insert Mode}                                        |
-| `Host Project2`<br />->  `HostName {server IP}`<br />->  `User SeanSnake93`<br/>->  `IdentityFile ~/.ssh/keygen_name`<br /><br />`Host shh`<br />->  `HostName shh` |                                                            |
+| `Host Project2`<br />->  `HostName {server IP}`<br />->  `User SeanSnake93`<br/>->  `IdentityFile ~/.ssh/keygen_name`<br /><br />`Host ssh`<br />->  `HostName ssh` |                                                            |
 | `esc`                                                         | {Enter Command Mode}                                       |
 | `:wq`                                                         | {Exit and Save}                                            |
 
-With this file created I can now head to Visual Studio, (if `known_hosts` exists in the `.shh` directory, delte this first then) click on the green icon situated in the bottom left of the program and select `Remote-SHH: Connect to Host...`.
+With this file created I can now head to Visual Studio, (if `known_hosts` exists in the `.ssh` directory, delte this first then) click on the green icon situated in the bottom left of the program and select `Remote-SSH: Connect to Host...`.
 
 As I have called my Host `Project2` I should see this name in my list and by clicking on it ill be asked what language to use, in this case `Linux`.
 
-Now with a new window open, in the green box located in th ebottom left should say `SHH: Project2`. By clicking the Exploror tab and selecting `Open Drectory` I can have Visual Studio only show files within my project by clicking my project directory in the drop down path list and accepting.
+Now with a new window open, in the green box located in th ebottom left should say `SSH: Project2`. By clicking the Exploror tab and selecting `Open Drectory` I can have Visual Studio only show files within my project by clicking my project directory in the drop down path list and accepting.
 
 #### Create .gitignore
 
@@ -214,7 +214,7 @@ By using this file I can tell git to not upload clutter files to the repo. This 
 
 The `/project2-venv/` and `/venv/` files will relate to the Python3 install made later in the documentaion.
 
-Now I have access via my external SHH on Visual Studio, I configured my git hib so make uploading easier and help with the Shebang next.
+Now I have access via my external SSH on Visual Studio, I configured my git hib so make uploading easier and help with the Shebang next.
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -224,7 +224,7 @@ Now I have access via my external SHH on Visual Studio, I configured my git hib 
 
 #### Creating a *Shebang* git push
 
-In the SHH terminal on Visual Studio I created a `.sh` (shell file) called `gitpush.sh`. The idea is that I can use this file to automate my `git push` process for me. By clicking the `Add File` icon I can create a file called `gitpush.sh` and begin to edit.
+In the SSH terminal on Visual Studio I created a `.sh` (shell file) called `gitpush.sh`. The idea is that I can use this file to automate my `git push` process for me. By clicking the `Add File` icon I can create a file called `gitpush.sh` and begin to edit.
 
 | Code Input *- Visual Studio*                                  | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -262,7 +262,7 @@ Now I can check to see if the file Permissions have changed...
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `ls -l`                                                      | "-rw-rw-r-- 1 seansnake93 seansnake93 14382 May 27 17:14 README.md"<br />"-rw**x**rw**x**r-**x** 1 seansnake93 seansnake93  1845 May 27 17:45 gitpush.sh" |
 
-I can see the Execute (`x`) Permissions is now present on the file. If I run this file in the SHH terminal in its directory location...
+I can see the Execute (`x`) Permissions is now present on the file. If I run this file in the SSH terminal in its directory location...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -311,29 +311,34 @@ Having now run this I can run Docker's welcome screen without the need to includ
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `newgrp docker`                                               | {Creates a new group}                                      |
-| `docker run --rm hello-world`                                 | Hello from Docker!<br />This message shows that your installation appears to be working correctly.<br /><br />To generate this message, Docker took the following steps:<br />1. The Docker client contacted the Docker daemon.<br />2. The Docker daemon pulled the "hello-world" image from the Docker Hub.<br />(amd64)<br />3. The Docker daemon created a new container from that image which runs the<br />executable that produces the output you are currently reading.<br />4. The Docker daemon streamed that output to the Docker client, which it to your terminal.<br /><br />To try something more ambitious, you can run an Ubuntu container with:<br />$ docker run -it ubuntu bash<br />Share images, automate workflows, and more with a free Docker ID:<br />https://hub.docker.com/<br /><br />For more examples and ideas, visit:<br />https://docs.docker.com/get-started/                 |
+| `docker run --rm hello-world`                                 | Hello from Docker!<br />This message shows that your installation appears to be working correctly.<br /><br />To generate this message, Docker took the following steps:<br />1. The Docker client contacted the Docker daemon.<br />2. The Docker daemon pulled the "hello-world" image from the Docker Hub.<br />(amd64)<br />3. The Docker daemon created a new container from that image which runs the<br />executable that produces the output you are currently reading.<br />4. The Docker daemon streamed that output to the Docker client, which it to your terminal.<br /><br />To try something more ambitious, you can run an Ubuntu container with:<br />$ docker run -it ubuntu bash<br />Share images, automate workflows, and more with a free Docker ID:<br />https://hub.docker.com/<br /><br />For more examples and ideas, visit:<br />https://docs.docker.com/get-started/ |
+
+Now I know Docker is installed and working I no longer need the *Image* it created. To remove the file I need its IMAGE ID, to do this I generated a list of my current Images using...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `docker images`                                               | REPOSITORY  - TAG    - IMAGE ID     - CREATED      - SIZE   <br />hello-world - latest - bf756fb1ae65 - 4 months ago - 13.3kB |
 
+Now this is done I can copy the IMAGE ID and add it to the Remove Image command, removing the *hello-world* file...
 
-
-
-docker images
-
-docker run -d (d = detached)
-
-docker run ps -a
-
-docker logs (image id)
-
-docker rm (image id)
-docker rmi
-
-
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `docker rmi bf756fb1ae65`                                      | Untagged: hello-world:latest<br />Untagged: hello-world@sha256:6a65f928fb91fcfbc963f7aa6d57c8eeb426ad9a20c7ee045538ef34847f44f1<br />Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b<br />Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63 |
 
 ### Setting Up Jenkins
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Creating a new [Virtual Machine][gcp-vm] on GCP to host my site on a Jenkins CI and be used as a Master node and Development Server. This set up will run changes made to my development branch and when pushed to maset will then be built on my Project_2 Server.
 
@@ -366,6 +371,18 @@ curl http://swarm-worker
 -->
 
 #### Creating Item
+
+docker images
+
+docker run -d (d = detached)
+
+docker run ps -a
+
+docker logs (image id)
+
+docker rm (image id)
+docker rmi
+
 #### Creating Developers Branch
 
 ## Creation Process
@@ -438,7 +455,6 @@ Project2/chromedriver
 #### Installations
 
 - sudo apt update
-- sudo apt-get
 - sudo apt install python3
 - sudo apt install python3-pip
 - sudo apt install python3-venv
