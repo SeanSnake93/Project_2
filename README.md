@@ -325,11 +325,9 @@ Now this is done I can copy the IMAGE ID and add it to the Remove Image command,
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `docker rmi bf756fb1ae65`                                      | Untagged: hello-world:latest<br />Untagged: hello-world@sha256:6a65f928fb91fcfbc963f7aa6d57c8eeb426ad9a20c7ee045538ef34847f44f1<br />Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b<br />Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63 |
 
-### Setting Up Jenkins
+### Setting Up Version Control
 
-
-
-
+Now I have installed Docker on my Machine I will need to create an image of my indevisual services to begin version control. 
 
 
 
