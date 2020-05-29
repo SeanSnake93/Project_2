@@ -86,9 +86,9 @@ As the project is to involve the use of....
 I have created a total of # Tables, They are as follows...
 
 **Table 1**
-- id (*Primary Key*)
-- attribute
-- attribute (*Foreign Key*)
+> id (*Primary Key*)
+> attribute
+> attribute (*Foreign Key*)
 
 ### Risk Assesment
 
@@ -313,18 +313,20 @@ Having now run this I can run Docker's welcome screen without the need to includ
 | `newgrp docker`                                               | {Creates a new group}                                      |
 | `docker run --rm hello-world`                                 | Hello from Docker!<br />This message shows that your installation appears to be working correctly.<br /><br />To generate this message, Docker took the following steps:<br />1. The Docker client contacted the Docker daemon.<br />2. The Docker daemon pulled the "hello-world" image from the Docker Hub.<br />(amd64)<br />3. The Docker daemon created a new container from that image which runs the<br />executable that produces the output you are currently reading.<br />4. The Docker daemon streamed that output to the Docker client, which it to your terminal.<br /><br />To try something more ambitious, you can run an Ubuntu container with:<br />$ docker run -it ubuntu bash<br />Share images, automate workflows, and more with a free Docker ID:<br />https://hub.docker.com/<br /><br />For more examples and ideas, visit:<br />https://docs.docker.com/get-started/                 |
 
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `docker images`                                               | ```
+| REPOSITORY  | TAG    | IMAGE ID     | CREATED      | SIZE   |
+| :---------- | T:---- | :----------- | :----------- | :----- |
+| hello-world | latest | bf756fb1ae65 | 4 months ago | 13.3kB |
+``` |
 
 
 
-newgrp docker
-    create a new group
-
-
-    run dockers hello-world container
 
 docker images
 
-docker run -d (id = detached)
+docker run -d (d = detached)
 
 docker run ps -a
 
