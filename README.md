@@ -315,11 +315,7 @@ Having now run this I can run Docker's welcome screen without the need to includ
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `docker images`                                               | ```
-| REPOSITORY  | TAG    | IMAGE ID     | CREATED      | SIZE   |
-| :---------- | T:---- | :----------- | :----------- | :----- |
-| hello-world | latest | bf756fb1ae65 | 4 months ago | 13.3kB |
-``` |
+| `docker images`                                               | REPOSITORY  - TAG    - IMAGE ID     - CREATED      - SIZE   <br />hello-world - latest - bf756fb1ae65 - 4 months ago - 13.3kB |
 
 
 
