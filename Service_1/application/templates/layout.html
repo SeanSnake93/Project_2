@@ -1,0 +1,33 @@
+<html>
+	<!------------------------------------------------------------------------------------------------------->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Movie Generator - {{ title }}</title>
+		<!--link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"-->
+	</head>
+	<!------------------------------------------------------------------------------------------------------->
+	<body>
+
+		<div id="Main-Menu" class="menu">
+			<ul>
+				<li><a href="{{ url_for('home') }}">Home</a></li>
+				<li><a href="{{ url_for('about') }}">About</a></li>
+			</ul>
+		</div>
+
+		<div class="Wrapper">
+			<h1>{{ title }}</h1><br>
+		{% block body_content  %}
+		{% endblock  %}
+		</div>
+
+		<div id="Footer" class="menu">
+			<li><a href="{{ url_for('home') }}">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
+			<h3>Project 2 - <span>By Sean David McCann</span></h3>
+		</div>
+
+	</body>
+	<!------------------------------------------------------------------------------------------------------->
+</html>
