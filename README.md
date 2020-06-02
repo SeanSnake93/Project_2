@@ -1,6 +1,7 @@
 <!-- [links]: link -->
 
 [docker]: https://www.docker.com/
+[docker-repo]: https://hub.docker.com/repositories
 [gcp-firewall-rules]: https://console.cloud.google.com/networking/firewalls/list
 [gcp-vm]: https://console.cloud.google.com/compute/instances
 [git]: www.github.com
@@ -12,12 +13,14 @@
 # [Project_2][site]
 QA Indevisual Project 2
 
-submit date - 15th june
+Using Flask to create a project that will takes advantage of 4 or more Services to run a function.
+The Services are to be built with the help of Docker and I am to demonstrate good practice through out the build process.
+
+Submit by Date: 15th june
 
 ## Contents
 
 * [Introduction](#Introduction)
-    * [Project Outlines](#project-outlines)
     * [My Project Plan](#my-project-plan)
 * [Planning Documentation](#planning-documentation)
     * [Trello](#trello)
@@ -25,56 +28,54 @@ submit date - 15th june
     * [Risk Assesment](#risk-assesment)
 * [Set-Up Process](#set-up-process)
     * [Creating Virtual Machine](#creating-virtual-machine)
-        * [Opening Ports](#opening-ports)
-        * [Importing Git repository](#importing-git-repository)
+        * [Opening ports](#Opening-ports)
+        * [Importing Git Repository](#importing-git-repository)
         * [Remote Access](#remote-access)
         * [Create .gitignore](#create-gitignore)
-        * [Creating a Shebang git push](#creating-a-shebang-git-push)
-        * [Installations](#installations)
-    * Creating SQL DATABASE
-        * Defining Exports
-    * Setting Up Jenkins
-        * Creating Item
-        * Creating Developers Branch
-* Creation Process
-    * app.py
-    * models.py
-    * Forms.py
-    * Routes.py
-* Test Driven Development
-    * Test 1
-    * Test 2
-* Web Page Creation
-    * Layout.html
-    * Home.html
-    * About.html
-* Testing
-    * Pytest
-    * Debuging
-    * Pytest Coverage
-    * Futher Testing
-    * Integration Testing
-* File Index
+        * [Creating a *Shebang* git push](#creating-a-Shebang-git-push)
+    * [Set Up Docker](#set-up-docker)
+* [Development](#development)
+    * [Creating Developers Branch](#creating-developers-branch)
+    * [Creating my app files](#creating-my-app-files)
+        * [Test Driven Development](#test-driven-development)
+            * [test_back_end.py](#project2/service_#/application/tests/test_back_end.py)
+        * [Python Files](#python-files)
+            * [app.py](#project2/service_#/app.py)
+            * [__init __.py](#project2/service_#/application/__init-__.py)
+            * [routes.py](#project2/service_#/application/routes.py)
+        * [Web Page Creation](#web-page-creation)
+            * [layout.html](#project2/service_1/application/templates/layout.html)
+            * [home.html](#project2/service_1/application/templates/home.html)
+            * [about.html](#project2/service_1/application/templates/about.html)
+    * [Creating Docker Images](#creating-docker-images)
+        * [Creating Version Control System](#creating-version-control-system)
+        * [Uploading Images to Docker Hub](#uploading-images-to-docker-hub)
+    * [Creating and Removing Containers](#creating-and-removing-containers)
+    * [Setup Docker Compose](#setup-docker-compose)
+        * [Creating a .yaml file](#creating-a-yaml-file)
+            * [Project2/docker-compose.yaml](#project2/docker-compose.yaml)
+        * [Running Docker Compose](#running-docker-compose)
+        * [Dropping Docker Compose](#dropping-docker-compose)
+* [Test Coverage](#test-coverage)
+* [Index](#index)
+    * [File Index](#file-index-(dev-level-1))
+    * [Installations](#installations)
+
 
 ## Introduction
 
-In this Git Project I have used Python, Flask and Docker techniques to produce a Service based site. The site will generate a random selection from a Movie Collection and present it to the user. 
-
-### Project Outlines
-
-Using Python to create a Flask project that takes use of 4 or more Services to build a function.
-The Services are to be built with the help of Docker and I am to demonstrate good practice through out the build process.
+In this Project uploaded to Git I have used Python, Flask and Docker techniques to produce a Service based site. The site will generate a random selection from a Genre list and use it to filter out a Movie from my Collection and present it to the user. 
 
 ### My Project Plan
 
-Using each Service as a layer to the overall build process.
-The Services are to filter out a Genre from a list of films while remaining dynamic(, so more can be added to the list without it failing).
-Using data recived by this Service to filter data in another.
-This Service to Filter a Movie based on that Genre. 
-A dedicated Service used to compiling the Data recived into a presentable format.
-The final used to display the front end of the site and demonstrate my Project.
+* To use each Service as a layer to the overall build process.
+* A Services to select a Genre from a dynamic list.
+* A Service using peramiters recived to filter a Movie from a dynamic list that matches.
+* A dedicated Service used for compiling the Data recived into a presentable format.
+* The final Serviced used for the front end interface to display the site and demonstrate my Project.
 
 ## Planning Documentation
+
 ### Trello
 
 Link to visit my [Project_2 Trello Board][trello].
@@ -118,7 +119,7 @@ Impact = Minimal (1), Low (2), Medium (3), High (4), Extreem (5)
 
 | Risk              | Risk Statment | Response Stratogy                                                                   | Objectives                                        | Liklyhood   | Impact      | Risk Level |
 | :---------------- | :------------ | :---------------------------------------------------------------------------------- | :------------------------------------------------ | :---------: | :---------: | :--------: |
-| Risk 1            | Accepting     | How should I tackle it?                                                             | What I expect to happen?                          | Imminent    | Extreem     | 10         |
+| Risk 1            | Accepting     | How should I tackle it?                                                             | What I expect to happen?                          | Imminent    | Extreme     | 10         |
 | Launch failure    | Reducing      | Monitor the changes made in trello regarding hosting.                               | The *site* should be accessable.                  | Likly       | High        | 7          |
 | Service Failure   | Reducing      | Have key variables print their content to track it's progress.                      | Services delivers content as expected.            | Likly       | High        | 7          |
 | Brake Service     | Reducing      | Use a Development Branch and only upload to master when the version is working.     | Always have a master version that is working.     | Significant | High        | 8          |
@@ -126,17 +127,17 @@ Impact = Minimal (1), Low (2), Medium (3), High (4), Extreem (5)
 | Data Failure      | Undefined     | All data should match witn no typos, i.e name == name.                              | Services delivers content as expected.            | Unlikly     | Medium      | 5          |
 | Link Failure      | Reducing      | Use the terminla to monitor Service responce.                                       | All links on the site deliver expected outcome.   | Unlikly     | Medium      | 5          |
 | Retunrning Empty  | Reducing      | Using terminal prints and static data to fix outcome.                               | Pre-defined data to be visible on site.           | Likly       | Low         | 5          |
-| Limited Lists     | Undefined     | Values used to randomise content in the list are not limited to its current length. | Intervention not needed when adding new content.  | Unlikly     | Extreem     | 7          |
+| Limited Lists     | Undefined     | Values used to randomise content in the list are not limited to its current length. | Intervention not needed when adding new content.  | Unlikly     | Extreme     | 7          |
 | File Corruption   | Reducing      | Store backups of the project in a Docker Verson Controle system.                    | Version Controle each working maser upload.       | Unlikly     | High        | 6          |
 | Testing failure   | Reducing      | Define tests before system development.                                             | Tests I define are to pass upon project creation. | Likly       | Medium      | 6          |
 | Testing Coverage  | Reducing      | Tests should cover 80+% of the site or higher.                                      | All Tests should be a success.                    | Likly       | High        | 7          |
 | User Error        | Reducing      | Have key variables print their content to track it's progress.                      | Services delivers content as expected.            | Likly       | Low         | 4          |
 | GCP Cost          | Reducing      | Turn off Virtual Machine when not in use.                                           | Credit to be saved and longate the use of my GCP. | Unlikly     | High        | 6          |
-| Underachive       | Reducing      | Use the metrics provided to assure the minimal marks have been aquired.             | Minimal project specification to be achived.      | Unlikly     | Extreem     | 7          |
+| Underachive       | Reducing      | Use the metrics provided to assure the minimal marks have been aquired.             | Minimal project specification to be achived.      | Unlikly     | Extreme     | 7          |
 | Overeaching       | Reducing      | Scale the project to meet to the brief first.                                       | A version of the minimal spec is archived.        | Likly       | Medium      | 6          |
 | Health and Safety | Reducing      | Take breaks from the screen every couple of hours.                                  | Minimise the chance of headaches as fatigue.      | Likly       | High        | 7          |
 | Stranded Data     | Reducing      | Data has no use within the project, only adding to its footprint size.              | Minimise the length of data and use of variables. | Unlikly     | Medium      | 5          |
-| Project Theft     | Undefined     | All, if any sensative data are to be encripted and Virtual Machine is secure.       | The Project is secure.                            | Unlikly     | Extreem     | 7          |
+| Project Theft     | Undefined     | All, if any sensative data are to be encripted and Virtual Machine is secure.       | The Project is secure.                            | Unlikly     | Extreme     | 7          |
 | Knowlege          | Reducing      | Build the areas i know and reaserch areas I don't, ask questions about the project. | Have a clear understanding of thechnologies used. | Likly       | High        | 7          |
 | Site Runs Slow    | Accepting     | Try to keep code efficent and consise in each Services.                             | For my project to load in a reasonable time.      | Likly       | Low         | 5          |
 | Unfinished Document | Reducing    | Provide extensive documentation on the development of my project.                   | Documentation is clear and is followed easily.    | Unlikly     | High        | 6          |
@@ -169,7 +170,7 @@ Returning to the [Virtual Machine Instance's][gcp-vm] and entering my Virtual Ma
 Scrolling down to Network Tags I enter the Port name's (i.e. open-flask) I wished to open and press space to add the port.<br />
 When ports are added click save to enable the changes.
 
-#### Importing Git repository
+#### Importing Git Repository
 
 Creating a [**Git repository**][git] to import over and hold my projects files. I created my repo with `Initialize this repository with a README` ticked (this was to not have an empty repo upon creation).
 
@@ -358,13 +359,19 @@ Now I know Docker is installed and working I no longer need the *Image* it creat
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `docker images`                                               | REPOSITORY  - TAG    - IMAGE ID     - CREATED      - SIZE   <br />hello-world - latest - bf756fb1ae65 - 4 months ago - 13.3kB |
+| `docker images`                                               | {Print out Images Table (seen Bellow)} |
+
+> | REPOSITORY  | TAG    | IMAGE ID     | CREATED      | SIZE   |
+> | :---------- | :----- | :----------- | :----------- | :----- |
+> | hello-world | latest | bf756fb1ae65 | 4 months ago | 13.3kB |
 
 Now this is done I can copy the IMAGE ID and add it to the Remove Image command, removing the *hello-world* file...
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `docker rmi bf756fb1ae65`                                      | Untagged: hello-world:latest<br />Untagged: hello-world@sha256:6a65f928fb91fcfbc963f7aa6d57c8eeb426ad9a20c7ee045538ef34847f44f1<br />Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b<br />Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63 |
+
+### Development
 
 #### Creating Developers Branch
 
@@ -385,9 +392,88 @@ To confirm that I have entered the "Dev" branch I can use the following command 
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `git branch`                                                  | * Dev<br />  master                                        |
 
-# Development
+#### Creating my app files
 
-### Setting Up Version Control
+##### Test Driven Development
+
+###### Project2/Service_#/application/tests/test_back_end.py
+
+##### Python Files
+
+###### Project2/Service_#/app.py
+
+Creating the app file requires me to define the language used and inclue an import to mt app primaraly for the `__init__` file.Included in this is the port I wish to have access to it on. This must match the other time I call upon this port.
+
+> **Service_1**
+>> App port: `5000`
+
+> **Service_2**
+>> App port: `5001`
+
+> **Service_3**
+>> App port: `5002`
+
+> **Service_4**
+>> App port: `5003`
+
+###### Project2/Service_#/application/__init __.py
+
+Inside my __ init__ file I imported some of the flask features, Flask and request. In addition the that the app is to include the Flask name, this will help guide the app file and finaly import the routes file so links and functions are able to perform correctly.
+
+###### Project2/Service_#/application/routes.py
+
+Insided my routes file I have imported my app as to enable it to work with my site and some of the flask features, render_template and request, this is so that the site is capable of displaying a page with fields within it holding a value. In adition I have imported randrange from random to provide random selections from a list and requests, this is to enable to ability to request data from a diffrent service.
+
+> **Service_1**
+>> Url extention(s): `:5000/` or `:5000/home`
+>> Available method(s): `GET` only
+>> Requests Service_2 to return an answer in a text formate
+>> Print the output from Service_2 in the terminal (to help track the data)
+>> Return to the user a page with the template called "Project 2 Generator" and variable called movie holding the data retrived from Service 2.
+>
+>> Url extention(s): `:5000/about`
+>> Available method(s): `GET` only
+>> Return to the user a page with the template called "About Project 2".
+
+> **Service_2**
+>> Url extention(s): `:5001/generate`
+>> Available method(s): `GET` only
+>> Requests Service 3 to return an answer in a text formate
+>> Print the output from Service_3 in the terminal (to help track the data)
+>> Create a URL using the returned string from Service_3
+>> Requests Service_4 to return using a filter recived by Service_3 an answer in a text formate
+>> Print the output from Service_4 in the terminal (to help track the data)
+>> Return a formated sting to Service_1 containing the date recived from Service_3 and Service_4
+
+> **Service_3**
+>> Url extention(s): `:5002/randomgenre`
+>> Available method(s): `GET` only
+>> Define list holding static data {genre}
+>> Count the number of entries contained in the list and save the number in a variable
+>> Print the number of entries in the terminal (to help track the data)
+>> Return a random value from the genre list using the variable to send back to Service_2
+
+> **Service_4**
+>> Url extention(s): `:5003/<genre>`
+>> Available method(s): `GET` and `POST`
+>> Define an empty list
+>> Define list holding static data {title, genre(s)}
+>> From the list take each entry 1 by 1
+>> In the entry is the data from Service_3 present (if not skip to next entry)
+>> Split the contents up into its attributes {title} and {genre(s)}
+>> From its attributes only take the first and add it to empty list
+>> count the once empty list and save value in a variable
+>> Return a random value from the appended list using the variable to send back to Service_2
+
+#### Web Page Creation
+
+###### Project2/Service_1/application/templates/layout.html
+
+###### Project2/Service_1/application/templates/home.html
+
+###### Project2/Service_1/application/templates/about.html
+
+### Creating Docker Images
 
 Now I have installed Docker on my Machine I will need to create an image of my indevisual services to begin version control.
 
@@ -396,8 +482,6 @@ First I Login to my docker account from within the SSh terminal...
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `docker login`                                                | Username: <br />Password:                                  |
-
-#### Creating Image
 
 In order to create an Image I will first need to create a Dockerfile holding Instructions as to how I wish to create the file.
 
@@ -409,49 +493,114 @@ Entering the SSH terminal and creating the file using...
 
 > Note: The file must have a capital "D" in `Dockerfile`.
 
-Entering the file I have included the following commands...
+Entering the file I have included the following commands within my "Service_1" directory...
 
 | Code Input *- Dockerfile*                                                                                                  |
 | :------------------------------------------------------------------------------------------------------------------------- |
-| `ARG PYTHON_VERSION=3.7<br /><br />FROM python:latest<br /><br />RUN mkdir /opt/services/<br /><br />COPY . /opt/services/<br /><br />WORKDIR /opt/services/application/templates/<br /><br />RUN sed -i "s/{{PYTHON_VERSION}}/${PYTHON_VERSION}/g" home.html<br /><br />WORKDIR /opt/services/<br /><br />RUN pip3 install -r requirements.txt<br /><br />ENTRYPOINT ["/usr/local/bin/python3", "app.py"]<br /><br />EXPOSE 5000` |
+| `ARG PYTHON_VERSION=3.7`<br /><br />`FROM python:latest`<br /><br />`RUN mkdir /opt/services/`<br /><br />`COPY . /opt/services/`<br /><br />**`WORKDIR /opt/services/application/templates/`**<br /><br />**`RUN sed -i "s/{{PYTHON_VERSION}}/${PYTHON_VERSION}/g" home.html`**<br /><br />`WORKDIR /opt/services/`<br /><br />`RUN pip3 install -r requirements.txt`<br /><br />`EXPOSE 5000`<br /><br />`ENTRYPOINT ["/usr/local/bin/python3", "app.py"]` |
 
-In this I have given Variables to 
+Above I have highlighted 3 lines in **bold**. With the use of a `--build-arg` in the `docker build` command I am able to change the version of Python I wish to use. Lines (9-11) however will not be included in my other services 2-4 `Dockerfile`, this is because they do not have web pages to host. For line 17, the `EXPOSE` port will chnage for each service. I have increased the port by 1 for each (5001, 5002, 5003) as to simplify the process.
 
-| Code Input *- Bash*                                                      | Output                                          |
-| :----------------------------------------------------------------------- | :---------------------------------------------- |
-| `docker build -t ver-1.1.01 --build-arg PYTHON_VERSION=3.7 ./Service_1/` | {Creates an Image of Service 1}                 |
-| `docker build -t ver-2.1.01 ./Service_2/`                                | {Creates an Image of Service 2}                 |
-| `docker build -t ver-3.1.01 ./Service_3/`                                | {Creates an Image of Service 3}                 |
-| `docker build -t ver-4.1.01 ./Service_4/`                                | {Creates an Image of Service 4}                 |
+#### Creating Version Control System
 
-No i need to get them running in a container
+With my Dockerfile(s) created in each of my services I can now create my images to capture the current version.
+To structure my Versions I will be creating a 3 tear code. The format is as follows... `service-{service Number}:{Development Version}.{Version Sprint}`
+
+| Code Input *- Bash*                                                          | Output                                          |
+| :--------------------------------------------------------------------------- | :---------------------------------------------- |
+| `docker build -t service-1 --build-arg PYTHON_VERSION=3.7 ./Service_1/`      | {Creates an Image of Service 1}                 |
+| `docker build -t service-2 ./Service_2/`                                     | {Creates an Image of Service 2}                 |
+| `docker build -t service-3 ./Service_3/`                                     | {Creates an Image of Service 3}                 |
+| `docker build -t service-4 ./Service_4/`                                     | {Creates an Image of Service 4}                 |
+
+> The commands above will create the image with the tag latest. If a unique tag is to be included then use the following...
+> "docker build -t service-2`:1.01` ./Service_#/" for example.
+
+With my images now created I used the following to see their details...
 
 | Code Input *- Bash*                                      | Output                                                          |
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
-| `docker run -d -p 5000:5000 --name service_1 ver-1.1.01` | {Creates service_1 container}                                   |
-| `docker run -d -p 5001:5001 --name service_2 ver-2.1.01` | {Creates service_2 container}                                   |
-| `docker run -d -p 5002:5002 --name service_3 ver-3.1.01` | {Creates service_3 container}                                   |
-| `docker run -d -p 5003:5003 --name service_4 ver-4.1.01` | {Creates service_4 container}                                   |
+| `docker images`                                          | {Print out Container Table (seen Bellow)}                       |
+
+#### Uploading Images to Docker Hub
+
+To upload files to the Docker hun the file requires the addition of a username.
+the file format is as follows... `{Docker Username}/{Image Name}:{Tag}`
+
+To create this file we can run the following command(s) to copy an Image and change its name...
 
 | Code Input *- Bash*                                      | Output                                                          |
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
-| `docker ps`                                              | {Show active containers}                                        |
+| `docker tag service-1:latest seansnake93/service-1:1.01` | {Copy and Rename Image with new Tag}                            |
+| `docker tag service-1:latest seansnake93/service-2:1.01` | {Copy and Rename Image with new Tag}                            |
+| `docker tag service-1:latest seansnake93/service-3:1.01` | {Copy and Rename Image with new Tag}                            |
+| `docker tag service-1:latest seansnake93/service-4:1.01` | {Copy and Rename Image with new Tag}                            |
 
-if not working i can use...
+With the new images created I can look at my images to see if all have been created. The new Images with the edited name and tag is ready to be push to my [Docker Hub Repositories][docker-repo] using the following commands...
+
+| Code Input *- Bash*                                      | Output                                                          |
+| :------------------------------------------------------- | :-------------------------------------------------------------- |
+| `docker push seansnake93/service-1:1.01`                 | {Push new Image to Docker Repository}                           |
+| `docker push seansnake93/service-2:1.01`                 | {Push new Image to Docker Repository}                           |
+| `docker push seansnake93/service-3:1.01`                 | {Push new Image to Docker Repository}                           |
+| `docker push seansnake93/service-4:1.01`                 | {Push new Image to Docker Repository}                           |
+
+> My Images took a minute to upload and a couple more = to be visible in my Repositories. 
+
+### Creating and Removing Containers
+
+With each image built I wanted to test to see if they show details I expected to see by putting each within a "Container", done by using...
+
+| Code Input *- Bash*                                     | Output                                                          |
+| :------------------------------------------------------ | :-------------------------------------------------------------- |
+| `docker run -d -p 5000:5000 --name service_1 service-1` | {Creates service_1 container}                                   |
+| `docker run -d -p 5001:5001 --name service_2 service-2` | {Creates service_2 container}                                   |
+| `docker run -d -p 5002:5002 --name service_3 service-3` | {Creates service_3 container}                                   |
+| `docker run -d -p 5003:5003 --name service_4 service-4` | {Creates service_4 container}                                   |
+
+> the `-d` detaches the command from the terminal, allowing foe me to use the terminla after activating the "Container".
+
+With my Containers created, by using the following command I get to see a table containing the details of each "Active Container"...
+
+| Code Input *- Bash*                                      | Output                                                          |
+| :------------------------------------------------------- | :-------------------------------------------------------------- |
+| `docker ps`                                              | {Print out Active Container Table (seen Bellow)}                |
+
+> | CONTAINER ID | IMAGE      | COMMAND                | CREATED        | STATUS       | PORTS                  | NAMES     |
+> | :----------- | :--------- | :--------------------- | :------------- | :----------- | :--------------------- | :-------- |
+> | aaaa         | ver-1.1.01 | "/usr/local/bin/pyth…" | 23 minutes ago | Up 5 minutes | 0.0.0.0:5000->5000/tcp | service_1 |
+> | bbbb         | ver-2.1.01 | "/usr/local/bin/pyth…" | 21 minutes ago | Up 5 minutes | 0.0.0.0:5001->5001/tcp | service_2 |
+> | cccc         | ver-3.1.01 | "/usr/local/bin/pyth…" | 20 minutes ago | Up 5 minutes | 0.0.0.0:5002->5002/tcp | service_3 |
+> | dddd         | ver-4.1.01 | "/usr/local/bin/pyth…" | 18 minutes ago | Up 5 minutes | 0.0.0.0:5003->5003/tcp | service_4 |
+
+>> The "Containter ID" will be made up of a random asort of letters and numbers. But to keep my documentation clear I will use the simple ID's.
+
+if a "Container" fails to provide a port it may not show in this list. By using the following command, I am able to so all "Containers" within my project...
 
 | Code Input *- Bash*                                      | Output                                                          |
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
 | `docker ps -a`                                           | {Show all containers}                                           |
 
+If the "Container" exists but, is not active some of the code my be wrong with the Dockerfile or Service files.
 
-this will show all services.
-
-For more info I can...
+For more details abou the debug I can use the following to print it out on the display...
 
 | Code Input *- Bash*                                      | Output                                                          |
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
-| `docker images`                                          | {Show all containers}                                           |
-| `docker logs aaaa`                                       | {Show all containers}                                           |
+| `docker logs aaaa`                                       | {Debug container(s) service_1}                                  |
+
+When happy with my containers, I removed them to begin setting up "Docker Compose", This requires me to stop them before removing each "Container", this is done by using...
+
+| Code Input *- Bash*                                      | Output                                                                     |
+| :------------------------------------------------------- | :------------------------------------------------------------------------- |
+| `docker stop service_1`                                  | {stop container called service_1}                                          |
+| `docker stop service_2 service_3 service_4`              | {stop container(s) called service_2 + service_3 + service_4}               |
+| `docker rm service_1`                                    | {Remove container called service_1}                                        |
+| `docker rm service_2 service_3 service_4`                | {Remove container(s) called service_2 + service_3 + service_4}             |
+
+### Setup Docker Compose
+
+Install commands
 
 | Code Input *- Bash*                                      | Output                                                          |
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
@@ -462,25 +611,99 @@ For more info I can...
 | `sudo chmod +x /usr/local/bin/docker-compose`            | {Make the file moved into the bin a executable file}            |
 
 
+#### Creating a .yaml file
+
+###### Project2/docker-compose.yaml
+
+#### Running Docker Compose
+
+#### Dropping Docker Compose
+
+## Test Coverage
+
+## Index
+
+### Development 1 File Index
+
+Project2/
+Project2/**docker-compose.yaml**
+Project2/**README.md**
+Project2/nginx/
+Project2/nginx/**nginx.conf**
+Project2/Service_1/
+Project2/Service_1/**app.py**
+Project2/Service_1/**Dockerfile**
+Project2/Service_1/**requirements.txt**
+Project2/Service_1/application/
+Project2/Service_1/application/**__init__.py**
+Project2/Service_1/application/**routes.py**
+Project2/Service_1/application/static/
+Project2/Service_1/application/templates/
+Project2/Service_1/application/templates/**about.html**
+Project2/Service_1/application/templates/**home.html**
+Project2/Service_1/application/templates/**layout.html**
+Project2/Service_1/application/tests/
+Project2/Service_1/application/tests/**__init__.py**
+Project2/Service_1/application/tests/**test_back_end.py**
+Project2/Service_2/
+Project2/Service_2/**app.py**
+Project2/Service_2/**Dockerfile**
+Project2/Service_2/**requirements.txt**
+Project2/Service_2/application/
+Project2/Service_2/application/**__init__.py**
+Project2/Service_2/application/**routes.py**
+Project2/Service_2/application/tests/
+Project2/Service_2/application/tests/**__init__.py**
+Project2/Service_2/application/tests/**test_back_end.py**
+Project2/Service_3/
+Project2/Service_3/**app.py**
+Project2/Service_3/**Dockerfile**
+Project2/Service_3/**requirements.txt**
+Project2/Service_3/application/
+Project2/Service_3/application/**__init__.py**
+Project2/Service_3/application/**routes.py**
+Project2/Service_3/application/tests/
+Project2/Service_3/application/tests/**__init__.py**
+Project2/Service_3/application/tests/**test_back_end.py**
+Project2/Service_4/
+Project2/Service_4/**app.py**
+Project2/Service_4/**Dockerfile**
+Project2/Service_4/**requirements.txt**
+Project2/Service_4/application/
+Project2/Service_4/application/**__init__.py**
+Project2/Service_4/application/**routes.py**
+Project2/Service_4/application/tests/
+Project2/Service_4/application/tests/**__init__.py**
+Project2/Service_4/application/tests/**test_back_end.py**
+
+### Installations
+
+- sudo apt update
+- sudo apt install tree
+- sudo apt install python3
+- sudo apt install python3-pip
+- sudo apt install python3-venv
+- python3 -m venv project2-venv
+- . project2-venv/bin/activate
+- **venv** pip install flask 
+    - Flask==1.1.2
+    - Jinja2==2.11.2
+- **venv** pip3 install pytest 
+    - pytest==5.4.2
+- **venv** pip3 install pytest-cov 
+    - pytest-cov==2.8.1
+- **venv** pip3 install flask-testing 
+    - Flask-Testing==0.8.0
+    - Werkzeug==1.0.1
+- WILL HAVE TO INCLUDE THE DOCKER and DOCKER COMPOSE INSTALLATION
 
 
 
- 
 
-docker-compose
-
+################## END of 1.01 ############################################
 
 
-docker-compose build
-docker-compose up
-docker-compose up --build
-docker-compose down
-
-docker-compose down --rmi all
-
-
-
-
+#### Defining Exports
 
 Creating a new [Virtual Machine][gcp-vm] on GCP to host my site on a Jenkins CI and be used as a Master node and Development Server. This set up will run changes made to my development branch and when pushed to maset will then be built on my Project_2 Server.
 
@@ -510,147 +733,3 @@ curl http://swarm-master
 curl http://swarm-worker
 
 -->
-
-docker images
-
-docker run -d (d = detached)
-
-docker run ps -a
-
-docker logs (image id)
-
-docker rm (image id)
-docker rmi
-
-
-
-#### Creating Developers Branch
-
-## Creation Process
-
-bymount = redirect to flask app
-
-volume = sql
-
-
-docker-compose build
-docker-compose up
-docker-compose up --build
-docker-compose down
-
-docker-compose down --rmi all
-
-### app.py
-### models.py
-###### Project2/application/models.py
-
-### Forms.py
-###### Project2/application/forms.py
-
-### Routes.py
-###### Project2/application/routes.py
-
-### __init __.py
-###### Project2/application/__init __.py
-
-## Web Page Creation
-### Layout.html
-### Home.html
-### About.html
-
-## Testing
-### Pytest
-### Debuging
-### Pytest Coverage
-### Futher Testing
-### Integration Testing
-
-## File Index
-
-# This will change
-Project2/application/ <br />
-Project2/application/__init __.py <br />
-Project2/application/forms.py <br />
-Project2/application/models.py <br />
-Project2/application/routes.py <br />
-Project2/application/static <br />
-Project2/application/static/css <br />
-Project2/application/static/css/main.css <br />
-Project2/application/templates <br />
-Project2/application/templates/layout.html <br />
-Project2/application/templates/home.html <br />
-Project2/application/templates/about.html <br />
-Project2/application/templates/register.html <br />
-Project2/application/templates/login.html <br />
-Project2/application/templates/account.html <br />
-Project2/application/templates/catalogue.html <br />
-Project2/application/templates/add_movie.html <br />
-Project2/application/templates/edit_movie.html <br />
-Project2/application/templates/collection.html <br />
-Project2/etc/ <br />
-Project2/etc/systemd <br />
-Project2/etc/systemd/system <br />
-Project2/etc/systemd/system/flask.service <br />
-Project2/script/ <br />
-Project2/script/installation.sh <br />
-Project2/tests/ <br />
-Project2/tests/__init __.py <br />
-Project2/tests/test_int.py <br />
-Project2/tests/test_back_end.py <br />
-Project2/test_results/ <br />
-Project2/test_results/test=at-month-day-on-year-hour:month.html <br />
-Project2/Risk_Assesment.xlsx Project2/requirments.txt <br />
-Project2/app.py <br />
-Project2/create.py <br />
-Project2/chromedriver
-
-
-#### Installations
-
-- sudo apt update
-- sudo apt install python3
-- sudo apt install python3-pip
-- sudo apt install python3-venv
-- python3 -m venv flask-book-venv
-- pip3 freeze
-- . flask-book-venv/bin/activate
-- **venv** pip3 freeze
-- **venv** pip install flask 
-    - Flask==1.1.2
-    - Jinja2==2.11.2
-- sudo apt install tree
-- **venv** pip3 install flask-sqlalchemy 
-    - SQLAlchemy==1.3.16
-    - PyMySQL==0.9.3
-    - Flask-SQLAlchemy==2.4.1
-- **venv** pip3 install flask-wtf 
-    - WTForms==2.3.1
-    - Flask-WTF==0.14.3
-- **venv** pip3 install flask_bcrypt 
-    - Flask-Bcrypt==0.7.1
-    - bcrypt==3.1.7
-- **venv** pip3 install flask-login 
-    - email-validator==1.1.0
-    - Flask-Login==0.5.0
-- **venv** pip3 install pytest 
-    - pytest==5.4.2
-- **venv** pip3 install pytest-cov 
-    - pytest-cov==2.8.1
-- **venv** pip3 install flask-testing 
-    - Flask-Testing==0.8.0
-    - Werkzeug==1.0.1
-- sudo apt-get install unzip 
-    - zipp==3.1.0
-- sudo apt-get install -y chromium-browser (Only if chrome is not installed) 
-- wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
-- unzip chromedriver_linux64.zip
-- **venv** pip3 install selenium 
-    - selenium==3.141.0
-- **venv** pip install gunicorn 
-    - gunicorn==20.0.4
-
-### Creating SQL DATABASE
-
-
-
-#### Defining Exports
