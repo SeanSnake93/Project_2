@@ -625,55 +625,55 @@ Install commands
 
 ### Development 1 File Index
 
-Project2/
-Project2/**docker-compose.yaml**
-Project2/**README.md**
-Project2/nginx/
-Project2/nginx/**nginx.conf**
-Project2/Service_1/
-Project2/Service_1/**app.py**
-Project2/Service_1/**Dockerfile**
-Project2/Service_1/**requirements.txt**
-Project2/Service_1/application/
-Project2/Service_1/application/**__init__.py**
-Project2/Service_1/application/**routes.py**
-Project2/Service_1/application/static/
-Project2/Service_1/application/templates/
-Project2/Service_1/application/templates/**about.html**
-Project2/Service_1/application/templates/**home.html**
-Project2/Service_1/application/templates/**layout.html**
-Project2/Service_1/application/tests/
-Project2/Service_1/application/tests/**__init__.py**
-Project2/Service_1/application/tests/**test_back_end.py**
-Project2/Service_2/
-Project2/Service_2/**app.py**
-Project2/Service_2/**Dockerfile**
-Project2/Service_2/**requirements.txt**
-Project2/Service_2/application/
-Project2/Service_2/application/**__init__.py**
-Project2/Service_2/application/**routes.py**
-Project2/Service_2/application/tests/
-Project2/Service_2/application/tests/**__init__.py**
-Project2/Service_2/application/tests/**test_back_end.py**
-Project2/Service_3/
-Project2/Service_3/**app.py**
-Project2/Service_3/**Dockerfile**
-Project2/Service_3/**requirements.txt**
-Project2/Service_3/application/
-Project2/Service_3/application/**__init__.py**
-Project2/Service_3/application/**routes.py**
-Project2/Service_3/application/tests/
-Project2/Service_3/application/tests/**__init__.py**
-Project2/Service_3/application/tests/**test_back_end.py**
-Project2/Service_4/
-Project2/Service_4/**app.py**
-Project2/Service_4/**Dockerfile**
-Project2/Service_4/**requirements.txt**
-Project2/Service_4/application/
-Project2/Service_4/application/**__init__.py**
-Project2/Service_4/application/**routes.py**
-Project2/Service_4/application/tests/
-Project2/Service_4/application/tests/**__init__.py**
+Project2/<br />
+Project2/**docker-compose.yaml**<br />
+Project2/**README.md**<br />
+Project2/nginx/<br />
+Project2/nginx/**nginx.conf**<br />
+Project2/Service_1/<br />
+Project2/Service_1/**app.py**<br />
+Project2/Service_1/**Dockerfile**<br />
+Project2/Service_1/**requirements.txt**<br />
+Project2/Service_1/application/<br />
+Project2/Service_1/application/**__init__.py**<br />
+Project2/Service_1/application/**routes.py**<br />
+Project2/Service_1/application/static/<br />
+Project2/Service_1/application/templates/<br />
+Project2/Service_1/application/templates/**about.html**<br />
+Project2/Service_1/application/templates/**home.html**<br />
+Project2/Service_1/application/templates/**layout.html**<br />
+Project2/Service_1/application/tests/<br />
+Project2/Service_1/application/tests/**__init__.py**<br />
+Project2/Service_1/application/tests/**test_back_end.py**<br />
+Project2/Service_2/<br />
+Project2/Service_2/**app.py**<br />
+Project2/Service_2/**Dockerfile**<br />
+Project2/Service_2/**requirements.txt**<br />
+Project2/Service_2/application/<br />
+Project2/Service_2/application/**__init__.py**<br />
+Project2/Service_2/application/**routes.py**<br />
+Project2/Service_2/application/tests/<br />
+Project2/Service_2/application/tests/**__init__.py**<br />
+Project2/Service_2/application/tests/**test_back_end.py**<br />
+Project2/Service_3/<br />
+Project2/Service_3/**app.py**<br />
+Project2/Service_3/**Dockerfile**<br />
+Project2/Service_3/**requirements.txt**<br />
+Project2/Service_3/application/<br />
+Project2/Service_3/application/**__init__.py**<br />
+Project2/Service_3/application/**routes.py**<br />
+Project2/Service_3/application/tests/<br />
+Project2/Service_3/application/tests/**__init__.py**<br />
+Project2/Service_3/application/tests/**test_back_end.py**<br />
+Project2/Service_4/<br />
+Project2/Service_4/**app.py**<br />
+Project2/Service_4/**Dockerfile**<br />
+Project2/Service_4/**requirements.txt**<br />
+Project2/Service_4/application/<br />
+Project2/Service_4/application/**__init__.py**<br />
+Project2/Service_4/application/**routes.py**<br />
+Project2/Service_4/application/tests/<br />
+Project2/Service_4/application/tests/**__init__.py**<br />
 Project2/Service_4/application/tests/**test_back_end.py**
 
 ### Installations
