@@ -10,7 +10,7 @@ import requests
 def home():
     generated = requests.get('http://service_2:5001/generate').text # Requesting service 2 to Generate a responce from Services 3 and 4.
     print("Recived movie to display: ", generated) # print/display the details expected on site in the terminal.
-    return render_template('home.html', movie = generated, title = 'Project 2 Generater')
+    return render_template('home.html', movie = generated, title = 'Project 2 Generator')
 
 # About is a general overview of the project functions. Visit the about.html for more.
 
