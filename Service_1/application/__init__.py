@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, request
+import requests
 # * are only if i wish to expand
 # from flask_login import LoginManager
 

@@ -14,7 +14,7 @@ QA Indevisual Project 2
 
 submit date - 15th june
 
-## Contests
+## Contents
 
 * [Introduction](#Introduction)
     * [Project Outlines](#project-outlines)
@@ -347,7 +347,7 @@ In order to use any docker comands we will need to put `sudo docker ...` but, we
 | `sudo usermod -aG docker $(whoami)`                           | {Remove the need to put sudo befor docker}                 |
 
 Having now run this I can run Docker's welcome screen without the need to include `sudo`...
-> This may require a system restart or bt creating a new group will enable Docker to run.
+> This may require a system restart or by creating a new group will enable Docker to run.
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -366,14 +366,117 @@ Now this is done I can copy the IMAGE ID and add it to the Remove Image command,
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `docker rmi bf756fb1ae65`                                      | Untagged: hello-world:latest<br />Untagged: hello-world@sha256:6a65f928fb91fcfbc963f7aa6d57c8eeb426ad9a20c7ee045538ef34847f44f1<br />Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b<br />Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63 |
 
+#### Creating Developers Branch
+
+With the use of Visual Studio, by clicking on the option labled "Master" in the bottom left corner.
+This then will show an option in the Visual Studio menu to "Create new branch...".
+
+I called my other branch `Dev`, It is in here i will work before uploading content to the master. Only complete (Working) versions are allowed to be merged with the Master.
+
+If a branch was not mady using this I could visit [my Git Hub repository][git-project] and create one or use the following command in the SSH terminal.
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `git checkout -b Dev`                                         | {Created and moved to new branch called "Dev"}+            |
+
+To confirm that I have entered the "Dev" branch I can use the following command to highlight (*) what my currently branch is...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `git branch`                                                  | * Dev<br />  master                                        |
+
+# Development
+
 ### Setting Up Version Control
 
-Now I have installed Docker on my Machine I will need to create an image of my indevisual services to begin version control. 
+Now I have installed Docker on my Machine I will need to create an image of my indevisual services to begin version control.
+
+First I Login to my docker account from within the SSh terminal...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `docker login`                                                | Username: <br />Password:                                  |
+
+#### Creating Image
+
+In order to create an Image I will first need to create a Dockerfile holding Instructions as to how I wish to create the file.
+
+Entering the SSH terminal and creating the file using...
+
+| Code Input *- Bash*                                           | Output                                                     |
+| :------------------------------------------------------------ | :--------------------------------------------------------- |
+| `touch Dockerfile`                                            | {Dockerfile created in current directory}                  |
+
+> Note: The file must have a capital "D" in `Dockerfile`.
+
+Entering the file I have included the following commands...
+
+| Code Input *- Dockerfile*                                                                                                  |
+| :------------------------------------------------------------------------------------------------------------------------- |
+| `ARG PYTHON_VERSION=3.7<br /><br />FROM python:latest<br /><br />RUN mkdir /opt/services/<br /><br />COPY . /opt/services/<br /><br />WORKDIR /opt/services/application/templates/<br /><br />RUN sed -i "s/{{PYTHON_VERSION}}/${PYTHON_VERSION}/g" home.html<br /><br />WORKDIR /opt/services/<br /><br />RUN pip3 install -r requirements.txt<br /><br />ENTRYPOINT ["/usr/local/bin/python3", "app.py"]<br /><br />EXPOSE 5000` |
+
+In this I have given Variables to 
+
+| Code Input *- Bash*                                                      | Output                                          |
+| :----------------------------------------------------------------------- | :---------------------------------------------- |
+| `docker build -t ver-1.1.01 --build-arg PYTHON_VERSION=3.7 ./Service_1/` | {Creates an Image of Service 1}                 |
+| `docker build -t ver-2.1.01 ./Service_2/`                                | {Creates an Image of Service 2}                 |
+| `docker build -t ver-3.1.01 ./Service_3/`                                | {Creates an Image of Service 3}                 |
+| `docker build -t ver-4.1.01 ./Service_4/`                                | {Creates an Image of Service 4}                 |
+
+No i need to get them running in a container
+
+| Code Input *- Bash*                                      | Output                                                          |
+| :------------------------------------------------------- | :-------------------------------------------------------------- |
+| `docker run -d -p 5000:5000 --name service_1 ver-1.1.01` | {Creates service_1 container}                                   |
+| `docker run -d -p 5001:5001 --name service_2 ver-2.1.01` | {Creates service_2 container}                                   |
+| `docker run -d -p 5002:5002 --name service_3 ver-3.1.01` | {Creates service_3 container}                                   |
+| `docker run -d -p 5003:5003 --name service_4 ver-4.1.01` | {Creates service_4 container}                                   |
+
+| Code Input *- Bash*                                      | Output                                                          |
+| :------------------------------------------------------- | :-------------------------------------------------------------- |
+| `docker ps`                                              | {Show active containers}                                        |
+
+if not working i can use...
+
+| Code Input *- Bash*                                      | Output                                                          |
+| :------------------------------------------------------- | :-------------------------------------------------------------- |
+| `docker ps -a`                                           | {Show all containers}                                           |
 
 
-Created Dev Branch..... More to be added in the morning
+this will show all services.
+
+For more info I can...
+
+| Code Input *- Bash*                                      | Output                                                          |
+| :------------------------------------------------------- | :-------------------------------------------------------------- |
+| `docker images`                                          | {Show all containers}                                           |
+| `docker logs aaaa`                                       | {Show all containers}                                           |
+
+| Code Input *- Bash*                                      | Output                                                          |
+| :------------------------------------------------------- | :-------------------------------------------------------------- |
+| `sudo apt update`                                        | {This will make sure jq and curl are available to installed}    |
+| `sudo apt install -y curl jq`                            | {install curl and jq}                                           |
+| `version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')` | {Get the latest version} |
+| `sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose` | {send the file to the bin (so we can call it as a function)} |
+| `sudo chmod +x /usr/local/bin/docker-compose`            | {Make the file moved into the bin a executable file}            |
 
 
+
+
+
+ 
+
+docker-compose
+
+
+
+docker-compose build
+docker-compose up
+docker-compose up --build
+docker-compose down
+
+docker-compose down --rmi all
 
 
 
@@ -388,7 +491,6 @@ Having Created the VM I ran the following command to define my Master node...
 | `docker swarm init`                                           | {Initilising Master node}                                  |
 
 With the master now defined i return to my Project 2
-
 
 
 docker swarm join --token [TOKEN] [IP_ADDRESS]:[PORT]
@@ -409,8 +511,6 @@ curl http://swarm-worker
 
 -->
 
-#### Creating Item
-
 docker images
 
 docker run -d (d = detached)
@@ -422,9 +522,23 @@ docker logs (image id)
 docker rm (image id)
 docker rmi
 
+
+
 #### Creating Developers Branch
 
 ## Creation Process
+
+bymount = redirect to flask app
+
+volume = sql
+
+
+docker-compose build
+docker-compose up
+docker-compose up --build
+docker-compose down
+
+docker-compose down --rmi all
 
 ### app.py
 ### models.py

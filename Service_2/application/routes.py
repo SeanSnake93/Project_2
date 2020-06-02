@@ -1,12 +1,13 @@
 from application import app
+from random import randrange
 import requests
 
 
 @app.route('/generate', methods=['GET'])
 def generate():
-    Genre = requests.get('http://localhost:5002/generategenre')# Call Service 3 to to return a Genre to filter a Movie form Service 4.
-    print("Service 3 Output:", Genre) # Print/Display selection on Terminal.
-    Movie = requests.get('http://localhost:5003/generatemovie', genre = Genre) # With the Genre defined, filter a Movie in Service 4 related to this Genre.
-    print("Service 4 Output:", Movie) # Print the Movie found in Service 4.
-    Output = "We have selected", Movie.text, "from our", Genre.text, "Collection." # The Responce being sent back to be displayed on site.
-    return Output
+    genre = requests.get('http://service_3:5002/randomgenre').text # Call Service 3 to to return a Genre to filter a Movie form Service 4.
+    print("Service 3 Output:", genre) # Print/Display selection on Terminal.
+    url = 'http://service_4:5003/' + genre # Create a variable to hold the new URL to be requested against.
+    movie = requests.get(url).text # With the Genre defined, filter a Movie in Service 4 related to this Genre.
+    print("Service 4 Output:", movie) # Print the Movie found in Service 4.
+    return "We have selected " + movie + " from our " + genre + " Collection." # The Responce being sent back to be displayed on site.
