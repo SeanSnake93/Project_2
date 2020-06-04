@@ -53,7 +53,7 @@ Submit by Date: 15th june
     * [Creating and Removing Containers](#creating-and-removing-containers)
     * [Setup Docker Compose](#setup-docker-compose)
         * [Creating a .yaml file](#creating-a-yaml-file)
-            * [Project2/docker-compose.yaml](#project2/docker-compose.yaml)
+            * [docker-compose.yaml](#project2/docker-compose.yaml)
         * [Running Docker Compose](#running-docker-compose)
         * [Dropping Docker Compose](#dropping-docker-compose)
 * [Test Coverage](#test-coverage)
@@ -337,9 +337,7 @@ I have chose to use [Docker][docker] to enable me to create images, store within
 
 To install Docker I used the following command...
 
-| Code Input *- Bash*                                           | Output                                                     |
-| :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `curl https://get.docker.com | sudo bash`                     | {Download and install Docker}                              |
+`curl https://get.docker.com | sudo bash`
 
 In order to use any docker comands we will need to put `sudo docker ...` but, we can change this to remove the need of typing `sudo`. This can be achived by using the following command...
 
@@ -394,11 +392,39 @@ To confirm that I have entered the "Dev" branch I can use the following command 
 
 #### Creating my app files
 
+Using the Dev branch I can now develop my files. In order to make sure I recive the result I want I'll will be creating it set of constraints that my project must complete, this will be the first stage of Development.
+
 ##### Test Driven Development
+
+Project must be viable
+The site must be accessable by the user.
+
+All links work
+Any and all Huyperlinks within my site must be capable of performing the action requested.
+
+Service must return a value
+I need to be sure that areas of my site are capable of returning a value.
+
+Service can recive data
+When attempting to send data in order to filteits content, this has to be recived.
 
 ###### Project2/Service_#/application/tests/test_back_end.py
 
+> **Service_1**
+>> Test
+
+> **Service_2**
+>> Test
+
+> **Service_3**
+>> Test
+
+> **Service_4**
+>> Test
+
 ##### Python Files
+
+In the development of the project I have chosen to use multiple files to format the data, the reason for this is to enable a faster responce to indervisiual parts of my project as errors will highlight the file in question. This will in turn keep a cleaner file format and is best practice.
 
 ###### Project2/Service_#/app.py
 
@@ -469,9 +495,15 @@ Insided my routes file I have imported my app as to enable it to work with my si
 
 ###### Project2/Service_1/application/templates/layout.html
 
+In this file I have created the menu header and footer with any imports needed, in the center of the body content I have utilised the Flask `render_template` to created a "block" called `body_content` in order to simplify the other html files. When a page is loaded this file will be called to complete the missing html content.
+
 ###### Project2/Service_1/application/templates/home.html
 
+I have declared this page to be an extention of the "layout.html" above by utilising the Flask `render_template`. Using the same brackets made within the layout.html file, all my content has been layed out inside. With a `movie` variable inside I am able to decate its value upon loading and I have created a button that when pressed will reload the current page. 
+
 ###### Project2/Service_1/application/templates/about.html
+
+I again have declared this page to be an extention of the "layout.html" above by utilising the Flask `render_template`. Using the same brackets made within the layout.html file, all my content has been layed out inside. This page is being used to explain the expected outcome of my file to the user.
 
 ### Creating Docker Images
 
@@ -606,10 +638,14 @@ Install commands
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
 | `sudo apt update`                                        | {This will make sure jq and curl are available to installed}    |
 | `sudo apt install -y curl jq`                            | {install curl and jq}                                           |
-| `version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')` | {Get the latest version} |
+
+To download the latrst version use the command bellow...
+
+`version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')`
+
+| Code Input *- Bash*                                      | Output                                                          |
 | `sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose` | {send the file to the bin (so we can call it as a function)} |
 | `sudo chmod +x /usr/local/bin/docker-compose`            | {Make the file moved into the bin a executable file}            |
-
 
 #### Creating a .yaml file
 
@@ -695,7 +731,16 @@ Project2/Service_4/application/tests/**test_back_end.py**
 - **venv** pip3 install flask-testing 
     - Flask-Testing==0.8.0
     - Werkzeug==1.0.1
-- WILL HAVE TO INCLUDE THE DOCKER and DOCKER COMPOSE INSTALLATION
+- curl https://get.docker.com | sudo bash
+    - sudo usermod -aG docker $(whoami)
+- sudo apt update
+- sudo apt install -y curl jq
+- version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')
+- sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+- sudo chmod +x /usr/local/bin/docker-compose
+- **venv** pip3 install requests
+    - requests==2.23.0
+
 
 
 
