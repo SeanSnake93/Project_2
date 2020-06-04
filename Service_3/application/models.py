@@ -9,8 +9,6 @@ class Movies(db.Model):
 
     id = db.Column(db.Integer, Priamry_Key=True)
     movie_title = db.Column(db.String(100),nullable=False)
-    year = db.Column(db.Integer, nullable=False)
-    director = db.Column(db.Integer, db.ForeignKey('director.id'), nullable=False)
     rating = db.Column(db.Integer, db.ForeignKey('ratings.id'), nullable=False)
     description = db.Column(db.String(999),nullable=False)
     referenced_in_genrelink = db.relationship('GenreLink', backref='Movies_Genre', lazy=True)
@@ -19,8 +17,6 @@ class Movies(db.Model):
         return ''.join([
             'Movie ID: ', str(self.id), '\r\n',
             'Title: ', str(self.movie_title), '\r\n',
-            'Year: ', str(self.year), '\r\n',
-            'Director: ', str(self.director), '\r\n',
             'Rating: ', str(self.rating), '\r\n',
             'Description: ', str(self.description)
         ])
@@ -55,18 +51,6 @@ class Ratings(db.Model):
     id = db.Column(db.Integer, Priamry_Key=True)
     Rating = db.Column(db.String(10), nullable=False)
     referenced_in_movies = db.relationship('Movies', backref='Movie_Rating', lazy=True)
-
-    def __rept__(self):
-        return ''.join([
-            'Rating ID: ', str(self.id), '\r\n',
-            'Rating: ', str(self.rating)
-        ])
-
-class Directors(db.Model):
-
-    id = db.Column(db.Integer, Priamry_Key=True)
-    director = db.Column(db.String(10), nullable=False)
-    referenced_in_movies = db.relationship('Movies', backref='Movie_Director', lazy=True)
 
     def __rept__(self):
         return ''.join([
