@@ -714,67 +714,29 @@ Project2/Service_4/application/tests/**test_back_end.py**
 
 ### Installations
 
-- sudo apt update
-- sudo apt install tree
-- sudo apt install python3
-- sudo apt install python3-pip
-- sudo apt install python3-venv
-- python3 -m venv project2-venv
-- . project2-venv/bin/activate
-- **venv** pip install flask 
+- `sudo apt update`
+- `sudo apt install tree`
+- `sudo apt install python3`
+- `sudo apt install python3-pip`
+- `sudo apt install python3-venv`
+- `python3 -m venv project2-venv`
+- `. project2-venv/bin/activate`
+- **venv** `pip install flask` 
     - Flask==1.1.2
     - Jinja2==2.11.2
-- **venv** pip3 install pytest 
+- **venv** `pip3 install pytest` 
     - pytest==5.4.2
-- **venv** pip3 install pytest-cov 
+- **venv** `pip3 install pytest-cov` 
     - pytest-cov==2.8.1
-- **venv** pip3 install flask-testing 
+- **venv** `pip3 install flask-testing` 
     - Flask-Testing==0.8.0
     - Werkzeug==1.0.1
-- curl https://get.docker.com | sudo bash
-    - sudo usermod -aG docker $(whoami)
-- sudo apt update
-- sudo apt install -y curl jq
-- version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')
-- sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-- sudo chmod +x /usr/local/bin/docker-compose
-- **venv** pip3 install requests
+- **venv** `pip3 install requests`
     - requests==2.23.0
-
-
-
-
-
-################## END of 1.01 ############################################
-
-
-#### Defining Exports
-
-Creating a new [Virtual Machine][gcp-vm] on GCP to host my site on a Jenkins CI and be used as a Master node and Development Server. This set up will run changes made to my development branch and when pushed to maset will then be built on my Project_2 Server.
-
-Having Created the VM I ran the following command to define my Master node...
-
-| Code Input *- Bash*                                           | Output                                                     |
-| :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `docker swarm init`                                           | {Initilising Master node}                                  |
-
-With the master now defined i return to my Project 2
-
-
-docker swarm join --token [TOKEN] [IP_ADDRESS]:[PORT]
-<!--  Creating a Worker node -->
-
-docker swarm join-token worker
-<!--  Recover tocken -->
-
-docker service create --name nginx --publish 80:80 nginx:latest
-<!--  Recover nginx image -->
-
-curl http://[PRIVATE_IP_ADDRESS]
-curl http://[PRIVATE_IP_ADDRESS]
-<!-- Add to cluster 
-
-curl http://swarm-master
-curl http://swarm-worker
-
--->
+- `curl https://get.docker.com | sudo bash`
+    - `sudo usermod -aG docker $(whoami)`
+- `sudo apt update`
+- `sudo apt install -y curl jq`
+- `version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')`
+- `sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+- `sudo chmod +x /usr/local/bin/docker-compose`
