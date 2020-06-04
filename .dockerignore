@@ -1,0 +1,7 @@
+# !README.md (create an exception)
+
+*.md
+
+*/*.txt
+
+secrets/passwords

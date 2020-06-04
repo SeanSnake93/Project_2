@@ -1,6 +1,11 @@
-/pycache/ 
-*.pyc 
-/project2-venv/ 
-/venv/ 
+/pycache/
+
+*.pyc
+
+/project2-venv/
+
+/venv/
+
 /.vscode/
+
 chromedriver

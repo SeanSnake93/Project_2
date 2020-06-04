@@ -1,3 +1,5 @@
+ARG PYTHON_VERSION=3.7
+
 FROM python:latest
 
 RUN mkdir /opt/services/
@@ -8,4 +10,6 @@ WORKDIR /opt/services/
 
 RUN pip3 install -r requirements.txt
 
-ENTRYPOINT ["python3", "app.py"]
+EXPOSE 5001
+
+ENTRYPOINT ["/usr/local/bin/python3", "app.py"]
