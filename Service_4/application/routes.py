@@ -4,30 +4,13 @@ import requests
 
 # ------- START - Functions -------
 
-def genre_check(submitting):
-    """
-    Taking the data from the Genre table. Checking to see if what is submitted matches content in Genre.genre field.
-    """
-    confirm = ""
-    genres_content = Genres.query.all()
-    genres = genres_content.genre
-    if submitting == "":
-        break
-    else:
-        for genre in genres:
-            if submitting in genre:
-                confirm = submitting
-            else:
-                continue
-    return confirm
-
 def rating_check(submitting):
     """
     Taking the data from the Rrouts table. Checking to see if what is submitted matches content in Genre.genre field.
     """
     confirm = ""
     ratings_content = Ratings.query.all()
-    rarings = ratings_content.rating
+    ratings = ratings_content.rating
     if submitting == "":
         break
     else:

@@ -1,22 +1,39 @@
 from application import app
 from random import randrange
 
+# ------- START - Functions -------
+
+def genre_check(submitting):
+    """
+    Taking the data from the Genre table. Checking to see if what is submitted matches content in Genre.genre field.
+    """
+    confirm = ""
+    genres_content = Genres.query.all()
+    genres = genres_content.genre
+    if submitting == "":
+        break
+    else:
+        for genre in genres:
+            if submitting in genre:
+                confirm = submitting
+            else:
+                continue
+    return confirm
+
+# ------- END --- Functions -------
 
 @app.route('/movies/randomise/generate/random_genre', methods=['GET'])
 def generate_movie_genre():
     genre = Genre.query.all().genre
-    ranger = len(genre)
-    print(ranger)
-    return genre[randrange(int(ranger))]
+    return genre[randrange(len(genre)]
 
 @app.route('movies/create/add/<filmID>', methods=['GET','POST'])
 @login_required
 def add_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
     add = []
-    movieData = Movies.query.filter_by(movie_title=title).first()
-        for i in range(5):
-            num = i + 1
-            genre = 'genre' + str(num)
+    movieData = Movies.query.filter_by(id=filmID).first()
+        for i in range(1, 6):
+            genre = 'genre' + str(i)
             check_genre = genre_check(genre)
             if check_genre == "":
                 continue
@@ -36,16 +53,15 @@ def add_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
 @login_required
 def change_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
     adding = []
-    movieData = Movies.query.filter_by(movie_title=title).first()
-        for i in range(5):
-            num = i + 1
-            genre = 'genre' + str(num)
+    movieData = Movies.query.filter_by(id=filmID).first()
+        for i in range(1, 6):
+            genre = 'genre' + str(i)
             check_genre = genre_check(genre)
             if check_genre == "":
                 continue
             else:
                 adding.append(check_genre)
-        own = GenreLink.query,filter_by(movie_id=filmID).all()
+        own = GenreLink.query.filter_by(movie_id=filmID).all()
         for entry in own:
             db.session.delete(entry.id)
             db.session.commit()

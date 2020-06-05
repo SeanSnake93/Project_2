@@ -30,3 +30,8 @@ services:
     ports: 
     - target: 5003
       published: 5003
+  service_5:
+    build: ./Service_5
+    ports: 
+    - target: 5004
+      published: 5004

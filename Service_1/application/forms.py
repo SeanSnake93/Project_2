@@ -8,7 +8,7 @@ from flask_login import current_user
 
 class UserLoginForm(FlaskForms):
 
-    Email = StringField("Email",
+    email = StringField("Email",
         validators=[
             DataRequired().
             Email()
@@ -28,7 +28,7 @@ class UserLoginForm(FlaskForms):
 
 class UserRegisterForm(FlaskForms):
 
-    Email = StringField("Email",
+    email = StringField("Email",
         validators=[
             DataRequired().
             Email()
@@ -93,6 +93,8 @@ class UserRegisterForm(FlaskForms):
             EqualTo('password')
         ]
     )
+
+    remember = BooleanFeild('Remember Me')
 
     submit = SubmitFeild('Register')
 

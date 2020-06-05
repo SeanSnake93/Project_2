@@ -24,13 +24,13 @@ class Movies(db.Model):
 class Genres(db.Model):
 
     id = db.Column(db.Integer, Priamry_Key=True)
-    Genre = db.Column(db.String(20),nullable=False)
+    genre = db.Column(db.String(20),nullable=False)
     referenced_in_genrelink = db.relationship('GenreLink', backref='Genre', lazy=True) # Relates this table to GenreLink TABLE.
 
     def __rept__(self):
         return ''.join([
             'Genre ID: ', str(self.id), '\r\n',
-            'Genre: ', str(self.Genre)
+            'Genre: ', str(self.genre)
         ])
 
 class GenreLink(db.Model):
@@ -42,14 +42,14 @@ class GenreLink(db.Model):
     def __rept__(self):
         return ''.join([
             'Link ID: ', str(self.id), '\r\n',
-            'Genre ID: ', str(self.Genre_id), '\r\n',
+            'Genre ID: ', str(self.genre_id), '\r\n',
             'Movie ID: ', str(self.movie_id)
         ])
 
 class Ratings(db.Model):
 
     id = db.Column(db.Integer, Priamry_Key=True)
-    Rating = db.Column(db.String(10), nullable=False)
+    rating = db.Column(db.String(10), nullable=False)
     referenced_in_movies = db.relationship('Movies', backref='Movie_Rating', lazy=True)
 
     def __rept__(self):
@@ -60,7 +60,7 @@ class Ratings(db.Model):
 
 class Users(db.Model):
     id = db.Column(db.Integer, Priamry_Key=True)
-    Email = db.Column(db.String(500),nullable=False)
+    email = db.Column(db.String(500),nullable=False)
     user_name = db.Column(db.String(50),nullable=False)
     password = db.Column(db.String(500),nullable=False)
     first_name = db.Column(db.String(50),nullable=False)
