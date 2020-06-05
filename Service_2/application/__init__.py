@@ -7,8 +7,8 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 
-app.config['SQLACHEMY_DATABASE_URI'] = str(os.getenv( 'PROJECT_URI' ))
-app.config['SQLACHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = str(os.getenv( 'PROJECT_URI' ))
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = str(os.getenv( 'MY_SECRET_KEY' ))
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

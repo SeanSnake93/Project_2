@@ -1,6 +1,6 @@
 from flask import request, redirect
-from application import app, db, bycrypt
-from application.model import Directors, Movies, Genres, GenreLink, Ratings, Users
+from application import app, db, bcrypt
+from application.models import Directors, Movies, Genres, GenreLink, Ratings, Users
 from flask_login import login_user, current_user, logout_user, login_required
 from random import randrange
 import requests
@@ -15,7 +15,7 @@ def rating_check(submitting):
     ratings_content = Ratings.query.all()
     ratings = ratings_content.rating
     if submitting == "":
-        break
+        return confirm
     else:
         for rating in ratings:
             if submitting in rating:
@@ -63,9 +63,7 @@ def add_movie_content(title, year, director, rating, description):
         directorData = Directors.query.filter_by(director=director).first()
         check_rating = rating_check(rating)
         ratingData = Ratings.query.filter_by(rating=check_rating).first()
-        if ratingData == None:
-            break
-        else:
+        if ratingData != None:
             moviesData = Movies(
                 movie_title = title,
                 year = year,
@@ -100,9 +98,7 @@ def change_movie_content(title, year, director, rating, description):
         directorData = Directors.query.filter_by(director=director).first()
         check_rating = rating_check(rating)
         ratingData = Ratings.query.filter_by(rating=check_rating).first()
-        if ratingData == None:
-            break
-        else:
+        if ratingData != None:
             moviesData = Movies(
                 movie_title = title,
                 year = year,

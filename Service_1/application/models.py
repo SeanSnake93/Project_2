@@ -22,7 +22,7 @@ class Movies(db.Model):
     id = db.Column(db.Integer, Primary_Key=True)
     movie_title = db.Column(db.String(100),nullable=False)
     year = db.Column(db.Integer, nullable=False)
-    director = db.Column(db.Integer, db.ForeignKey('director.id'), nullable=False)
+    director = db.Column(db.Integer, db.ForeignKey('directors.id'), nullable=False)
     rating = db.Column(db.Integer, db.ForeignKey('ratings.id'), nullable=False)
     description = db.Column(db.String(999),nullable=False)
     referenced_in_genrelink = db.relationship('GenreLink', backref='Movies_Genre', lazy=True)

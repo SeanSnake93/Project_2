@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
-from application import app, db, bycrypt
-from application.model import Directors, Movies, Genres, GenreLink, Ratings, Users
+from application import app, db, bcrypt
+from application.models import Directors, Movies, Genres, GenreLink, Ratings, Users
 from application.forms import MovieForm, UserLoginForm, UserRegisterForm, UserUpdateForm
 from flask_login import login_user, current_user, logout_user, login_required
 from random import randrange
@@ -116,8 +116,8 @@ def register():
         data.append(form.surname.data)
         data.append(form.sex.data)
         data.append(str(form.age.data))
-        hash_pw=bycrypt.generate_password_hash(form.password.data)
-        delivery = requests.post('http://service_2:5001/register/user', userData=data, hashed=hash_pw pin=form.remember.data).text
+        hash_pw=bcrypt.generate_password_hash(form.password.data)
+        delivery = requests.post('http://service_2:5001/register/user', userData=data, hashed=hash_pw, pin=form.remember.data).text
         if form.remember.data == True:
             return redirect(url_for('home'))
         else:

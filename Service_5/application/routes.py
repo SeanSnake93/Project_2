@@ -1,23 +1,23 @@
 from flask import render_template, request, redirect, url_for
-from application import app, db, bycrypt
-from application.model import Directors, Movies, Genres, GenreLink, Ratings, Users
+from application import app, db, bcrypt
+from application.models import Directors, Movies, Genres, GenreLink, Ratings, Users
 from flask_login import login_user, current_user, logout_user, login_required
 import requests
 
 @app.route('/register/user/create', methods=['GET'])
 def register_user_create(account, hashed):
     userData = Users(
-            email = userData[0]
-            user_name = userData[1]
-            password = hashed
-            first_name = userData[2]
-            middle_names = userData[3]
-            surname = userData[4]
-            sex = userData[5]
+            email = userData[0],
+            user_name = userData[1],
+            password = hashed,
+            first_name = userData[2],
+            middle_names = userData[3],
+            surname = userData[4],
+            sex = userData[5],
             age = int(userData[6])
         )
-        db.session.add(userData)
-        bd.seesion.commit()
+    db.session.add(userData)
+    bd.seesion.commit()
     return True
 
 @app.route('/user/update/<userID>/commit', methods=['GET'])
@@ -35,7 +35,7 @@ def user_update_content_commit(userID, first, middle, last, sex):
 @login_required
 def user_delete_content_commit(userID, account):
     logout = logging_out_user_confirm()
-    if logout = True:
+    if logout == True:
         db.session.delete(account)
         db.session.commit()
         return True

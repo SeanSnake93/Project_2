@@ -1,6 +1,6 @@
 from flask import request, redirect
-from application import app, db, bycrypt
-from application.model import Directors, Movies, Genres, GenreLink, Ratings, Users
+from application import app, db, bcrypt
+from application.models import Directors, Movies, Genres, GenreLink, Ratings, Users
 from flask_login import login_user, current_user, logout_user, login_required
 import requests
 
@@ -47,9 +47,9 @@ def change_movie(filmData):
 def remove_movie(filmID):
     genrelinkData = GenreLink.query.filter_by(movie_id=filmID).all().id
     deleted = requests.post('http://service_3:5002/movies/remove/<filmID>/genre', remove=genrelinkData).text
-    print("Links Deleted: " deleted)
+    print("Links Deleted: ", deleted)
     deleted = requests.post('http://service_4:5003/movies/remove/<filmID>/movie', remove=genrelinkData).text
-    print("Movie Deleted: " deleted)
+    print("Movie Deleted: ", deleted)
     return True
 
 @app.route('/register/user', methods=['GET', 'POST'])
