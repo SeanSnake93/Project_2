@@ -6,6 +6,132 @@ from application import app, db
 from application.models import Directors, Genres, GenreLink, Movies, Ratings, Users
 from flask_login import current_user
 
+class MovieForm(FlaskForms):
+
+    movie_title = StringField("Title",
+        validators=[
+            DataRequired().
+            Length(min=1, max=100)
+        ]
+    )
+
+    limit = Now.year + 1
+
+    year = IntegerField("Year", CHOICES = [(i) for i in range(1878, limit)]
+        validators=[
+            DataRequired()
+        ]
+    )
+
+    director = StringField("Title",
+        validators=[
+            DataRequired().
+            Length(min=1, max=100)
+        ]
+    )
+
+    allgenres = Genres.query.all()
+
+    genre1 = StringField(
+        "Genre #1",
+        available=[]
+        for genre in allgenres.Genre:
+            if form.genre2.data in genre or form.genre3.data in genre or form.genre4.data in genre or form.genre5.data in genre:
+                continue
+            else:
+                available.append(genre)
+        CHOICES=[
+            available
+        ],
+        validators=[
+            DataRequired()
+            Length(min=3, max=20)
+        ]
+    )
+
+    genre2 = StringField("Genre #2",
+        available=[]
+        for genre in allgenres.Genre:
+            if form.genre1.data in genre or form.genre3.data in genre or form.genre4.data in genre or form.genre5.data in genre:
+                continue
+            else:
+                available.append(genre)
+        CHOICES=[
+            available
+        ],
+        validators=[
+            Length(min=3, max=20),
+            Optional()
+        ]
+    )
+
+    genre3 = StringField("Genre #3",
+        available=[]
+        for genre in allgenres.Genre:
+            if form.genre1.data in genre or form.genre2.data in genre or form.genre4.data in genre or form.genre5.data in genre:
+                continue
+            else:
+                available.append(genre)
+        CHOICES=[
+            available
+        ],
+        validators=[
+            Length(min=3, max=20),
+            Optional()
+        ]
+    )
+
+    genre4 = StringField("Genre #4",
+        available=[]
+        for genre in allgenres.Genre:
+            if form.genre1.data in genre or form.genre2.data in genre or form.genre3.data in genre or form.genre5.data in genre:
+                continue
+            else:
+                available.append(genre)
+        CHOICES=[
+            available
+        ],
+        validators=[
+            Length(min=3, max=20),
+            Optional()
+        ]
+    )
+
+    genre5 = StringField("Genre #5",
+        available=[]
+        for genre in allgenres.Genre:
+            if form.genre1.data in genre or form.genre2.data in genre or form.genre3.data in genre or form.genre4.data in genre:
+                continue
+            else:
+                available.append(genre)
+        CHOICES=[
+            available
+        ],
+        validators=[
+            Length(min=3, max=20),
+            Optional()
+        ]
+    )
+
+    allratings = Ratings.query.all()
+
+    rating = StringField("Rating",
+        CHOICES = [
+            allratings
+        ],
+        validators=[
+            DataRequired()
+            Length(min=1, max=10)
+        ]
+    )
+
+    description = StringField("Description",
+        validators=[
+            DataRequired().
+            Length(min=1, max=999)
+        ]
+    )
+
 class UserLoginForm(FlaskForms):
 
     email = StringField("Email",
@@ -133,129 +259,3 @@ class UserUpdateForm(FlaskForms):
     )
 
     submit = SubmitFeild('Submit Changes')
-
-class MovieForm(FlaskForms):
-
-    movie_title = StringField("Title",
-        validators=[
-            DataRequired().
-            Length(min=1, max=100)
-        ]
-    )
-
-    limit = Now.year + 1
-
-    year = IntegerField("Year", CHOICES = [(i) for i in range(1878, limit)]
-        validators=[
-            DataRequired()
-        ]
-    )
-
-    director = StringField("Title",
-        validators=[
-            DataRequired().
-            Length(min=1, max=100)
-        ]
-    )
-
-    allgenres = Genres.query.all()
-
-    genre1 = StringField(
-        "Genre #1",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre2.data in genre or form.genre3.data in genre or form.genre4.data in genre or form.genre5.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            DataRequired()
-            Length(min=3, max=20)
-        ]
-    )
-
-    genre2 = StringField("Genre #2",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre1.data in genre or form.genre3.data in genre or form.genre4.data in genre or form.genre5.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            Length(min=3, max=20),
-            Optional()
-        ]
-    )
-
-    genre3 = StringField("Genre #3",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre1.data in genre or form.genre2.data in genre or form.genre4.data in genre or form.genre5.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            Length(min=3, max=20),
-            Optional()
-        ]
-    )
-
-    genre4 = StringField("Genre #4",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre1.data in genre or form.genre2.data in genre or form.genre3.data in genre or form.genre5.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            Length(min=3, max=20),
-            Optional()
-        ]
-    )
-
-    genre5 = StringField("Genre #5",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre1.data in genre or form.genre2.data in genre or form.genre3.data in genre or form.genre4.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            Length(min=3, max=20),
-            Optional()
-        ]
-    )
-
-    allratings = Ratings.query.all()
-
-    rating = StringField("Rating",
-        CHOICES = [
-            allratings
-        ],
-        validators=[
-            DataRequired()
-            Length(min=1, max=10)
-        ]
-    )
-
-    description = StringField("Description",
-        validators=[
-            DataRequired().
-            Length(min=1, max=999)
-        ]
-    )

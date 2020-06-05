@@ -1,5 +1,7 @@
-from application import app
-from random import randrange
+from flask import request, redirect
+from application import app, db, bycrypt
+from application.model import Directors, Movies, Genres, GenreLink, Ratings, Users
+from flask_login import login_user, current_user, logout_user, login_required
 import requests
 
 

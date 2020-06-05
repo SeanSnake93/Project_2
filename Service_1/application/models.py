@@ -5,6 +5,18 @@ from flask_login import UserMixin
 def load_user(id):
     return Users.query.get(int(id))
 
+class Directors(db.Model):
+
+    id = db.Column(db.Integer, Priamry_Key=True)
+    director = db.Column(db.String(10), nullable=False)
+    referenced_in_movies = db.relationship('Movies', backref='Movie_Director', lazy=True)
+
+    def __rept__(self):
+        return ''.join([
+            'Rating ID: ', str(self.id), '\r\n',
+            'Rating: ', str(self.rating)
+        ])
+
 class Movies(db.Model):
 
     id = db.Column(db.Integer, Priamry_Key=True)
@@ -55,18 +67,6 @@ class Ratings(db.Model):
     id = db.Column(db.Integer, Priamry_Key=True)
     rating = db.Column(db.String(10), nullable=False)
     referenced_in_movies = db.relationship('Movies', backref='Movie_Rating', lazy=True)
-
-    def __rept__(self):
-        return ''.join([
-            'Rating ID: ', str(self.id), '\r\n',
-            'Rating: ', str(self.rating)
-        ])
-
-class Directors(db.Model):
-
-    id = db.Column(db.Integer, Priamry_Key=True)
-    director = db.Column(db.String(10), nullable=False)
-    referenced_in_movies = db.relationship('Movies', backref='Movie_Director', lazy=True)
 
     def __rept__(self):
         return ''.join([

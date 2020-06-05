@@ -1,5 +1,8 @@
-from application import app
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
+from application import app, db, bycrypt
+from application.model import Directors, Movies, Genres, GenreLink, Ratings, Users
+from application.forms import MovieForm, UserLoginForm, UserRegisterForm, UserUpdateForm
+from flask_login import login_user, current_user, logout_user, login_required
 from random import randrange
 import requests
 
