@@ -7,7 +7,7 @@ def load_user(id):
 
 class Movies(db.Model):
 
-    id = db.Column(db.Integer, Priamry_Key=True)
+    id = db.Column(db.Integer, Primary_Key=True)
     movie_title = db.Column(db.String(100),nullable=False)
     rating = db.Column(db.Integer, db.ForeignKey('ratings.id'), nullable=False)
     description = db.Column(db.String(999),nullable=False)
@@ -23,7 +23,7 @@ class Movies(db.Model):
 
 class Genres(db.Model):
 
-    id = db.Column(db.Integer, Priamry_Key=True)
+    id = db.Column(db.Integer, Primary_Key=True)
     genre = db.Column(db.String(20),nullable=False)
     referenced_in_genrelink = db.relationship('GenreLink', backref='Genre', lazy=True) # Relates this table to GenreLink TABLE.
 
@@ -35,7 +35,7 @@ class Genres(db.Model):
 
 class GenreLink(db.Model):
 
-    id = db.Column(db.Integer, Priamry_Key=True)
+    id = db.Column(db.Integer, Primary_Key=True)
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'), nullable=False) # Relating the "Foreign Key" (content refrenced to in another table)
     movie_id =  db.Column(db.Integer, db.ForeignKey('movies.id'), nullable=False)
 
@@ -48,7 +48,7 @@ class GenreLink(db.Model):
 
 class Ratings(db.Model):
 
-    id = db.Column(db.Integer, Priamry_Key=True)
+    id = db.Column(db.Integer, Primary_Key=True)
     rating = db.Column(db.String(10), nullable=False)
     referenced_in_movies = db.relationship('Movies', backref='Movie_Rating', lazy=True)
 
@@ -59,7 +59,7 @@ class Ratings(db.Model):
         ])
 
 class Users(db.Model):
-    id = db.Column(db.Integer, Priamry_Key=True)
+    id = db.Column(db.Integer, Primary_Key=True)
     email = db.Column(db.String(500),nullable=False)
     user_name = db.Column(db.String(50),nullable=False)
     password = db.Column(db.String(500),nullable=False)
