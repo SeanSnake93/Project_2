@@ -39,7 +39,7 @@ def add():
         data.append(form.genre5.data)
         data.append(form.rating.data)
         data.append(form.description.data)
-        delivery = requests.post('http://service_2:5001/movies/create/add', filmData=data)
+        delivery = requests.post('http://service_2:5001/movies/create/add', filmData=data).text
         if delivery == True:
             return redirect(url_for('movies'))
         else:
@@ -67,7 +67,7 @@ def edit(filmID):
         data.append(form.rating.data)
         data.append(form.description.data)
         url = 'http://service_2:5001/movies/edit/<filmID>/update'
-        delivery = requests.post(url, filmData=data)
+        delivery = requests.post(url, filmData=data).text
         if delivery == True:
             return redirect(url_for('movies'))
         else:
@@ -91,7 +91,7 @@ def remove(filmID):
     This will be used to allow a Logged in User to delete a Movie from the Moves Table.
     """
     url = 'http://service_2:5001/movies/remove/' + str(filmID)
-    deliver = requests.post(url)
+    deliver = requests.get(url).text
     print("Delivered: ", deliver)
     return redirect(url_for('movies'))
 
@@ -114,7 +114,7 @@ def register():
         data.append(form.sex.data)
         data.append(str(form.age.data))
         hash_pw=bycrypt.generate_password_hash(form.password.data)
-        delivery = requests.post('http://service_2:5001/register/user', userData=data, hashed=hash_pw pin=form.remember.data)
+        delivery = requests.post('http://service_2:5001/register/user', userData=data, hashed=hash_pw pin=form.remember.data).text
         if form.remember.data == True:
             return redirect(url_for('home'))
         else:
@@ -133,7 +133,7 @@ def user_update(userID):
         data.append(form.surname.data)
         data.append(form.sex.data)
         url = 'http://service_2:5001//user/update/<userID>'
-        delivery = requests.post(url, userData=data)
+        delivery = requests.post(url, userData=data).text
         if delivery == True:
             return redirect(url_for('movies'))
         else:
@@ -148,7 +148,7 @@ def user_update(userID):
 @app.route('/user/delete', methods=['GET','POST'])
 @login_required
 def user_delete(uderID):
-    remove_user = requests.post('http://service_2:5001/register/user/delete/<userID>')
+    remove_user = requests.get('http://service_2:5001/register/user/delete/<userID>').text
     return redirect(url_for('home'))
 
 @app.route('/login', methods=['GET','POST'])
@@ -157,7 +157,7 @@ def login():
         return redirect(url_for('home'))
     form = LoginForm()
     if form.valid_on_submit():
-        delivery = requests.post('http://service_2:5001/login/user', email=form.email.data, hashed=hash_pw, pin=form.remember.data)
+        delivery = requests.post('http://service_2:5001/login/user', email=form.email.data, hashed=hash_pw, pin=form.remember.data).text
         next_page = request.args.get('next')
         if next_page:
             return redirect(next_page)
@@ -168,6 +168,6 @@ def login():
 @app.route('/logout', methods=['GET','POST'])
 @login_required
 def logging_out():
-    status = requests.post('http://service_2:5001/logout/user/confirm')
+    status = requests.get('http://service_2:5001/logout/user/confirm').text
     logout_user()
     return redirect(url_for('home'))

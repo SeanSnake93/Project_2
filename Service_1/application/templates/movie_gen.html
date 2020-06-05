@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+    <h2>Welcome,</h2>
+    <p>Please click Generate Film to produce a random film from ou libary.</p>
+
+    <p>
+        {{ movie }}
+    </p>
+
+    <button onclick="window.location.reload();">
+        Generate Film
+    </button>
+{% endblock %}

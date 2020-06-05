@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+<div class="UserRegisterForm">
+        <form method='POST' action="">
+                {{ form.hidden_tag() }} <!--This must be at the top of the form to enable hidden key-->
+                <div class="form-group">
+                    {{ form.movie_title.label }}</br>
+                    {{ form.movie_title }}
+                    {% if form.movie_title.errors %}
+                    <div class="error">
+                            {% for error in form.movie_title.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                    {{ form.year.label }}</br>
+                    {{ form.year }}
+                    {% if form.year.errors %}
+                    <div class="error">
+                            {% for error in form.year.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                    {{ form.director.label }}</br>
+                    {{ form.director }}
+                    {% if form.director.errors %}
+                    <div class="error">
+                            {% for error in form.director.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                    {{ form.genre1.label }}</br>
+                    {{ form.genre1 }}
+                    {% if form.genre1.errors %}
+                    <div class="error">
+                            {% for error in form.genre1.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                    {{ form.genre2.label }}</br>
+                    {{ form.genre2 }}
+                    {% if form.genre2.errors %}
+                    <div class="error">
+                            {% for error in form.genre2.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                    {{ form.genre3.label }}</br>
+                    {{ form.genre3 }}
+                    {% if form.genre3.errors %}
+                    <div class="error">
+                            {% for error in form.genre3.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                    {{ form.genre4.label }}</br>
+                    {{ form.genre4 }}
+                    {% if form.genre4.errors %}
+                    <div class="error">
+                            {% for error in form.genre4.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                    {{ form.genre5.label }}</br>
+                    {{ form.genre5 }}
+                    {% if form.genre5.errors %}
+                    <div class="error">
+                            {% for error in form.genre5.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                    {{ form.rating.label }}</br>
+                    {{ form.rating }}
+                    {% if form.rating.errors %}
+                    <div class="error">
+                            {% for error in form.rating.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div></br>
+                <div class="form-group">
+                        {{ form.description.label }}</br>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                        <div class="error">
+                                {% for error in form.description.errors %}
+                                        <span>{{ error }}</span>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div></br>
+                <div class="form-group">
+                    {{ form.remember.label }}</br>
+                    {{ form.remember }}
+                </div>
+                </br>
+                {{ form.submit }}
+        </form>
+</div>
+{% endblock %}

@@ -44,15 +44,15 @@ def change_movie(filmData):
 @login_required
 def remove_movie(filmID):
     genrelinkData = GenreLink.query.filter_by(movie_id=filmID).all().id
-    deleted = requests.post('http://service_3:5002/movies/remove/<filmID>/genre', remove=genrelinkData)
+    deleted = requests.post('http://service_3:5002/movies/remove/<filmID>/genre', remove=genrelinkData).text
     print("Links Deleted: " deleted)
-    deleted = requests.post('http://service_4:5003/movies/remove/<filmID>/movie', remove=genrelinkData)
+    deleted = requests.post('http://service_4:5003/movies/remove/<filmID>/movie', remove=genrelinkData).text
     print("Movie Deleted: " deleted)
     return True
 
 @app.route('/register/user', methods=['GET', 'POST'])
 def register_user(userData, hashed, pin):
-    status = requests.post('http://service_5:5004/register/user/create', account=userData, hashed=hashed)
+    status = requests.post('http://service_5:5004/register/user/create', account=userData, hashed=hashed).text
     if pin == True:
         logged_in = login_user(email=userData[0], hashed=hashed, pin=pin)
         return logged_in
@@ -66,25 +66,25 @@ def user_update_content(userID, userData):
     middle = userData[1]
     last = userData[2]
     sex = userData[3]
-    changes = requests.post('http://service_5:5004/user/update/<userID>/commit', userID=userID, first=first, middle=middle, last=last, sex=sex)
+    changes = requests.post('http://service_5:5004/user/update/<userID>/commit', userID=userID, first=first, middle=middle, last=last, sex=sex).text
     return render_template('user_update.html', title = 'Update Account - Project 2')
 
 @app.route('/user/delete/<userID>', methods=['GET', 'POST'])
 @login_required
 def user_delete_content(userID):
     remove = Users.query.filter_by(id=userID).first()
-    terminated = requests.post('http://service_5:5004/user/delete/<userID>/commit', userID=userID, account=remove)
+    terminated = requests.post('http://service_5:5004/user/delete/<userID>/commit', userID=userID, account=remove).text
     return terminated
 
 @app.route('/login/user', methods=['GET', 'POST'])
 def login_user(email, hashed, pin):
     userData = Users.query.filter_by(email=email).first()
-    status = requests.post('http://service_5:5004/login/user/varify', account=userData, hashed=hashed, pin=pin)
+    status = requests.post('http://service_5:5004/login/user/varify', account=userData, hashed=hashed, pin=pin).text
     return status
 
 @app.route('/logout/user', methods=['GET'])
 @login_required
 def logging_out_user():
-    status = requests.post('http://service_5:5004/logout/user/confirm')
+    status = requests.get('http://service_5:5004/logout/user/confirm').text
     logout_user()
     return status
