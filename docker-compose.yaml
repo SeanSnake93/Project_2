@@ -10,11 +10,17 @@ services:
     - type: bind
       source: ./nginx/nginx.conf
       target: /etc/nginx/nginx.conf
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
+      MY_SECRET_KEY=${MY_SECRET_KEY}
   service_1:
     build: ./Service_1
     ports: 
     - target: 5000
       published: 5000
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
+      MY_SECRET_KEY=${MY_SECRET_KEY}
   service_2:
     build: ./Service_2
     ports: 
@@ -23,15 +29,24 @@ services:
   service_3:
     build: ./Service_3
     ports: 
-      - target: 5002
-        published: 5002
+    - target: 5002
+      published: 5002
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
+      MY_SECRET_KEY=${MY_SECRET_KEY}
   service_4:
     build: ./Service_4
     ports: 
     - target: 5003
       published: 5003
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
+      MY_SECRET_KEY=${MY_SECRET_KEY}
   service_5:
     build: ./Service_5
     ports: 
     - target: 5004
       published: 5004
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
+      MY_SECRET_KEY=${MY_SECRET_KEY}
