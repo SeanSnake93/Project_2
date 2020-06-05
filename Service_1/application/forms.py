@@ -1,261 +1,63 @@
-from datetime import date
+from datetime import date, time, datetime, timedelta
 from flask_wtf import FlaskForm
-from wtfforms import InterField, StringField, SubmitField, PasswordField, BooleanField
-from etfforms.validators import DataRequired, Length, Email, EqualTo, ValidateError, Optional
+from wtforms import IntegerField, StringField, SubmitField, PasswordField, BooleanField, TextAreaField, Form, FormField
+from flask_sqlalchemy import SQLAlchemy
+from wtforms_sqlalchemy.fields import QuerySelectField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
 from application import app, db
 from application.models import Directors, Genres, GenreLink, Movies, Ratings, Users
 from flask_login import current_user
 
-class MovieForm(FlaskForms):
+def genres_options():
+    return Genres.query
 
-    movie_title = StringField("Title",
-        validators=[
-            DataRequired().
-            Length(min=1, max=100)
-        ]
-    )
+def ratings_options():
+    return Ratings.query
 
-    limit = Now.year + 1
+class GenreForm(Form):
+    genre1 = QuerySelectField(query_factory=genres_options, allow_blank=True, get_lable='genre')
+    genre2 = QuerySelectField(query_factory=genres_options, allow_blank=True, get_lable='genre')
+    genre3 = QuerySelectField(query_factory=genres_options, allow_blank=True, get_lable='genre')
+    genre4 = QuerySelectField(query_factory=genres_options, allow_blank=True, get_lable='genre')
+    genre5 = QuerySelectField(query_factory=genres_options, allow_blank=True, get_lable='genre')
 
-    year = IntegerField("Year", CHOICES = [(i) for i in range(1878, limit)]
-        validators=[
-            DataRequired()
-        ]
-    )
+class MovieForm(FlaskForm):
 
-    director = StringField("Title",
-        validators=[
-            DataRequired().
-            Length(min=1, max=100)
-        ]
-    )
+    year = datetime.now().year
+    limit = year + 1
+    movie_title = StringField("Title", validators=[DataRequired(), Length(min=1, max=100)])
+    year = IntegerField("Year", CHOICES = [(i) for i in range(1878, limit)], validators=[DataRequired()])
+    genre = FormField(GenreForm)
+    director = StringField("Title", validators=[DataRequired(), Length(min=1, max=100)])
+    rating = QuerySelectField(query_factory=ratings_options, allow_blank=True, get_lable='rating')
+    description = TextAreaField("Description", validators=[DataRequired(), Length(min=1, max=999)])
+    submit = SubmitField('Varify')
 
-    allgenres = Genres.query.all()
+class UserLoginForm(FlaskForm):
 
-    genre1 = StringField(
-        "Genre #1",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre2.data in genre or form.genre3.data in genre or form.genre4.data in genre or form.genre5.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            DataRequired()
-            Length(min=3, max=20)
-        ]
-    )
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    password = StringField("Password", validators=[DataRequired(), Length(min=8, max=50)])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
 
-    genre2 = StringField("Genre #2",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre1.data in genre or form.genre3.data in genre or form.genre4.data in genre or form.genre5.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            Length(min=3, max=20),
-            Optional()
-        ]
-    )
+class UserRegisterForm(FlaskForm):
 
-    genre3 = StringField("Genre #3",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre1.data in genre or form.genre2.data in genre or form.genre4.data in genre or form.genre5.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            Length(min=3, max=20),
-            Optional()
-        ]
-    )
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    user_name = StringField("User Name", validators=[DataRequired(), Length(min=5, max=50)])
+    first_name = StringField("First Name", validators=[DataRequired(), Length(min=2, max=50)])
+    middle_names = StringField("Middle Name(s)", validators=[Length(min=2, max=50)])
+    surname = StringField("Surname", validators=[DataRequired(), Length(min=2, max=50)])
+    sex = StringField("Sex", validators=[DataRequired(), Length(min=2, max=10)])
+    age = IntegerField("Age", validators=[DataRequired()])
+    password = StringField("Password", validators=[DataRequired(), Length(min=8, max=50)])
+    confirm_password = StringField("Confirm Password", validators=[DataRequired(), EqualTo('password')])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Register')
 
-    genre4 = StringField("Genre #4",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre1.data in genre or form.genre2.data in genre or form.genre3.data in genre or form.genre5.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            Length(min=3, max=20),
-            Optional()
-        ]
-    )
+class UserUpdateForm(FlaskForm):
 
-    genre5 = StringField("Genre #5",
-        available=[]
-        for genre in allgenres.Genre:
-            if form.genre1.data in genre or form.genre2.data in genre or form.genre3.data in genre or form.genre4.data in genre:
-                continue
-            else:
-                available.append(genre)
-        CHOICES=[
-            available
-        ],
-        validators=[
-            Length(min=3, max=20),
-            Optional()
-        ]
-    )
-
-    allratings = Ratings.query.all()
-
-    rating = StringField("Rating",
-        CHOICES = [
-            allratings
-        ],
-        validators=[
-            DataRequired()
-            Length(min=1, max=10)
-        ]
-    )
-
-    description = StringField("Description",
-        validators=[
-            DataRequired().
-            Length(min=1, max=999)
-        ]
-    )
-
-class UserLoginForm(FlaskForms):
-
-    email = StringField("Email",
-        validators=[
-            DataRequired().
-            Email()
-        ]
-    )
-
-    password = StringField("Password",
-        validators=[
-            DataRequired(),
-            Length(min=8, max=50)
-        ]
-    )
-
-    remember = BooleanFeild('Remember Me')
-
-    submit = SubmitFeild('Login')
-
-class UserRegisterForm(FlaskForms):
-
-    email = StringField("Email",
-        validators=[
-            DataRequired().
-            Email()
-        ]
-    )
-
-    user_name = StringField("User Name",
-        validators=[
-            DataRequired().
-            Length(min=5, max=50)
-        ]
-    )
-
-    first_name = StringField("First Name",
-        validators=[
-            DataRequired().
-            Length(min=2, max=50)
-        ]
-    )
-
-    middle_names = StringField("Middle Name(s)",
-        validators=[
-            Length(min=2, max=50)
-        ]
-    )
-
-    surname = StringField("Surname",
-        validators=[
-            DataRequired().
-            Length(min=2, max=50)
-        ]
-    )
-
-    sex = StringField("Sex",
-        CHOICES=[
-            "Prefure not to say",
-            "Male",
-            "Female"
-        ]
-        validators=[
-            DataRequired().
-            Length(min=2, max=10)
-        ]
-    )
-
-    age = IntegerField("Age", CHOICES = [(i) for i in range(101)]
-        validators=[
-            DataRequired()
-        ]
-    )
-
-    password = StringField("Password",
-        validators=[
-            DataRequired(),
-            Length(min=8, max=50)
-        ]
-    )
-
-    confirm_password = StringField("Confirm Password",
-        validators=[
-            DataRequired()
-            EqualTo('password')
-        ]
-    )
-
-    remember = BooleanFeild('Remember Me')
-
-    submit = SubmitFeild('Register')
-
-class UserUpdateForm(FlaskForms):
-
-    first_name = StringField("First Name",
-        validators=[
-            DataRequired().
-            Length(min=2, max=50)
-        ]
-    )
-
-    middle_names = StringField("Middle Name(s)",
-        validators=[
-            Length(min=2, max=50)
-        ]
-    )
-
-    surname = StringField("Surname",
-        validators=[
-            DataRequired().
-            Length(min=2, max=50)
-        ]
-    )
-
-    sex = StringField("Sex",
-        CHOICES=[
-            "Prefure not to say",
-            "Male",
-            "Female"
-        ]
-        validators=[
-            DataRequired().
-            Length(min=2, max=10)
-        ]
-    )
-
-    submit = SubmitFeild('Submit Changes')
+    first_name = StringField("First Name", validators=[DataRequired(), Length(min=2, max=50)])
+    middle_names = StringField("Middle Name(s)", validators=[Length(min=2, max=50)])
+    surname = StringField("Surname", validators=[DataRequired(), Length(min=2, max=50)])
+    sex = StringField("Sex", CHOICES=["Prefure not to say", "Male", "Female"], validators=[DataRequired(), Length(min=2, max=10)])
+    submit = SubmitField('Confirm')

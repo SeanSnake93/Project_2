@@ -30,7 +30,7 @@ def generate_movie_genre():
     genre_count = Genres.query.count()
     return genre[randrange(genre_count)]
 
-@app.route('movies/create/add/<filmID>', methods=['GET','POST'])
+@app.route('/movies/create/add/<filmID>', methods=['GET','POST'])
 @login_required
 def add_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
     add = []
@@ -52,7 +52,7 @@ def add_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
     db.session.commit()
     return True
 
-@app.route('movies/edit/<filmID>/update/genre', methods=['GET','POST'])
+@app.route('/movies/edit/<filmID>/update/genre', methods=['GET','POST'])
 @login_required
 def change_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
     adding = []

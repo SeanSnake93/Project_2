@@ -14,7 +14,7 @@ def generate_movie():
     print("Service 4 Output:", movie) # Print the Movie found in Service 4.
     return "We have selected " + movie + " from our " + genre + " Collection." # The Responce being sent back to be displayed on site.
 
-@app.route('movies/create/add', methods=['GET', 'POST'])
+@app.route('/movies/create/add', methods=['GET', 'POST'])
 @login_required
 def add_movie(filmData):
     url = 'http://service_4:5003/movies/create/add/' + filmData[0]
@@ -29,7 +29,7 @@ def add_movie(filmData):
         print("Genres Added:", status)
         return status
 
-@app.route('movies/edit/<filmID>/update', methods=['GET', 'POST'])
+@app.route('/movies/edit/<filmID>/update', methods=['GET', 'POST'])
 @login_required
 def change_movie(filmData):
     status = requests.post('http://service_4:5003/movies/edit/<filmID>/update/movie', title=filmData[0], year=filmData[1], director=filmData[2], rating=filmData[8], description=filmData[9]).text # With the Genre defined, filter a Movie in Service 4 related to this Genre.
@@ -42,7 +42,7 @@ def change_movie(filmData):
         print("Genres Added:", status)
         return status
 
-@app.route('movies/remove/<filmID>', methods=['GET', 'POST'])
+@app.route('/movies/remove/<filmID>', methods=['GET', 'POST'])
 @login_required
 def remove_movie(filmID):
     genrelinkData = GenreLink.query.filter_by(movie_id=filmID).all().id

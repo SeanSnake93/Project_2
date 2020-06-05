@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from application import app, db, bcrypt
 from application.models import Directors, Movies, Genres, GenreLink, Ratings, Users
-from application.forms import MovieForm, UserLoginForm, UserRegisterForm, UserUpdateForm
+from application.forms import MovieForm, UserLoginForm, UserRegisterForm, UserUpdateForm, GenreForm
 from flask_login import login_user, current_user, logout_user, login_required
 from random import randrange
 import requests
@@ -35,11 +35,11 @@ def add():
         data.append(form.title.data)
         data.append(form.year.data)
         data.append(form.director.data)
-        data.append(form.genre1.data)
-        data.append(form.genre2.data)
-        data.append(form.genre3.data)
-        data.append(form.genre4.data)
-        data.append(form.genre5.data)
+        data.append(form.genre.genre1.data)
+        data.append(form.genre.genre2.data)
+        data.append(form.genre.genre3.data)
+        data.append(form.genre.genre4.data)
+        data.append(form.genre.genre5.data)
         data.append(form.rating.data)
         data.append(form.description.data)
         delivery = requests.post('http://service_2:5001/movies/create/add', filmData=data).text
@@ -57,16 +57,19 @@ def edit(filmID):
     """
     form = MovieForm()
     film = Movies.query.filter_by(id=filmID).first()
+    filmGenre = GenreLink.query.filter_by(movie_id=filmID).all()
+    filmDirector = Directors.query.filter_by(id=film.director).first()
+    filmRating = Ratings.query.filter_by(id=film.rating).first()
     if form.validate_on_submit():
         data = []
         data.append(form.title.data)
         data.append(form.year.data)
         data.append(form.director.data)
-        data.append(form.genre1.data)
-        data.append(form.genre2.data)
-        data.append(form.genre3.data)
-        data.append(form.genre4.data)
-        data.append(form.genre5.data)
+        data.append(form.genre.genre1.data)
+        data.append(form.genre.genre2.data)
+        data.append(form.genre.genre3.data)
+        data.append(form.genre.genre4.data)
+        data.append(form.genre.genre5.data)
         data.append(form.rating.data)
         data.append(form.description.data)
         url = 'http://service_2:5001/movies/edit/<filmID>/update'
@@ -78,12 +81,13 @@ def edit(filmID):
     elif request.method =='GET':
         form.title.data = film.movie_title
         form.year.data = film.year
-        form.director.data = film.director
-        form.genre1.data = film.genre1
-        form.genre2.data = film.genre2
-        form.genre3.data = film.genre3
-        form.genre4.data = film.genre4
-        form.genre5.data = film.genre5
+        form.director.data = fimDirector.director
+        form.genre.genre1.data = filmGenre[0]
+        form.genre.genre2.data = filmGenre[1]
+        form.genre.genre3.data = filmGenre[2]
+        form.genre.genre4.data = filmGenre[3]
+        form.genre.genre5.data = filmGenre[4]
+        form.rating.data = filmRating.rating
         form.description.data = film.description
     return render_template('movie_editing.html', title = 'Movie Editing - Project 2')
 
@@ -107,7 +111,7 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = UserRegisterForm()
-    if form.valid_on_submit():
+    if form.validate_on_submit():
         data = []
         data.append(form.email.data)
         data.append(form.user_name.data)
@@ -158,8 +162,8 @@ def user_delete(uderID):
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    form = LoginForm()
-    if form.valid_on_submit():
+    form = UserLoginForm()
+    if form.validate_on_submit():
         delivery = requests.post('http://service_2:5001/login/user', email=form.email.data, hashed=hash_pw, pin=form.remember.data).text
         next_page = request.args.get('next')
         if next_page:

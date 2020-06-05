@@ -40,7 +40,7 @@ def generate_movie_content(genre):
     ranger = len(filt)
     return filt[randrange(ranger)]
 
-@app.route('movies/create/add/<filmID>', methods=['GET','POST'])
+@app.route('/movies/create/add/<filmID>', methods=['GET','POST'])
 @login_required
 def add_movie_content(title, year, director, rating, description):
     """
@@ -75,7 +75,7 @@ def add_movie_content(title, year, director, rating, description):
     db.session.commit()
     return True
 
-@app.route('movies/edit/<filmID>/update/movie', methods=['GET','POST'])
+@app.route('/movies/edit/<filmID>/update/movie', methods=['GET','POST'])
 @login_required
 def change_movie_content(title, year, director, rating, description):
     """
