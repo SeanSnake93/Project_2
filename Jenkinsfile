@@ -7,11 +7,15 @@ pipeline {
             }
         }
         stage('Run installastions'){
-            sh './script/before_installation.sh'
-            sh './script/installation.sh'
+            steps{
+                sh './script/before_installation.sh'
+                sh './script/installation.sh'
+            ]
         }
         stage('Run Application'){
-            sh 'sudo systemctl restart flask.service'
+            steps{
+                sh 'sudo systemctl restart flask.service'
+            }
         }
     }
 }
