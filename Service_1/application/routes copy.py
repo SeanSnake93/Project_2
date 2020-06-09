@@ -9,63 +9,54 @@ import requests
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', title = 'Movie Database - Project 2')
+    return render_template('home.html', title = 'Movie Cluster')
 
 @app.route('/movies', methods=['GET','POST'])
 def movies():
-    movieData = Movies.query.all()
-    return render_template('movies.html', movies=movieData, title = 'Movie List - Project 2')
+    url = requests.post('http://service_2:5001/diagnose/', tag="movies-table-all-sort").text
+    allMovieData = requests.post(url).text
+    return render_template('movies.html', movies=allMovieData, title = 'Movie Cluster - Library')
 
 @app.route('/movies/randomise', methods=['GET','POST'])
 def generate():
-    generated = requests.get('http://service_2:5001/movies/randomise/generate').text
-    print("Recived movie to display: ", generated)
-    return render_template('movie_gen.html', movie = generated, title = 'Movie Generator - Project 2')
+    url = requests.post('http://service_2:5001/diagnose/' tag="movies-table-random").text
+    url = requests.get(url).text
+    return render_template('movie_gen.html', generated=movie, title = 'Movie Cluster - Generator)
 
 @app.route('/movies/create', methods=['GET','POST'])
 def add():
     form = MovieForm()
     if form.validate_on_submit():
-        data = []
-        data.append(form.title.data)
-        data.append(form.year.data)
-        data.append(form.director.data)
-        data.append(form.genre.genre1.data)
-        data.append(form.genre.genre2.data)
-        data.append(form.genre.genre3.data)
-        data.append(form.genre.genre4.data)
-        data.append(form.genre.genre5.data)
-        data.append(form.rating.data)
-        data.append(form.description.data)
-        delivery = requests.post('http://service_2:5001/movies/create/add', filmData=data).text
-        if delivery == True:
-            return redirect(url_for('movies'))
-        else:
-            return redirect(url_for('movies/create'))
+        url = requests.post('http://service_2:5001/diagnose', tag="movies-table-add").text
+        formData = {'title':str(form.movie_title.data), 'year':str(form.year.data), 'sequal':str(form.sequal.data), 'director':str(form.director.data), 'genre1':str(form.genre1.data), 'genre3':str(form.genre3.data), 'genre4':str(form.genre4.data), 'genre5':str(form.genre5.data), 'rating':str(form.rating.data), 'description':str(form.descriptionyear.data)}
+        packet = requests.post(url, data=formData).json
     return render_template('movie_editing.html', title = 'Movie Creating - Project 2', form=form)
 
 @app.route('/movies/edit/<filmID>', methods=['GET','POST'])
-def edit(filmID):
+def edit(movieID):
     """
     This Page is used to allow a Logged in User, add a Movie to the Tables.
     """
     form = MovieForm()
-    film = Movies.query.filter_by(id=filmID).first()
-    filmGenre = GenreLink.query.filter_by(movie_id=filmID).all()
-    filmDirector = Directors.query.filter_by(id=film.director).first()
+    url = requests.post('http://service_2:5001/diagnose', tag="movies-table-edit").text
+    movieData = requests.post(url).text
+    movie = Movies.query.filter_by(id=movieID).first()
+    genres = []
+    movieGenres = GenreLink.query.filter_by(movie_id=movieID).all()
+    for Genre in movieGenres:
+        if genre not in genres:
+            genres.append(genre)
+    staff = []
+    filmStaff = RecordsLink.query.filter_by(id=film.id).all()
+
+
+
+
+
     filmRating = Ratings.query.filter_by(id=film.rating).first()
     if form.validate_on_submit():
-        data = []
-        data.append(form.title.data)
-        data.append(form.year.data)
-        data.append(form.director.data)
-        data.append(form.genre.genre1.data)
-        data.append(form.genre.genre2.data)
-        data.append(form.genre.genre3.data)
-        data.append(form.genre.genre4.data)
-        data.append(form.genre.genre5.data)
-        data.append(form.rating.data)
-        data.append(form.description.data)
+        url = requests.post('http://service_2:5001/diagnose', tag="movies-table-edit").text
+        formData = {'title':str(form.movie_title.data), 'year':str(form.year.data), 'sequal':str(form.sequal.data), 'director':str(form.director.data), 'genre1':str(form.genre1.data), 'genre3':str(form.genre3.data), 'genre4':str(form.genre4.data), 'genre5':str(form.genre5.data), 'rating':str(form.rating.data), 'description':str(form.descriptionyear.data)}
         url = 'http://service_2:5001/movies/edit/<filmID>/update'
         delivery = requests.post(url, filmData=data).text
         if delivery == True:
@@ -106,27 +97,11 @@ def register():
     form = UserRegisterForm()
     if form.validate_on_submit():
         hash_pw=bcrypt.generate_password_hash(form.password.data)
-        users = {
-            "userdata": [
-                {
-                    "email":form.email.data,
-                    "username":form.user_name.data,
-                    "first":form.first_name.data,
-                    "middle":form.middle_names.data,
-                    "last":form.surname.data,
-                    "sex":form.sex.data,
-                    "age":form.age.data,
-                    "password":hash_pw,
-                    "remember":form.remember.data
-                }
-            ]
-        }
-        response = requests.post('http://service_2:5001/register/user<users>', data=users)
-        #print('Response: ', response)
+        delivery = f.put('http://service_2:5001/register/user', username=form.user_name.data, email=form.email.data, first=form.first_name.data, middle=form.middle_names.data, last=form.surname.data, sex=form.sex.data, age=(str(form.age.data)), hashed=hash_pw, pin=form.remember.data).json
         if form.remember.data == True:
-            return redirect(url_for('register'))
+            return redirect(url_for('home'))
         else:
-            return redirect(url_for('login'))
+            return redirec(url_for('login'))
     return render_template('register.html', title = 'Register Project - 2', form=form)
 
 @app.route('/user/update', methods=['GET','POST'])
@@ -157,9 +132,8 @@ def login():
         return redirect(url_for('home'))
     form = UserLoginForm()
     if form.validate_on_submit():
-        hash_pw = bcrypt.generate_password_hash(form.password.data)
-        delivery = requests.post('http://service_2:5001/login/user', {'email':form.email.data, 'password':hash_pw}, form.remember.data).text
-        print('delivery: ', delivery)
+        hash_pw=bcrypt.generate_password_hash(form.password.data)
+        delivery = requests.post('http://service_2:5001/login/user', email=form.email.data, hashed=hash_pw, pin=form.remember.data).text
         next_page = request.args.get('next')
         if next_page:
             return redirect(next_page)

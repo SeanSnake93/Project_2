@@ -1,3 +1,4 @@
+import requests, json
 from flask import request, redirect
 from application import app, db, bcrypt
 from application.models import Directors, Movies, Genres, GenreLink, Ratings, Users
@@ -26,12 +27,11 @@ def genre_check(submitting):
 
 @app.route('/movies/randomise/generate/random_genre', methods=['GET'])
 def generate_movie_genre():
-    genre = Genre.query.all().genre
-    genre_count = Genres.query.count()
-    return genre[randrange(genre_count)]
+    options = Genres.query.all()
+    print("list of genres: ", options)
+    return options.genre[randrange(len(options))]
 
 @app.route('/movies/create/add/<filmID>', methods=['GET','POST'])
-@login_required
 def add_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
     add = []
     movieData = Movies.query.filter_by(id=filmID).first()
@@ -53,7 +53,6 @@ def add_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
     return True
 
 @app.route('/movies/edit/<filmID>/update/genre', methods=['GET','POST'])
-@login_required
 def change_movie_genre(filmID, genre1, genre2, genre3, genre4, genre5):
     adding = []
     movieData = Movies.query.filter_by(id=filmID).first()

@@ -1,3 +1,4 @@
+import requests, json
 from flask import request, redirect
 from application import app, db, bcrypt
 from application.models import Directors, Movies, Genres, GenreLink, Ratings, Users
@@ -41,7 +42,6 @@ def generate_movie_content(genre):
     return filt[randrange(ranger)]
 
 @app.route('/movies/create/add/<filmID>', methods=['GET','POST'])
-@login_required
 def add_movie_content(title, year, director, rating, description):
     """
     This Page is used to allow a Logged in User, add a Movie to the Tables.
@@ -76,7 +76,6 @@ def add_movie_content(title, year, director, rating, description):
     return True
 
 @app.route('/movies/edit/<filmID>/update/movie', methods=['GET','POST'])
-@login_required
 def change_movie_content(title, year, director, rating, description):
     """
     This Page is used to allow a Logged in User, add a Movie to the Tables.
@@ -111,7 +110,6 @@ def change_movie_content(title, year, director, rating, description):
     return True
 
 @app.route('/movies/remove/<filmID>/movie', methods=['GET','POST'])
-@login_required
 def remove_movie_content(filmID):
     movieData = Movies.query.filter_by(id=filmID).first()
     db.session.delete(movieData)

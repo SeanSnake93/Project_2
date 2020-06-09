@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+  
+{% block body_content %}
+<div>
+    {% for movie in movies %}
+    <div class="movie_List">
+        <h2>{{ movie.movie_title }} <span style="font-size: 16px">({{ movie.year }})</span>  <span style="font-size: 10px;">{{ movie.rating }}</span></br>
+        <span style="font-size: 10px;">{{ movie.GenreForm.genre1 }},{{ movie.GenreForm.genre2 }},{{ movie.GenreForm.genre3 }},{{ movie.GenreForm.genre4 }},{{ movie.GenreForm.genre5 }}</span></p>
+        <span style="font-size: 14px;">{{ movie.director }}</span></h3>
+        <p>{{ movie.description }}</br>
+        <br>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

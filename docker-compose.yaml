@@ -12,7 +12,8 @@ services:
       target: /etc/nginx/nginx.conf
     environment:
     - PROJECT_URI=${PROJECT_URI}
-      MY_SECRET_KEY=${MY_SECRET_KEY}
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
   service_1:
     build: ./Service_1
     ports: 
@@ -20,12 +21,17 @@ services:
       published: 5000
     environment:
     - PROJECT_URI=${PROJECT_URI}
-      MY_SECRET_KEY=${MY_SECRET_KEY}
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
   service_2:
     build: ./Service_2
     ports: 
     - target: 5001
       published: 5001
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
   service_3:
     build: ./Service_3
     ports: 
@@ -33,7 +39,8 @@ services:
       published: 5002
     environment:
     - PROJECT_URI=${PROJECT_URI}
-      MY_SECRET_KEY=${MY_SECRET_KEY}
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
   service_4:
     build: ./Service_4
     ports: 
@@ -41,7 +48,8 @@ services:
       published: 5003
     environment:
     - PROJECT_URI=${PROJECT_URI}
-      MY_SECRET_KEY=${MY_SECRET_KEY}
+    environment:
+    - PROJECT_URI=${PROJECT_URI}
   service_5:
     build: ./Service_5
     ports: 
@@ -49,4 +57,5 @@ services:
       published: 5004
     environment:
     - PROJECT_URI=${PROJECT_URI}
-      MY_SECRET_KEY=${MY_SECRET_KEY}
+    environment:
+    - PROJECT_URI=${PROJECT_URI}

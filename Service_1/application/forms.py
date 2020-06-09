@@ -23,10 +23,8 @@ class GenreForm(Form):
 
 class MovieForm(FlaskForm):
 
-    year = datetime.now().year
-    limit = year + 1
     movie_title = StringField("Title", validators=[DataRequired(), Length(min=1, max=100)])
-    year = IntegerField("Year", CHOICES = [(i) for i in range(1878, limit)], validators=[DataRequired()])
+    year = IntegerField("Year", validators=[DataRequired()])
     genre = FormField(GenreForm)
     director = StringField("Title", validators=[DataRequired(), Length(min=1, max=100)])
     rating = QuerySelectField(query_factory=ratings_options, allow_blank=True, get_lable='rating')
@@ -44,9 +42,9 @@ class UserRegisterForm(FlaskForm):
 
     email = StringField("Email", validators=[DataRequired(), Email()])
     user_name = StringField("User Name", validators=[DataRequired(), Length(min=5, max=50)])
-    first_name = StringField("First Name", validators=[DataRequired(), Length(min=2, max=50)])
-    middle_names = StringField("Middle Name(s)", validators=[Length(min=2, max=50)])
-    surname = StringField("Surname", validators=[DataRequired(), Length(min=2, max=50)])
+    first_name = StringField("First Name", validators=[DataRequired(), Length(min=1, max=50)])
+    middle_names = StringField("Middle Name(s)", validators=[Length(min=1, max=50)])
+    surname = StringField("Surname", validators=[DataRequired(), Length(min=1, max=50)])
     sex = StringField("Sex", validators=[DataRequired(), Length(min=2, max=10)])
     age = IntegerField("Age", validators=[DataRequired()])
     password = StringField("Password", validators=[DataRequired(), Length(min=8, max=50)])
@@ -59,5 +57,5 @@ class UserUpdateForm(FlaskForm):
     first_name = StringField("First Name", validators=[DataRequired(), Length(min=2, max=50)])
     middle_names = StringField("Middle Name(s)", validators=[Length(min=2, max=50)])
     surname = StringField("Surname", validators=[DataRequired(), Length(min=2, max=50)])
-    sex = StringField("Sex", CHOICES=["Prefure not to say", "Male", "Female"], validators=[DataRequired(), Length(min=2, max=10)])
+    sex = StringField("Sex", validators=[DataRequired(), Length(min=2, max=10)])
     submit = SubmitField('Confirm')
