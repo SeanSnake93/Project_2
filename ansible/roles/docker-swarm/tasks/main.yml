@@ -1,0 +1,22 @@
+---
+    - name: 'Check if Swarm Initialization is Required'
+      shell: docker node ls
+      register: status # register will grab the output of the shell command above
+      ignore_errors: true
+      tags: initialising-swarm
+      
+    - name: 'Initializing Docker Swarm'
+      shell: docker swarm init
+      when: status.rc != 0
+      run_once: true
+      tags: initialising-swarm
+   
+    - name: 'Aquiring MANAGER Token'
+      shell: docker swarm join-token --quiet manager
+      register: manager_token
+      tags: initialising-swarm
+   
+    - name: 'Aquiring WORKER Token'
+      shell: docker swarm join-token --quiet worker
+      register: worker_token
+      tags: initialising-swarm

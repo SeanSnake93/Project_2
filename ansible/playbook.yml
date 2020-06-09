@@ -1,5 +1,18 @@
-- hosts: servers
-  become: yes
-  roles:
-    - nginx
+---
+  - name: Install Docker
+    hosts: network
+    become: true
+    roles:
     - docker
+    
+  - name: Initialise Docker Swarm
+    hosts: manager
+    become: true
+    roles:
+    - docker-swarm
+    
+  - name: Add workers to Docker Swarm
+    hosts: stack
+    become: true
+    roles:
+    - docker-swarm-worker

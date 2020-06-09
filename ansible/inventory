@@ -1,3 +1,9 @@
-[servers]
+[network]
 jenkins
+worker1
+
+[manager]
+jenkins
+
+[stack]
 worker1
