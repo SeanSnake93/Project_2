@@ -50,12 +50,12 @@ services:
     - PROJECT_URI=${PROJECT_URI}
     environment:
     - PROJECT_URI=${PROJECT_URI}
-  service_5:
-    build: ./Service_5
-    ports: 
-    - target: 5004
-      published: 5004
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
+#  service_5:
+ #   build: ./Service_5
+  #  ports: 
+   # - target: 5004
+    #  published: 5004
+#    environment:
+ #   - PROJECT_URI=${PROJECT_URI}
+  #  environment:
+   # - PROJECT_URI=${PROJECT_URI}
