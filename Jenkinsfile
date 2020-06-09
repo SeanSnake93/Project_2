@@ -10,7 +10,7 @@ pipeline {
             steps{
                 sh './script/before_installation.sh'
                 sh './script/installation.sh'
-            ]
+            }
         }
         stage('Run Application'){
             steps{
