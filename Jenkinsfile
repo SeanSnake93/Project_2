@@ -1,20 +1,19 @@
-pipeline {
+pipeline{
     agent any
     stages{
-        stage('enable all scripts to be Exicutable'){
+        stage("Make scripts executable"){
             steps{
                 sh 'chmod +x ./script/*'
             }
         }
-        stage('Run installastions'){
+        stage("Source variables"){
             steps{
-                sh './script/before_installation.sh'
-                sh './script/installation.sh'
+                sh './script/source.sh'
             }
         }
-        stage('Run Application'){
+        stage("Deploy Docker Swarm Stack"){
             steps{
-                sh 'sudo systemctl restart flask.service'
+                sh './script/docker.sh'
             }
         }
     }
