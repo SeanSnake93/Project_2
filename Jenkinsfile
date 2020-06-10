@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage("Make scripts executable"){
+        stage("Make allk scripts executable"){
             steps{
                 sh 'chmod +x ./script/*'
             }
@@ -11,7 +11,7 @@ pipeline{
                 sh './script/source.sh'
             }
         }
-        stage("Deploy Docker Swarm Stack"){
+        stage("Deploy Swarm Stack"){
             steps{
                 sh './script/docker.sh'
             }
