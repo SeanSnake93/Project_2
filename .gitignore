@@ -2,10 +2,10 @@
 
 *.pyc
 
+*.env
+
 /project2-venv/
 
 /venv/
 
 /.vscode/
-
-chromedriver
