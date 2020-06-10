@@ -1,11 +1,13 @@
 from flask import Flask, request
+from flask_sqlalchemy import SQLAlchemy
 import requests
-# * are only if i wish to expand
-# from flask_login import LoginManager
+import os
 
 app = Flask(__name__)
 
-# login_manager = LoginManager(app)
-# login_manager.login_view = 'login'
+app.config['SQLALCHEMY_DATABASE_URI'] = str(os.getenv('PROJECT_URI'))
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SECRET_KEY'] = str(os.getenv('MY_SECRET_KEY'))
+db = SQLAlchemy(app)
 
 from application import routes

@@ -1,5 +1,5 @@
 from application import app
-from flask import render_template, request
+from flask import render_template
 from random import randrange
 import requests
 
