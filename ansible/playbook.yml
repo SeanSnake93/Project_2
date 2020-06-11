@@ -1,19 +1,14 @@
 ---
-  - name: Install Docker
-    hosts: network
+  - name: Initialise Manager Node
+    connection: local
     become: true
     roles:
     - docker
-    
-  - name: Initialise Docker Swarm
-    connection: local
-    hosts: manager
-    become: true
-    roles:
     - docker-swarm
     
-  - name: Add workers to Docker Swarm
+  - name: Initialise Worker Stack
     hosts: stack
     become: true
     roles:
+    - docker
     - docker-swarm-worker

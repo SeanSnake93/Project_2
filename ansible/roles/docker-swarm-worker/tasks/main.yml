@@ -1,4 +1,4 @@
 ---
-    - name: 'Add Swarm Worker Token' # this will use the data aquired from the 
+    - name: 'Catching Swarm ~WORKER~ Node' # this will use the data aquired from the 
       shell: "docker swarm join --token {{ hostvars['jenkins']['swarm_token']['stdout'] }} {{ hostvars['jenkins']['ansible_default_ipv4']['address'] }}:2377"
       tags: catch-network
