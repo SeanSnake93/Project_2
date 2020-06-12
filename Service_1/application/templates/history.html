@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+    <h2>Generated History</h2>
+
+    {% for log in history %}
+    <div>
+        <p>Generated movie : <b>{{ log.id }}</b> ~ <b>{{ log.title }}</b> was selected from the <b>{{ log.genre }}</b> genre.</p>
+    </div>
+    {% endfor %}
+
+{% endblock %}

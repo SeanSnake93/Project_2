@@ -1,13 +1,17 @@
-from application import app
+from application import app, db
 from flask import request, Response, jsonify
-from random import randrange
+from application.models import Generated
 import requests
 
 @app.route('/generate', methods=['GET', 'POST'])
 def generate():
-    genre = requests.get("http://service_3:5002/randomgenre").text # Call Service 3 to to return a Genre to filter a Movie form Service 4.
-    print("Service 3 code:", genre) # Print/Display responce code on Terminal.#
-    movie = requests.post("http://service_4:5003/movie", genre).text # With the Genre defined, filter a Movie in Service 4 related to this Genre.
-    # movie = response.json()
-    # add generated list table
-    return Response("We have selected " + movie + " from our " + genre + " Collection.") # The Responce being sent back to be displayed on site.
+    movie = "failed"
+    while movie == "failed":
+        ggenre = requests.get("http://service_3:5002/randomgenre").text # Call Service 3 to to return a Genre to filter a Movie form Service 4.
+        print("Service 3 code:", ggenre) # Print/Display responce code on Terminal.#
+        movie = requests.post("http://service_4:5003/movie", ggenre).text # With the Genre defined, filter a Movie in Service 4 related to this Genre.
+        print("Service 4 code:", movie) # Print/Display responce code on Terminal.#
+    generatedData = Generated(title = movie, genre = ggenre)
+    db.session.add(generatedData)
+    db.session.commit()
+    return Response("We have selected " + movie + " from our " + ggenre + " Collection.") # The Responce being sent back to be displayed on site.

@@ -198,7 +198,7 @@ I can then enter this file by using...
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `cd Project_2/`                                               | :~/Project 2$                                              |
 
-And to confirm it is my new repo, i should have a "read me" file inside my folder.
+And to confirm it is my new repo, I should have a "read me" file inside my folder.
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
@@ -464,66 +464,67 @@ This file is used to contain the port infomation needed in order to be accessed 
 
 ###### Project2/Service_#/application/__init __.py
 
-Inside my __ init__ file I imported some of the flask features, Flask and request. In addition the that the app is to include the Flask name, this will help guide the app file and finaly import the routes file so links and functions are able to perform correctly.
+This file is used to host some of my key vairables on the site. As the data being used is static, I will not be including Table data in this version. Imported features like Flask and request from the flask moduel, this will enale the site to use the app.py file to configure the name for the current visable element. The last import is the routes. This will enabel this file to interact with the routes.py file once the app has been generated.
+
+> Routes must be situated at the base of this file to prevent errors. This is because the app must be built before it can recive any route data.
 
 ###### Project2/Service_#/application/routes.py
 
-Insided my routes file I have imported my app as to enable it to work with my site and some of the flask features, render_template and request, this is so that the site is capable of displaying a page with fields within it holding a value. In adition I have imported randrange from random to provide random selections from a list and requests, this is to enable to ability to request data from a diffrent service.
+This file I have imported my app as to enable its functionality on the site, some features from flask (render_template and request,) are used to display my site and allow data to travel toO and from each indervisual service. 
 
 > **Service_1**
 >> Url extention(s): `:5000/` or `:5000/home`
 >> Available method(s): `GET` only
->> Requests Service_2 to return an answer in a text formate
->> Print the output from Service_2 in the terminal (to help track the data)
->> Return to the user a page with the template called "Project 2 Generator" and variable called movie holding the data retrived from Service 2.
+>> Requests Service 2 to return an answer in a text formate.
+>> Return data to the user on the front end page with a template called "Project 2 Generator" in a variable called movie.
 >
 >> Url extention(s): `:5000/about`
 >> Available method(s): `GET` only
->> Return to the user a page with the template called "About Project 2".
+>> Return to the user a front end page with the template called "About Project 2".
 
 > **Service_2**
 >> Url extention(s): `:5001/generate`
->> Available method(s): `GET` only
->> Requests Service 3 to return an answer in a text formate
->> Print the output from Service_3 in the terminal (to help track the data)
->> Create a URL using the returned string from Service_3
->> Requests Service_4 to return using a filter recived by Service_3 an answer in a text formate
->> Print the output from Service_4 in the terminal (to help track the data)
->> Return a formated sting to Service_1 containing the date recived from Service_3 and Service_4
+>> Available method(s): `GET` and `POST`
+>> Requests Service 3 to return a response in a text formate.
+>> Requests Service 4 to return a response using a filterer provided be Service 3 in a text formate.
+>> Return a sting to Service 1 containing the date formated from responses recived from Service 3 and Service 4.
 
 > **Service_3**
 >> Url extention(s): `:5002/randomgenre`
->> Available method(s): `GET` only
->> Define list holding static data {genre}
->> Count the number of entries contained in the list and save the number in a variable
->> Print the number of entries in the terminal (to help track the data)
->> Return a random value from the genre list using the variable to send back to Service_2
+>> Available method(s): `GET` and `POST`
+>> Defined a list holding static [genre] data.
+>> Aquire a value from the [genre] list using a random select and return it back to Service 2.
 
 > **Service_4**
 >> Url extention(s): `:5003/<genre>`
 >> Available method(s): `GET` and `POST`
->> Define an empty list
->> Define list holding static data {title, genre(s)}
->> From the list take each entry 1 by 1
->> In the entry is the data from Service_3 present (if not skip to next entry)
->> Split the contents up into its attributes {title} and {genre(s)}
->> From its attributes only take the first and add it to empty list
->> count the once empty list and save value in a variable
->> Return a random value from the appended list using the variable to send back to Service_2
+>> Define an empty list to later hold filtered "Options".
+>> Define a list holding static [movie] data.
+>> From the list take each entry and its attributes [title, genre(s)] 1 by 1.
+>> If any of the [movie]'s genre(s) match the value recived from Service 2, add to the "Options" list.
+>> Return back to Service_2 a value from the "Options" list using the random select.
 
 #### Web Page Creation
 
 ###### Project2/Service_1/application/templates/layout.html
 
-In this file I have created the menu header and footer with any imports needed, in the center of the body content I have utilised the Flask `render_template` to created a "block" called `body_content` in order to simplify the other html files. When a page is loaded this file will be called to complete the missing html content.
+This file was created to hold the header and footer menus and any imports required, in the center of the body content I have utilised the capability of Flasks `render_template` to created a "block" area called `body_content` in order to simplify the other html files content. When any other page is requested, this file will also be called to complete the missing content.
+
+| Code Input *- HTML* |
+| :------------------ |
+| `<html>`<br />    `<head>`<br />        `<title>Movie Generator - {{ title }}</title>`<br />    `</head>`<br />    `<body>`<br />        `{% block body_content  %}`<br />        `{% endblock  %}`<br />    `</body>`<br/>`</html>` |
 
 ###### Project2/Service_1/application/templates/home.html
 
-I have declared this page to be an extention of the "layout.html" above by utilising the Flask `render_template`. Using the same brackets made within the layout.html file, all my content has been layed out inside. With a `movie` variable inside I am able to decate its value upon loading and I have created a button that when pressed will reload the current page. 
+Extending from the "layout.html", This block displays the results given by the `movie` filtering function and a button that is used to refresh the page and repeate the function.
+
+| Code Input *- HTML* |
+| :------------------ |
+| `{% extends "layout.html" %}`<br /><br />`{% block body_content %}`<br />    Enter Content<br />`{% endblock %}` |
 
 ###### Project2/Service_1/application/templates/about.html
 
-I again have declared this page to be an extention of the "layout.html" above by utilising the Flask `render_template`. Using the same brackets made within the layout.html file, all my content has been layed out inside. This page is being used to explain the expected outcome of my file to the user.
+All content within this page is used to dispaly the projects functionality. This page is being used to explain the expected outcomes of my applications features and functions.
 
 ### Creating Docker Images
 
@@ -536,6 +537,8 @@ First I Login to my docker account from within the SSh terminal...
 | `docker login`                                                | Username: <br />Password:                                  |
 
 In order to create an Image I will first need to create a Dockerfile holding Instructions as to how I wish to create the file.
+
+###### Project2/Service_#/Dockerfile
 
 Entering the SSH terminal and creating the file using...
 
@@ -616,7 +619,7 @@ With my Containers created, by using the following command I get to see a table 
 
 | Code Input *- Bash*                                      | Output                                                          |
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
-| `docker ps`                                              | {Print out Active Container Table (seen Bellow)}                |
+| `docker ps`                                              | {Print out Active  Container Table (seen Bellow)}                |
 
 > | CONTAINER ID | IMAGE      | COMMAND                | CREATED        | STATUS       | PORTS                  | NAMES     |
 > | :----------- | :--------- | :--------------------- | :------------- | :----------- | :--------------------- | :-------- |
@@ -664,18 +667,41 @@ To download the latrst version use the command bellow...
 `version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')`
 
 | Code Input *- Bash*                                      | Output                                                          |
+| :------------------------------------------------------- | :-------------------------------------------------------------- |
 | `sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose` | {send the file to the bin (so we can call it as a function)} |
 | `sudo chmod +x /usr/local/bin/docker-compose`            | {Make the file moved into the bin a executable file}            |
 
 #### Creating a .yaml file
 
+This file is created so that my applications may then run the build process of each image located in each service.
+
 ###### Project2/docker-compose.yaml
+
+This file when started will construn the images located online(, dowloading them if not local) to the spesifications detailed. Using the port numbers consistant with the port provided in the app.py files. Declaring the version of python and using Nginx as a port forwarding service to host my site. this is done with the help of a "nginx.cong" file.
+
+###### Project2/nginx/nginx.conf
+
+This file is used to ensure that the application then asked to run from the standard port `80` it directs the user to the the port `5000` location instead.
 
 #### Running Docker Compose
 
+| Code Input *- Bash*                                    | Output                                                             |
+| :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `docker-compose up`                                    | {lauch current or build no existing images with terminal debug}    |
+| `docker-compose up -d`                                 | {lauch current or build images detached from terminal debug}       |
+| `docker-compose up -d --build`                         | {Build and replace any changes to images detached from terminal debug} |
+
 #### Dropping Docker Compose
 
+| Code Input *- Bash*                                    | Output                                                             |
+| :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `docker-compose down`                                    | {lauch current or build no existing images with terminal debug}    |
+| `docker-compose down --rmi local`                                 | {lauch current or build images detached from terminal debug}       |
+| `docker-compose down --rmi local`                         | {Build and replace any changes to images detached from terminal debug} |
+
 ## Test Coverage
+
+cov
 
 ## Index
 

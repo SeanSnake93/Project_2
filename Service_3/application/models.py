@@ -16,11 +16,12 @@ class Movies(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     movie_title = db.Column(db.String(100), nullable=False)
     year = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.String(5), nullable=False)
     genre1 = db.Column(db.String(20), nullable=False)
-    genre2 = db.Column(db.String(20), nullable=False)
-    genre3 = db.Column(db.String(20), nullable=False)
-    genre4 = db.Column(db.String(20), nullable=False)
-    genre5 = db.Column(db.String(20), nullable=False)
+    genre2 = db.Column(db.String(20), nullable=True)
+    genre3 = db.Column(db.String(20), nullable=True)
+    genre4 = db.Column(db.String(20), nullable=True)
+    genre5 = db.Column(db.String(20), nullable=True)
 
     def __rept__(self):
         return ''.join([
@@ -32,4 +33,18 @@ class Movies(db.Model):
             'genre3: ', str(self.genre3), '\r\n',
             'genre4: ', str(self.genre4), '\r\n',
             'genre5: ', str(self.genre5)
+        ])
+
+
+class Generated(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    genre = db.Column(db.String(20), nullable=False)
+
+    def __rept__(self):
+        return ''.join([
+            'ID: ', str(self.id), '\r\n',
+            'Title: ', str(self.movie_title), '\r\n',
+            'genre: ', str(self.genre)
         ])
