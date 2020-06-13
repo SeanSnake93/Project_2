@@ -8,6 +8,11 @@
 [git]: www.github.com
 [git-bash]: https://git-scm.com/downloads
 [git-project]: www.github.com/SeanSnake93/Project_2
+
+[screenshot1]: url_link_here
+[screenshot2]: url_link_here
+[screenshot3]: url_link_here
+
 [site]: 35.246.12.58:5000
 [trello]: https://trello.com/b/d1QbbJeG
 
@@ -84,6 +89,8 @@ In this Project uploaded to Git I have used Python, Flask and Docker techniques 
 
 Link to visit my [Project_2 Trello Board][trello].
 
+![ScreenShot][ScreenShot1]
+
 Using **MoSCoW** to break up the elements of the site into tasks that I...
 
 - Must Have (`100`-`199`)
@@ -114,37 +121,37 @@ The total number of Lists created is "2", They are as follows...
 
 My risk Assesment will be taking into consideration any possibly damaging risks that could happen to my project.<br />
 Looking at the indervisual step needed and the areas that they could go wrong in each.<br />
-Using the Liklyhood and Impact of each risk to messure each risk, providing a Risk Level to each ranging from 1 to 10.<br />
+Using the likelihood and Impact of each risk to messure each risk, providing a Risk Level to each ranging from 1 to 10.<br />
 
-Liklyhood = Imposible (1), Unlikly (2), Likly (3), Significant (4), Imminent (5)
+likelihood = Imposible (1), Unlikely (2), likely (3), Significant (4), Imminent (5)
 
-Impact = Minimal (1), Low (2), Medium (3), High (4), Extreem (5)
+Impact = Minimal (1), Low (2), Medium (3), High (4), Extreme (5)
 
 
-| Risk              | Risk Statment | Response Stratogy                                                                   | Objectives                                        | Liklyhood   | Impact      | Risk Level |
+| Risk              | Risk Statment | Response Stratogy                                                                   | Objectives                                        | likelihood   | Impact      | Risk Level |
 | :---------------- | :------------ | :---------------------------------------------------------------------------------- | :------------------------------------------------ | :---------: | :---------: | :--------: |
 | Risk 1            | Accepting     | How should I tackle it?                                                             | What I expect to happen?                          | Imminent    | Extreme     | 10         |
-| Launch failure    | Reducing      | Monitor the changes made in trello regarding hosting.                               | The *site* should be accessable.                  | Likly       | High        | 7          |
-| Service Failure   | Reducing      | Have key variables print their content to track it's progress.                      | Services delivers content as expected.            | Likly       | High        | 7          |
+| Launch failure    | Reducing      | Monitor the changes made in trello regarding hosting.                               | The *site* should be accessable.                  | likely       | High        | 7          |
+| Service Failure   | Reducing      | Have key variables print their content to track it's progress.                      | Services delivers content as expected.            | likely       | High        | 7          |
 | Brake Service     | Reducing      | Use a Development Branch and only upload to master when the version is working.     | Always have a master version that is working.     | Significant | High        | 8          |
-| Santex Error      | Undefined     | Keep the code simple and use good practice during development.                      | Project should run as expected.                   | Likly       | Medium      | 6          |
-| Data Failure      | Undefined     | All data should match witn no typos, i.e name == name.                              | Services delivers content as expected.            | Unlikly     | Medium      | 5          |
-| Link Failure      | Reducing      | Use the terminla to monitor Service responce.                                       | All links on the site deliver expected outcome.   | Unlikly     | Medium      | 5          |
-| Retunrning Empty  | Reducing      | Using terminal prints and static data to fix outcome.                               | Pre-defined data to be visible on site.           | Likly       | Low         | 5          |
-| Limited Lists     | Undefined     | Values used to randomise content in the list are not limited to its current length. | Intervention not needed when adding new content.  | Unlikly     | Extreme     | 7          |
-| File Corruption   | Reducing      | Store backups of the project in a Docker Verson Controle system.                    | Version Controle each working maser upload.       | Unlikly     | High        | 6          |
-| Testing failure   | Reducing      | Define tests before system development.                                             | Tests I define are to pass upon project creation. | Likly       | Medium      | 6          |
-| Testing Coverage  | Reducing      | Tests should cover 80+% of the site or higher.                                      | All Tests should be a success.                    | Likly       | High        | 7          |
-| User Error        | Reducing      | Have key variables print their content to track it's progress.                      | Services delivers content as expected.            | Likly       | Low         | 4          |
-| GCP Cost          | Reducing      | Turn off Virtual Machine when not in use.                                           | Credit to be saved and longate the use of my GCP. | Unlikly     | High        | 6          |
-| Underachive       | Reducing      | Use the metrics provided to assure the minimal marks have been aquired.             | Minimal project specification to be achived.      | Unlikly     | Extreme     | 7          |
-| Overeaching       | Reducing      | Scale the project to meet to the brief first.                                       | A version of the minimal spec is archived.        | Likly       | Medium      | 6          |
-| Health and Safety | Reducing      | Take breaks from the screen every couple of hours.                                  | Minimise the chance of headaches as fatigue.      | Likly       | High        | 7          |
-| Stranded Data     | Reducing      | Data has no use within the project, only adding to its footprint size.              | Minimise the length of data and use of variables. | Unlikly     | Medium      | 5          |
-| Project Theft     | Undefined     | All, if any sensative data are to be encripted and Virtual Machine is secure.       | The Project is secure.                            | Unlikly     | Extreme     | 7          |
-| Knowlege          | Reducing      | Build the areas i know and reaserch areas I don't, ask questions about the project. | Have a clear understanding of thechnologies used. | Likly       | High        | 7          |
-| Site Runs Slow    | Accepting     | Try to keep code efficent and consise in each Services.                             | For my project to load in a reasonable time.      | Likly       | Low         | 5          |
-| Unfinished Document | Reducing    | Provide extensive documentation on the development of my project.                   | Documentation is clear and is followed easily.    | Unlikly     | High        | 6          |
+| Santex Error      | Undefined     | Keep the code simple and use good practice during development.                      | Project should run as expected.                   | likely       | Medium      | 6          |
+| Data Failure      | Undefined     | All data should match witn no typos, i.e name == name.                              | Services delivers content as expected.            | Unlikely     | Medium      | 5          |
+| Link Failure      | Reducing      | Use the terminla to monitor Service responce.                                       | All links on the site deliver expected outcome.   | Unlikely     | Medium      | 5          |
+| Retunrning Empty  | Reducing      | Using terminal prints and static data to fix outcome.                               | Pre-defined data to be visible on site.           | likely       | Low         | 5          |
+| Limited Lists     | Undefined     | Values used to randomise content in the list are not limited to its current length. | Intervention not needed when adding new content.  | Unlikely     | Extreme     | 7          |
+| File Corruption   | Reducing      | Store backups of the project in a Docker Verson Controle system.                    | Version Controle each working maser upload.       | Unlikely     | High        | 6          |
+| Testing failure   | Reducing      | Define tests before system development.                                             | Tests I define are to pass upon project creation. | likely       | Medium      | 6          |
+| Testing Coverage  | Reducing      | Tests should cover 80+% of the site or higher.                                      | All Tests should be a success.                    | likely       | High        | 7          |
+| User Error        | Reducing      | Have key variables print their content to track it's progress.                      | Services delivers content as expected.            | likely       | Low         | 4          |
+| GCP Cost          | Reducing      | Turn off Virtual Machine when not in use.                                           | Credit to be saved and longate the use of my GCP. | Unlikely     | High        | 6          |
+| Underachive       | Reducing      | Use the metrics provided to assure the minimal marks have been aquired.             | Minimal project specification to be achived.      | Unlikely     | Extreme     | 7          |
+| Overeaching       | Reducing      | Scale the project to meet to the brief first.                                       | A version of the minimal spec is archived.        | likely       | Medium      | 6          |
+| Health and Safety | Reducing      | Take breaks from the screen every couple of hours.                                  | Minimise the chance of headaches as fatigue.      | likely       | High        | 7          |
+| Stranded Data     | Reducing      | Data has no use within the project, only adding to its footprint size.              | Minimise the length of data and use of variables. | Unlikely     | Medium      | 5          |
+| Project Theft     | Undefined     | All, if any sensative data are to be encripted and Virtual Machine is secure.       | The Project is secure.                            | Unlikely     | Extreme     | 7          |
+| Knowlege          | Reducing      | Build the areas i know and reaserch areas I don't, ask questions about the project. | Have a clear understanding of thechnologies used. | likely       | High        | 7          |
+| Site Runs Slow    | Accepting     | Try to keep code efficent and consise in each Services.                             | For my project to load in a reasonable time.      | likely       | Low         | 5          |
+| Unfinished Document | Reducing    | Provide extensive documentation on the development of my project.                   | Documentation is clear and is followed easily.    | Unlikely     | High        | 6          |
 
 ## Set-Up Process
 ### Creating Virtual Machine
@@ -342,6 +349,8 @@ Now that the file has been moved into `/bin` I am able to run a simple command a
 | `gitpush`                                                     | {All files pushed to git with "Shebang Commit" as comment} |
 
 > *This file has since been modified to ask for custom comments for commit's to git with yes/no prompts before* `git commit -m` *and* `git push`*.* 
+
+![ScreenShot2][ScreenShot2]
 
 ### Set Up Docker
 

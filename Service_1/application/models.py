@@ -28,6 +28,7 @@ class Movies(db.Model):
             'Movie ID: ', str(self.id), '\r\n',
             'Title: ', str(self.movie_title), '\r\n',
             'Year: ', str(self.year), '\r\n',
+            'rating: ', str(self.rating), '\r\n',
             'genre1: ', str(self.genre1), '\r\n',
             'genre2: ', str(self.genre2), '\r\n',
             'genre3: ', str(self.genre3), '\r\n',
