@@ -9,9 +9,23 @@
 [git-bash]: https://git-scm.com/downloads
 [git-project]: www.github.com/SeanSnake93/Project_2
 
-[screenshot1]: url_link_here
-[screenshot2]: url_link_here
-[screenshot3]: url_link_here
+[screenshot1]: url_link_here <!-- This image is to show my trello -->
+[screenshot2]: url_link_here <!-- This image is to show GCP part 1 -->
+[screenshot3]: url_link_here <!-- This image is to show GCP part 2 -->
+[screenshot4]: url_link_here <!-- This image is to show how to create a Firewall -->
+[screenshot5]: url_link_here <!-- This image is to show how to add a Firewall -->
+[screenshot6]: url_link_here <!-- This image is to show Visual Studio Code Logo-->
+[screenshot7]: url_link_here <!-- This image is to show Visual Studio code connected-->
+[screenshot8]: url_link_here <!-- This image is to show shebang part 1-->
+[screenshot9]: url_link_here <!-- This image is to show shebang part 2 -->
+[screenshot10]: url_link_here <!-- This image is to show Docker Logo-->
+[screenshot11]: url_link_here <!-- This image is to show Service 1 Routes -->
+[screenshot12]: url_link_here <!-- This image is to show Service 2 Routes -->
+[screenshot13]: url_link_here <!-- This image is to show Service 3 Routes -->
+[screenshot14]: url_link_here <!-- This image is to show Service 4 Routes -->
+[screenshot15]: url_link_here <!-- This image is to show Home html -->
+[screenshot16]: url_link_here <!-- This image is to show About html-->
+
 
 [site]: 35.246.12.58:5000
 [trello]: https://trello.com/b/d1QbbJeG
@@ -89,7 +103,7 @@ In this Project uploaded to Git I have used Python, Flask and Docker techniques 
 
 Link to visit my [Project_2 Trello Board][trello].
 
-![ScreenShot][ScreenShot1]
+![trello-screenshot][ScreenShot1]
 
 Using **MoSCoW** to break up the elements of the site into tasks that I...
 
@@ -159,11 +173,18 @@ Impact = Minimal (1), Low (2), Medium (3), High (4), Extreme (5)
 To create my Virtual Machine I used the [Google Cloud Platform][gcp-vm] and created an instance. <br />
 The settings changed from the default where the Region (`eroupe-west2`) and Boot disk (`Ubuntu`, `Ubuntu 18.04 LTS`).
 
+![Create GCP VM - 1][screenshot2]
+![Create GCP VM - 2][screenshot3]
+
 Once done I clicked `Create` to build my instance.
 
 #### Opening ports
 
+![Create Firewall Rule][screenshot4]
+
 To enable ports on my VM I needed to edit the ports my machine has access to. This is done by using GCP's [Firewall Rules][gcp-firewall-rules] found in the `VCP Network` tab. In here I created Ports with the following settings.
+
+![Open Firewall Rule][screenshot5]
 
 | open-flask                                                     |
 | :------------------------------------------------------------- |
@@ -213,6 +234,8 @@ And to confirm it is my new repo, I should have a "read me" file inside my folde
 
 #### Remote Access
 
+![Visual Studio Code][screenshot6]
+
 In order to use my SSH remotly on **Visual Studio** I need to create a keygen. This can be created on the SSH terminal or by using [**Git Bash**][git-bash] on your local machine. By using the Git Bash terminal, the file will land directly on your system in the directory location Git Bash was launched.
 
 Heading (on Windowns) to the `C:/Users/*LocalName*/.ssh` or `~/.ssh` directory and right clicking inside and selecting the option to `Git Bash Here`. Within the terminal **I uses**/use the following commands...
@@ -257,6 +280,8 @@ With this file created I can now head to Visual Studio, (if `known_hosts` exists
 As I have called my Host `Project2` I should see this name in my list and by clicking on it ill be asked what language to use, in this case `Linux`.
 
 Now with a new window open, in the green box located in th ebottom left should say `SSH: Project2`. By clicking the Exploror tab and selecting `Open Drectory` I can have Visual Studio only show files within my project by clicking my project directory in the drop down path list and accepting.
+
+![Connected Visual Code][screenshot7]
 
 #### Create .gitignore
 
@@ -350,9 +375,12 @@ Now that the file has been moved into `/bin` I am able to run a simple command a
 
 > *This file has since been modified to ask for custom comments for commit's to git with yes/no prompts before* `git commit -m` *and* `git push`*.* 
 
-![ScreenShot2][ScreenShot2]
+![gitpush - 1][ScreenShot8]
+![gitpush - 2][screenshot9]
 
 ### Set Up Docker
+
+![Docker][screenshot10]
 
 I have chose to use [Docker][docker] to enable me to create images, store within containers to then be held within a volume. 
 
@@ -481,6 +509,8 @@ This file is used to host some of my key vairables on the site. As the data bein
 
 This file I have imported my app as to enable its functionality on the site, some features from flask (render_template and request,) are used to display my site and allow data to travel toO and from each indervisual service. 
 
+![Service1 routes][screenshot11]
+
 > **Service_1**
 >> Url extention(s): `:5000/` or `:5000/home`
 >> Available method(s): `GET` only
@@ -491,6 +521,8 @@ This file I have imported my app as to enable its functionality on the site, som
 >> Available method(s): `GET` only
 >> Return to the user a front end page with the template called "About Project 2".
 
+![Service2 routes][screenshot12]
+
 > **Service_2**
 >> Url extention(s): `:5001/generate`
 >> Available method(s): `GET` and `POST`
@@ -498,11 +530,15 @@ This file I have imported my app as to enable its functionality on the site, som
 >> Requests Service 4 to return a response using a filterer provided be Service 3 in a text formate.
 >> Return a sting to Service 1 containing the date formated from responses recived from Service 3 and Service 4.
 
+![Service3 routes][screenshot13]
+
 > **Service_3**
 >> Url extention(s): `:5002/randomgenre`
 >> Available method(s): `GET` and `POST`
 >> Defined a list holding static [genre] data.
 >> Aquire a value from the [genre] list using a random select and return it back to Service 2.
+
+![Servvice4 routes][screenshot14]
 
 > **Service_4**
 >> Url extention(s): `:5003/<genre>`
@@ -527,11 +563,15 @@ This file was created to hold the header and footer menus and any imports requir
 
 Extending from the "layout.html", This block displays the results given by the `movie` filtering function and a button that is used to refresh the page and repeate the function.
 
+![homepage html][screenshot15]
+
 | Code Input *- HTML* |
 | :------------------ |
 | `{% extends "layout.html" %}`<br /><br />`{% block body_content %}`<br />    Enter Content<br />`{% endblock %}` |
 
 ###### Project2/Service_1/application/templates/about.html
+
+![aboutpage html][screenshot16]
 
 All content within this page is used to dispaly the projects functionality. This page is being used to explain the expected outcomes of my applications features and functions.
 
@@ -692,6 +732,8 @@ This file when started will construn the images located online(, dowloading them
 
 This file is used to ensure that the application then asked to run from the standard port `80` it directs the user to the the port `5000` location instead.
 
+![homepage on port 80][screenshot16]
+
 #### Running Docker Compose
 
 | Code Input *- Bash*                                    | Output                                                             |
@@ -707,10 +749,6 @@ This file is used to ensure that the application then asked to run from the stan
 | `docker-compose down`                                    | {lauch current or build no existing images with terminal debug}    |
 | `docker-compose down --rmi local`                                 | {lauch current or build images detached from terminal debug}       |
 | `docker-compose down --rmi local`                         | {Build and replace any changes to images detached from terminal debug} |
-
-## Test Coverage
-
-cov
 
 ## Index
 
