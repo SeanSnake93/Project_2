@@ -1,6 +1,5 @@
 from application import app # Import the app into routes
-import requests # enables the site to ask external locations for data
-
+import requests # Enables the site to ask external locations for data
 
 @app.route('/generate', methods=['GET'])
 def generate():

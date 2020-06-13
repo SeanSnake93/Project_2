@@ -10,47 +10,27 @@ services:
     - type: bind
       source: ./nginx/nginx.conf
       target: /etc/nginx/nginx.conf
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
   service_1:
-    image: seansnake93/service-1:1.02
+    #image: seansnake93/service-1:1.02
     build: ./Service_1
     ports: 
     - target: 5000
       published: 5000
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
   service_2:
-    image: seansnake93/service-2:1.02
+    #image: seansnake93/service-2:1.02
     build: ./Service_2
     ports: 
     - target: 5001
       published: 5001
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
   service_3:
-    image: seansnake93/service-3:1.02
+    #image: seansnake93/service-3:1.02
     build: ./Service_3
     ports: 
     - target: 5002
       published: 5002
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
   service_4:
-    image: seansnake93/service-4:1.02
+    #image: seansnake93/service-4:1.02
     build: ./Service_4
     ports: 
     - target: 5003
       published: 5003
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
-    environment:
-    - PROJECT_URI=${PROJECT_URI}
