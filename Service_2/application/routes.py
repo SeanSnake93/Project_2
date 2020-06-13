@@ -1,13 +1,10 @@
-from application import app
-from random import randrange
-import requests
+from application import app # Import the app into routes
+import requests # enables the site to ask external locations for data
 
 
 @app.route('/generate', methods=['GET'])
 def generate():
-    genre = requests.get('http://service_3:5002/randomgenre').text # Call Service 3 to to return a Genre to filter a Movie form Service 4.
-    print("Service 3 Output:", genre) # Print/Display selection on Terminal.
-    url = 'http://service_4:5003/' + genre # Create a variable to hold the new URL to be requested against.
-    movie = requests.get(url).text # With the Genre defined, filter a Movie in Service 4 related to this Genre.
-    print("Service 4 Output:", movie) # Print the Movie found in Service 4.
-    return "We have selected " + movie + " from our " + genre + " Collection." # The Responce being sent back to be displayed on site.
+    genre = requests.get('http://service_3:5002/randomgenre').text # Request Servive 3 to produce a random Genre.
+    url = 'http://service_4:5003/' + genre # With the responce from Service 3 creat an API to request data from Service 4.
+    movie = requests.get(url).text # With the API created, filter a Movie from Service 4 that matches the Genre recived. It is a GET request as data is sent through the API.
+    return "We have selected " + movie + " from our " + genre + " Collection." # The Responce collected form Service 3 and 4 are sent back within the context of this sentence.
