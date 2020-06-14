@@ -4,7 +4,7 @@ from flask import render_template
 import requests
 
 @app.route('/', methods=['GET'])
-@app.route('/home', methods=['GET'])
+@app.route('/home', methods=['GET']) # Nothing is being sent, only recived so this is not a POST
 def home():
     generated = requests.get('http://service_2:5001/generate').text # Requesting service 2 to Generate a responce from Services 3 and 4.
     return render_template('home.html', movie = generated, title = 'Generator')
