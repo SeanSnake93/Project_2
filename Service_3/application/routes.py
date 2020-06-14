@@ -1,11 +1,11 @@
-from application import app # Import the app into routes
-from random import randrange # Enable me to recive a random option within a list
+from application import app, db
+from application.models import Genres
+from flask import request, Response
+from random import randint
 
-@app.route('/randomgenre', methods=['GET'])
+@app.route('/randomgenre', methods=['GET', 'POST'])
 def randomgenre():
-    genre = ['Action', 'Adventure', 'Animated',
-        'Childrens', 'Comedy', 'Documentary',
-        'Drama', 'Fantasy', 'Horror', 'Musical',
-        'Romance', 'Science Fiction', 'War', 'Western'
-    ] # Define a static list for my project to run on.
-    return genre[randrange(len(genre))] # Return a random value from the list above.
+    length = Genres.query.count() #Count number of records in genre
+    ran = randint(1, length) # Generate random num between 1 and length
+    genreRow = Genres.query.filter_by(id = ran).first() # Find genreID and genre where genre ID = random number
+    return genreRow.genre # Return random genre
