@@ -8,26 +8,32 @@
 [git]: www.github.com
 [git-bash]: https://git-scm.com/downloads
 [git-project]: www.github.com/SeanSnake93/Project_2
-
-[screenshot1]: url_link_here <!-- This image is to show my trello -->
-[screenshot2]: url_link_here <!-- This image is to show GCP part 1 -->
-[screenshot3]: url_link_here <!-- This image is to show GCP part 2 -->
-[screenshot4]: url_link_here <!-- This image is to show how to create a Firewall -->
-[screenshot5]: url_link_here <!-- This image is to show how to add a Firewall -->
-[screenshot6]: url_link_here <!-- This image is to show Visual Studio Code Logo-->
-[screenshot7]: url_link_here <!-- This image is to show Visual Studio code connected-->
-[screenshot8]: url_link_here <!-- This image is to show shebang part 1-->
-[screenshot9]: url_link_here <!-- This image is to show shebang part 2 -->
-[screenshot10]: url_link_here <!-- This image is to show Docker Logo-->
-[screenshot11]: url_link_here <!-- This image is to show Service 1 Routes -->
-[screenshot12]: url_link_here <!-- This image is to show Service 2 Routes -->
-[screenshot13]: url_link_here <!-- This image is to show Service 3 Routes -->
-[screenshot14]: url_link_here <!-- This image is to show Service 4 Routes -->
-[screenshot15]: url_link_here <!-- This image is to show Home html -->
-[screenshot16]: url_link_here <!-- This image is to show About html-->
-
-
-[site]: 35.246.12.58:5000
+[git-webhook]: https://github.com/SeanSnake93/Project_2/settings/hooks
+[screenshot1]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/trello-screenshot.png
+[screenshot2]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/creategcp-screenshot1.png
+[screenshot3]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/creategcp-screenshot2.png
+[screenshot4]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/CreateRule-screenshot2.png
+[screenshot5]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/openports-screenshot.png
+[screenshot6]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/vasialsudiologo.png
+[screenshot7]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/visualstudio-remote.png
+[screenshot8]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/shebang-screenshot1.png
+[screenshot9]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/shebang-screenshot2.png
+[screenshot10]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/Dockerlogo.png
+[screenshot11]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/routes-screenshot1.png
+[screenshot12]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/routes-screenshot2.png
+[screenshot13]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/routes-screenshot3.png
+[screenshot14]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/routes-screenshot4.png
+[screenshot15]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/homepage-screenshot.png
+[screenshot16]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/aboutpage-screenshot.png
+[screenshot17]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/homepage5000-screenshot.png
+[screenshot18]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/jenkins-logo.png
+[screenshot19]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/initialjenkinsPassword-screenshot.png
+[screenshot20]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/jenkinsSetUp-screenshot.png
+[screenshot21]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/pipeline-screenshot.png
+[screenshot22]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/pipelineSettings-screenshot.png
+[screenshot23]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/webhook-screenshot.png
+[screenshot24]: https://github.com/SeanSnake93/Project_2/blob/master/Documentation/images/jenkins-build.png
+[site]: 35.246.12.58
 [trello]: https://trello.com/b/d1QbbJeG
 
 <!-- END --- links -->
@@ -78,11 +84,23 @@ Submit by Date: 15th june
         * [Creating a .yaml file](#creating-a-yaml-file)
             * [docker-compose.yaml](#project2/docker-compose.yaml)
         * [Running Docker Compose](#running-docker-compose)
+            * [Testing Docker Compose Containers](#testing-docker-compose-containers)
         * [Dropping Docker Compose](#dropping-docker-compose)
-* [Test Coverage](#test-coverage)
+    * [Jenkins](#jenkins)
+        * [Set Up Jenkins](#set-up-jenkins)
+        * [Systemctl Jenkins](#systemctl-jenkins)
+        * [Jenkinsfile](#jenkinsfile)
+    * [Ansible](#ansible)
+        * [Install Ansible](#install-ansible)
+        * [Playbook](#playbook)
+        * [Roles](#roles)
+    * [Docker-Swarm](#docker-swarm)
+        * [Install Docker-Swarm](#install-docker-swarm)
+        * [Assigning Nodes](#assigning-nodes)
 * [Index](#index)
     * [File Index](#file-index-(dev-level-1))
     * [Installations](#installations)
+    * [Merge](#merge)
 
 
 ## Introduction
@@ -212,7 +230,7 @@ Returning to the SSH terminal on my [Vitrual Machine][gcp-vm] I wish to copy my 
 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
-| `git clone https://github.com/SeanSnake93/Project_2.git`      | {uploaded}                                                 |
+| `git clone https://github.com/SeanSnake93/Project_2.git`      | {Uploaded}                                                 |
 
 I am able to clone/copy my git repo over to the VM, as can be seen by using...
 
@@ -264,7 +282,7 @@ Now to allow my Local System access to find my VM I need to create a `config` fi
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `touch config`                                                | {Create file "config"}                                     |
-| `vim config`                                                  | {vim/enter file "config"}                                  |
+| `vim config`                                                  | {Vim/enter file "config"}                                  |
 
 Inside this file I will need to define the Host, HostName, User, IdentityFile and declare what format. inside this file enter the following...
 
@@ -305,8 +323,8 @@ Now I have access via my external SSH on Visual Studio, I configured my git hib 
 | Code Input *- Bash*                                           | Output                                                     |
 | :------------------------------------------------------------ | :--------------------------------------------------------- |
 | `git config --global credential.helper cache`                 | {Cache my credentials ~ removes the need of a password}    |
-| `git config --global user.email "my@gitemail.com"`            | {configured Email}                                         |
-| `git config --global user.name "SeanSnake93"`                 | {configured User}                                          |
+| `git config --global user.email "my@gitemail.com"`            | {Configured Email}                                         |
+| `git config --global user.name "SeanSnake93"`                 | {Configured User}                                          |
 
 #### Creating a *Shebang* git push
 
@@ -697,8 +715,8 @@ When happy with my containers, I removed them to begin setting up "Docker Compos
 
 | Code Input *- Bash*                                      | Output                                                                     |
 | :------------------------------------------------------- | :------------------------------------------------------------------------- |
-| `docker stop service_1`                                  | {stop container called service_1}                                          |
-| `docker stop service_2 service_3 service_4`              | {stop container(s) called service_2 + service_3 + service_4}               |
+| `docker stop service_1`                                  | {Stop container called service_1}                                          |
+| `docker stop service_2 service_3 service_4`              | {Stop container(s) called service_2 + service_3 + service_4}               |
 | `docker rm service_1`                                    | {Remove container called service_1}                                        |
 | `docker rm service_2 service_3 service_4`                | {Remove container(s) called service_2 + service_3 + service_4}             |
 
@@ -709,7 +727,7 @@ Install commands
 | Code Input *- Bash*                                      | Output                                                          |
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
 | `sudo apt update`                                        | {This will make sure jq and curl are available to installed}    |
-| `sudo apt install -y curl jq`                            | {install curl and jq}                                           |
+| `sudo apt install -y curl jq`                            | {Install curl and jq}                                           |
 
 To download the latrst version use the command bellow...
 
@@ -717,8 +735,9 @@ To download the latrst version use the command bellow...
 
 | Code Input *- Bash*                                      | Output                                                          |
 | :------------------------------------------------------- | :-------------------------------------------------------------- |
-| `sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose` | {send the file to the bin (so we can call it as a function)} |
+| `sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose` | {Send the file to the bin (so we can call it as a function)} |
 | `sudo chmod +x /usr/local/bin/docker-compose`            | {Make the file moved into the bin a executable file}            |
+| `docker-compose --version`                               | {Confirm installation be seeing the version installed}          |
 
 #### Creating a .yaml file
 
@@ -732,23 +751,217 @@ This file when started will construn the images located online(, dowloading them
 
 This file is used to ensure that the application then asked to run from the standard port `80` it directs the user to the the port `5000` location instead.
 
-![homepage on port 80][screenshot16]
+![homepage on port 80][screenshot17]
 
 #### Running Docker Compose
 
+With the pages created, in order to allow the services to work together I need to run them in a group of containers. With the creation of my "docker-compose.yaml" I'll be able to do this. By using the command bellow I can have the system create and run my image containers to test the sites functionality.
+
 | Code Input *- Bash*                                    | Output                                                             |
 | :----------------------------------------------------- | :----------------------------------------------------------------- |
-| `docker-compose up`                                    | {lauch current or build no existing images with terminal debug}    |
-| `docker-compose up -d`                                 | {lauch current or build images detached from terminal debug}       |
+| `docker-compose up`                                    | {Lauch current or build no existing images with terminal debug}    |
+| `docker-compose up -d`                                 | {Lauch current or build images detached from terminal debug}       |
 | `docker-compose up -d --build`                         | {Build and replace any changes to images detached from terminal debug} |
+
+> When using the `--build` extention creates new images, overwiting the name of the old image. This means that the old image will become a void image called `<none>`.
+> To remove all of these images created you can use the following command:
+>> `docker images --no-trunc | grep '<none>' | awk '{ print $3 }' | xargs -r docker rmi` Remove all `<none>` images (some may require force `-f` extention).
+
+##### Testing Docker Compose Containers
+
+If for any reason i have an error in my code. the container may not be set as an active container (has no active port). To see what container may be the issue you can use this to...
+
+| Code Input *- Bash*                                    | Output                                                             |
+| :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `docker ps`                                            | {List all active containers}                                       |
+
+If all are running, the functions intergrated may still have output issues and they can be seen using `logs`. This can only be seen when attached to the build terminal however, if the detach `-d` function is used when starting the build you can print them out using the following command...
+
+| Code Input *- Bash*                                    | Output                                                             |
+| :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `docker-compose logs`                                  | {Produce a readout of the status in all services}                  |
+
+This is ok but, some outputs can be so long that your unable to review the full report presented. To focus on a single service you can do a couple of things. You can return to the [Firwall Rules][gcp-firewall-rules] on GCP and allow the port to your service, this will enable you to open the page and activly see its output. This can prove the output is what is expected, just not being recived correctly. Another option is to use `docker ps` and with the "CONTAINER ID" (abcd1234) use the following...
+
+| Code Input *- Bash*                                    | Output                                                             |
+| :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `docker logs abcd1234`                                 | {Provide the logs towards a single service.}                       |
+
+> When using the detached `-d` function and testing logs. Actions must be taken on the site to produce a reading. If pages are not opened or links are not tested, the readout will not display it. When attached the readout is live, meaning buttons pressed produce logs instantly on screen.
 
 #### Dropping Docker Compose
 
+If detached from the terminal, to turn off the active containers you can use the following commands. Some will also remove images (to solve rebuild bugs,) from your current build or all images within your project.
+
 | Code Input *- Bash*                                    | Output                                                             |
 | :----------------------------------------------------- | :----------------------------------------------------------------- |
-| `docker-compose down`                                    | {lauch current or build no existing images with terminal debug}    |
-| `docker-compose down --rmi local`                                 | {lauch current or build images detached from terminal debug}       |
-| `docker-compose down --rmi local`                         | {Build and replace any changes to images detached from terminal debug} |
+| `docker-compose down`                                  | {Turn off active containers and keep images}                       |
+| `docker-compose down --rmi local`                      | {Turn off active containers and remove images related to it}       |
+| `docker-compose down --rmi all`                        | {Turn off active containers and remove all images stored on machine} |
+
+Now with containers that run as expected I want to allow for my service to build automaticly within a CI and CD pipeline.
+
+### Jenkins
+
+![Jenkinslogo][screenshot18]
+
+With the use of Jenkins I am able to produce a Continues Intergration Pipeline by making use of webhooks on Git, I will be able to send any new pushs to the `master` branch direct to Jenkins, this will then comence the build process for me.
+
+#### Set Up Jenkins
+
+To access Jenkins I need to open port `8080` in [Firwall Rules][gcp-firewall-rules] and apply it to my machine. As Jenkins uses Java, this needs to be installed first...
+
+| Code Input *- Bash*                                    | Output                                                             |
+| :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `sudo apt update`                                      | {Process any outstanding updates required}                         |
+| `sudo apt install default-jre`                         | {Install Java to enable Jenkins to install}                        |
+| `java -version`                                        | {Confirm Java is installed on the machine}                         |
+
+Now with Java available on the system running the following commands should install Jenkins on the machine.
+
+`wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -` {add the Jenkins repository key to the current system}
+
+| Code Input *- Bash*                                    | Output                                                             |
+| :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'` | {Add the new Debian package to the system to allow install} |
+| `sudo apt update`                                      | {Process any outstanding updates}                                  |
+| `sudo apt install jenkins`                             | {Install Jenkins on the machine}                                   |
+
+#### Systemctl Jenkins
+
+With Jenkins installed on the system, the next thing is to activate the service. This is done through `systemctl` commands...
+
+| Code Input *- Bash*                                    | Output                                                             |
+| :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `sudo systemctl start jenkins`                         | {Turn on the Jenkins service}                                      |
+| `sudo systemctl status jenkins`                        | {Check the status of the Jenkins service}                          |
+
+To reach the service my status must be **active**. When happy, heading to the site on port `8080` will allow for me to begin the intergration process.
+
+> To turn off or reboot the jenkins service, the following commands can be used...
+> 
+> | Code Input *- Bash*                                    | Output                                                             |
+> | :----------------------------------------------------- | :----------------------------------------------------------------- |
+> | `sudo systemctl restart jenkins`                       | {restart the Jenkins service}                                      |
+> | `sudo systemctl stop jenkins`                          | {Turn off the Jenkins service}                                     |
+
+#### Accessing port 8080
+
+If not already done so, the current machine must have access to port `8080`, the Jenkins default port. This is done on GCP's [Firwall Rules][gcp-firewall-rules] and then included in the machine tags.
+
+When the port is open. Entering the [site][Jenkins] on this port will display a page asking for an Admin password.
+
+![Entering Jenkins Password][screenshot19]
+
+Returning to the terminal and entering the following command will provide a password requred to enter Jenkins.
+
+| Code Input *- Bash*                                      | Output                                                             |
+| :------------------------------------------------------- | :----------------------------------------------------------------- |
+| `sudo cat /var/lib/Jenkins/secrets/initialAdminPassword` | {Print out initial password}                                       |
+
+Paisting this into Jenkins will take you to the register page, here I can create a username and password (That must be remembered).
+
+Once done you will be presented with a couple of options to install plugins on the service.
+
+![Setup Jenkins Pipeline][screenshot20]
+
+Sticking with the suggested plugins I wated for the installation to finish so i can create a New Item.
+
+#### Create Pipeline
+
+Now having access to Jenkins I can create a "New Item" to begin my CI pipeline.
+
+![Create Jenkins Pipeline][screenshot21]
+
+By clicking on "New Item" I can Name and and select the type of project I want to make. Calling my project "Project_2-pipeline" and selecting Pipeline as the type of project i wish to create.
+
+![settings of Jenkins Pipeline][screenshot22]
+
+Attaching my Git Repository to the Pipeline and assiging it to pull from the master will mean that only if I develop and push to the master branch, I will recive any chnages in regards to the Jenkins machine.
+
+![Webhook Setting][screenshot23]
+
+Returning to my [Git Repository][git-project] and heading to the [webhooks][git-webhook] page in settings. I created a webhook to the Jenkins server. Setting the hook to push the data as a Json.
+
+>It it important that the server location be to the Jenkins port and have the `/github-webhook/` extention.
+
+#### Jenkinsfile
+
+![Jenkins Build][screenshot24]
+
+### Ansible
+
+This is a program used to setup external systems with the requirments they need to achive loading an application successfully. It will be used in my case to assist in the scail out of my project. By installing this and adapting it into my Jenkinsfile and later with "Docker Swarm" I can have my project build any chnages I make to the application and have it role out without the notice of those using it.
+
+#### Install Ansibles
+
+As Ansible is being used to install the requirments of a machine, it is infact unable to be installed within the enviroment. What this means is that if currently in the enviroment I need to `deactivate` it before i continue.
+
+> This may require the installation an additional python installation as it was originaly installed within the enviroment. The command to enter is, `sudo apt install python3 python3-pip`
+
+| Code Input *- Bash*                                      | Output                                                             |
+| :------------------------------------------------------- | :----------------------------------------------------------------- |
+| `mkdir -p ~/.local/bin`                                  | {Make the following directory}                                     |
+| `echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc`            | {Print the directory and store it in .bashrc}                      |
+| `source ~/.bashrc`                                       | {Make this the sourse}                                             |
+| `pip install --user ansible`                             | {Install Ansible}                                                  |
+| `ansible --version`                                      | {Confirm installation by displaying currently installed version}   |
+
+With Ansible successfully installed I can now begin to create a playbook and roles for my build process.
+
+#### Playbook
+
+Within my playbook I will be creating 2 processes. They will have within them roles that corespond to the stages each must procedss in order to become a functioning node within my Swarm. By using an inventory file I am able to cluster groups of servers together. This requires the IP address of the master and external nodes. To add the IP addresses to the system I need to enter the "hosts" file. To get to this I can use the command...
+
+| Code Input *- Bash*                                      | Output                                                             |
+| :------------------------------------------------------- | :----------------------------------------------------------------- |
+| `vim /etc/hosts`                                         | {open known IP addresses}                                          |
+
+> To boost the security of my system I have renamed the IP addresses for each node. This is achived my including a name directly after the IP address. This will enable me to refure the the other nodes not by their IP address but by the name i have given it.
+>> This may later require attention if any node IP changes.
+
+#### Roles
+
+###### Project2/ansible/roles/docker/tasks/main.yml
+I here I have set it to aquire the key to the repository, download trhe files and then install docker onto the systme.
+
+###### Project2/ansible/roles/docker-swarm/tasks/main.yml
+Create a list of nodes in the swarm, check if all node are active within the cluster. If not aquire the manager and worker tokens.
+
+###### Project2/ansible/roles/docker-swarm-worker/tasks/main.yml
+Enter the worker node and print the token inside, enabling the swarm.
+
+#### SSH Access
+
+Just like making the system accessable on my local machine, the Manager of my custer needs to be able to access the others to install any dependancies, this is done though SSH.
+
+By making a Keygen on this node i can paist the public key inside each Worker node. this weill allow the machin to remotly access each and run the Playbook and Roles required for the specified machine. A keygen is created using the following command...#
+
+| Code Input *- Bash*                                      | Output                                                             |
+| :------------------------------------------------------- | :----------------------------------------------------------------- |
+| `ssh-keygen`                                             | {create privrate and public key} |
+
+> In the direcrory `~/.ssh` will be where the key is saved.
+
+It is in this directory where a `config` file is need to allow this node to access the other worker nodes.
+
+### Docker-Swarm
+
+By including this in my project I have the oppertunity to make my site more responsive to changes with a Continues Deployment. Docker Swarm will enable me to scale my project out. By making this node a manager/master node. i can expand the network by creating one or more worker nodes to cope with higher traffic.
+
+#### Assigning Nodes
+
+Docker Swarm is an included feature of docker so should not require any additional installations to run. In order to make a node a Manager/Master node you are able to use the following command...
+
+| Code Input *- Bash*                                      | Output                                                             |
+| :------------------------------------------------------- | :----------------------------------------------------------------- |
+| `docker swarm init`                                      | {Swarm initialized: current node (j1dd5kmzioayai2ed34kpu8y2) is now a manager.<br /><br />To add a worker to this swarm, run the following command:<br /><br />docker swarm join --token [token] [ip]:[port]<br /><br />To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.} |
+
+With this now created I can add other nodes to my cluster by simply dropping this `docker swarm join --token [token] [ip]:[port]` inside it. If i ever need to aquire this tocken again i can use the following command...
+
+| Code Input *- Bash*                                      | Output                                                             |
+| :------------------------------------------------------- | :----------------------------------------------------------------- |
+| `docker swarm join-token worker`                         | {display the token required to add a new node to cluster}          |
 
 ## Index
 
@@ -756,9 +969,37 @@ This file is used to ensure that the application then asked to run from the stan
 
 Project2/<br />
 Project2/**docker-compose.yaml**<br />
+Project2/**Jenkinsfile**<br />
 Project2/**README.md**<br />
+Project2/ansible<br />
+Project2/ansible/**Inventory**<br />
+Project2/ansible/**playbook.yml**<br />
+Project2/ansible/roles<br />
+Project2/ansible/roles/docker<br />
+Project2/ansible/roles/docker/tasks<br />
+Project2/ansible/roles/docker/tasks/**main.yml**<br />
+Project2/ansible/roles/docker-swarm<br />
+Project2/ansible/roles/docker-swarm/tasks<br />
+Project2/ansible/roles/docker-swarm/tasks/**main.yml**<br />
+Project2/ansible/roles/docker-swarm-worker<br />
+Project2/ansible/roles/docker-swarm-worker/tasks<br />
+Project2/ansible/roles/docker-swarm-worker/tasks/**main.yml**<br />
+Project2/Documentation<br />
+Project2/Documentation/**README(1.02).md**<br />
+Project2/Documentation/Images<br />
+Project2/Documentation/Images/**Screenshot Files**<br />
+Project2/etc<br />
+Project2/etc/systemd<br />
+Project2/etc/systemd/system/**flask.service**<br />
 Project2/nginx/<br />
 Project2/nginx/**nginx.conf**<br />
+Project2/script<br />
+Project2/script/**before_installation.sh**<br />
+Project2/script/**docker.sh**<br />
+Project2/script/**installation.sh**<br />
+Project2/script/**source.sh**<br />
+Project2/script/shebang<br />
+Project2/script/shebang/**gitpush.sh**<br />
 Project2/Service_1/<br />
 Project2/Service_1/**app.py**<br />
 Project2/Service_1/**Dockerfile**<br />
@@ -833,6 +1074,10 @@ Project2/Service_4/application/tests/**test_back_end.py**
 - `version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')`
 - `sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 - `sudo chmod +x /usr/local/bin/docker-compose`
+- `mkdir -p ~/.local/bin`
+- `echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc`
+- `source ~/.bashrc`
+- `pip install --user ansible`
 
 ### Merge
 

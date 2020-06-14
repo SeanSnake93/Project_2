@@ -15,10 +15,10 @@
 
 # [Project_2][site]
 
-QA Indevisual Project 2 ~ Version 1
+QA Indevisual Project 2 ~ Version 1.03
 
-Using Flask to create a project that will takes advantage of 4 or more Services to run a function.
-The Services are to be built with the help of Docker and I am to demonstrate good practice through out the build process.
+Intergrate an SQL Database into the application and use it to replace the static data.
+Include some additional pages to make the most out of the new content.
 
 Submit by Date: 15th june
 
