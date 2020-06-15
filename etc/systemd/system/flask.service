@@ -6,7 +6,6 @@ Description=Flask_Book
 
 User=jenkins
 
-
 ExecStart=/var/lib/jenkins/workspace/Project_2/script/installation.sh
 
 [Install]
