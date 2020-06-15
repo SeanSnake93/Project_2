@@ -24,8 +24,6 @@ services:
     environment:
     - PROJECT_URI=${PROJECT_URI}
     - MY_SECRET_KEY=${MY_SECRET_KEY}
-    deploy:
-      replicas: 2
   service_2:
     image: seansnake93/service-2:${APP_VERSION}
     build: ./Service_2
@@ -35,8 +33,6 @@ services:
     environment:
     - PROJECT_URI=${PROJECT_URI}
     - MY_SECRET_KEY=${MY_SECRET_KEY}
-    deploy:
-      replicas: 2
   service_3:
     image: seansnake93/service-3:${APP_VERSION}
     build: ./Service_3
@@ -46,8 +42,6 @@ services:
     environment:
     - PROJECT_URI=${PROJECT_URI}
     - MY_SECRET_KEY=${MY_SECRET_KEY}
-    deploy:
-      replicas: 2
   service_4:
     image: seansnake93/service-4:latest
     build: ./Service_4
@@ -57,5 +51,3 @@ services:
     environment:
     - PROJECT_URI=${PROJECT_URI}
     - MY_SECRET_KEY=${MY_SECRET_KEY}
-    deploy:
-      replicas: 2
