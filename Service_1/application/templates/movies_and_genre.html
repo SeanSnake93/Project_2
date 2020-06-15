@@ -15,7 +15,7 @@
     {% for film in movies %}
     <div class="movies">
         <h2>{{ film.movie_title }} ( {{ film.year }} )<span>, {{ film.rating }}</span></h2>
-        <p>{{ film.genre1 }}{% if film.genre2 != "" %}, {{ film.genre2 }}{% endif %}{% if film.genre3 != "" %}, {{ film.genre3 }}{% endif %}{% if film.genre4 != "" %}, {{ film.genre4 }}{% endif %}{% if film.genre5 != "" %}, {{ film.genre5 }}{% endif %}</p>
+        <p class="Genres">{{ film.genre1 }}{% if film.genre2 != "" %}, {{ film.genre2 }}{% endif %}{% if film.genre3 != "" %}, {{ film.genre3 }}{% endif %}{% if film.genre4 != "" %}, {{ film.genre4 }}{% endif %}{% if film.genre5 != "" %}, {{ film.genre5 }}{% endif %}</p>
     </div>
     {% endfor %}
 

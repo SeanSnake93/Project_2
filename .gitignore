@@ -4,6 +4,8 @@
 
 *.env
 
+*.sql
+
 /project2-venv/
 
 /venv/

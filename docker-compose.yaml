@@ -16,7 +16,7 @@ services:
     deploy:
       replicas: 2 # This will deploy 2 copies of my application, no downtime while it builds.
   service_1:
-    image: seansnake93/service-1:2.02 # Test
+    image: seansnake93/service-1:2.03 # CHANGE THIS for front end access.
     build: ./Service_1
     ports: 
     - target: 5000
