@@ -27,7 +27,7 @@ services:
     deploy:
       replicas: 2
   service_2:
-    image: seansnake93/service-2:2.01
+    image: seansnake93/service-2:2.02
     build: ./Service_2
     ports: 
     - target: 5001
