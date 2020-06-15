@@ -90,6 +90,7 @@ button {
     display: block;
     color: #3399ff;
     background-color: #ffffff;
+    float: left;
     transition: 1s;
 }
 
