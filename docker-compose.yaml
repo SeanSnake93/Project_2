@@ -16,7 +16,7 @@ services:
     deploy:
       replicas: 2 # This will deploy 2 copies of my application, no downtime while it builds.
   service_1:
-    image: seansnake93/service-1:${APP_VERSION}
+    image: seansnake93/service-1:2.01
     build: ./Service_1
     ports: 
     - target: 5000
@@ -24,8 +24,10 @@ services:
     environment:
     - PROJECT_URI=${PROJECT_URI}
     - MY_SECRET_KEY=${MY_SECRET_KEY}
+    deploy:
+      replicas: 2
   service_2:
-    image: seansnake93/service-2:${APP_VERSION}
+    image: seansnake93/service-2:2.01
     build: ./Service_2
     ports: 
     - target: 5001
@@ -33,8 +35,10 @@ services:
     environment:
     - PROJECT_URI=${PROJECT_URI}
     - MY_SECRET_KEY=${MY_SECRET_KEY}
+    deploy:
+      replicas: 2
   service_3:
-    image: seansnake93/service-3:${APP_VERSION}
+    image: seansnake93/service-3:2.01
     build: ./Service_3
     ports: 
     - target: 5002
@@ -42,8 +46,10 @@ services:
     environment:
     - PROJECT_URI=${PROJECT_URI}
     - MY_SECRET_KEY=${MY_SECRET_KEY}
+    deploy:
+      replicas: 2
   service_4:
-    image: seansnake93/service-4:latest
+    image: seansnake93/service-4:2.01
     build: ./Service_4
     ports: 
     - target: 5003
@@ -51,3 +57,5 @@ services:
     environment:
     - PROJECT_URI=${PROJECT_URI}
     - MY_SECRET_KEY=${MY_SECRET_KEY}
+    deploy:
+      replicas: 2
