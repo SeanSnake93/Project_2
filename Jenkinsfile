@@ -5,7 +5,7 @@ pipeline{
         rollback = "false"
     }
     stages{
-        stage("Make allk scripts executable"){
+        stage("Make scripts executable"){
             steps{
                 sh 'chmod +x ./script/*'
             }
