@@ -49,7 +49,7 @@ services:
     deploy:
       replicas: 2
   service_4:
-    image: seansnake93/service-4:${APP_VERSION}
+    image: seansnake93/service-4:latest
     build: ./Service_4
     ports: 
     - target: 5003
