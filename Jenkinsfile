@@ -1,11 +1,11 @@
 pipeline{
     agent any
     enviroment {
-        app_ver = "1.01"
+        app_version = "2.01"
         rollback = "false"
     }
     stages{
-        stage("Make allk scripts executable"){
+        stage("Make all scripts executable"){
             steps{
                 sh 'chmod +x ./script/*'
             }

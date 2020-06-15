@@ -1078,11 +1078,11 @@ Project2/Service_4/application/tests/**test_back_end.py**
 - `echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc`
 - `source ~/.bashrc`
 - `pip install --user ansible`
+- `sudo apt -V install gnupg2 pass`
 
 ### Merge
 
 - `git fetch origin`
-- `git checkout -b Dev origin/Dev`
 - `git merge master`
 - `git statis`
 - `git commit`
